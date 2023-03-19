@@ -1,4 +1,5 @@
-﻿using llpstudio.Classes;
+﻿using LLP.BLL.IRepository;
+using llpstudio.Classes;
 using llpstudio.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace llpstudio.Controllers
     public class EventBookingDetailsController : Controller
     {
         AccountDataLayer acdl = new AccountDataLayer();
+        
+        
         // GET: EventBookingForm
         public ActionResult Index(int id,int id1)
         {

@@ -1,0 +1,246 @@
+﻿@using llpstudio.ViewModel;
+@model BookingFormVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- page header -->
+<div id="page-header" class="ph-full ph-cap-xxlg ph-center ph-image-cropped ph-image-cover-2 ph-content-parallax">
+    <div class="page-header-inner tt-wrap">
+        <div class="ph-caption">
+            <h1 class="ph-caption-title ph-appear">Booking Forms</h1>
+            <div class="ph-caption-title-ghost ph-appear">Events</div>
+            <div class="ph-caption-subtitle ph-appear">Book your photographers</div>
+        </div>
+    </div>
+    <a href="#page-content" class="scroll-down-circle" data-offset="30">
+        <div class="sdc-inner ph-appear">
+            <div class="sdc-icon"><i class="fas fa-chevron-down"></i></div>
+            <svg viewBox="0 0 500 500">
+                <defs>
+                    <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
+                </defs>
+                <text dy="30">
+                    <textPath xlink:href="#textcircle">Scroll down - Scroll down -</textPath>
+                </text>
+            </svg>
+        </div>
+    </a>
+    <div class="made-with-love ph-appear">
+        <div class="mwl-inner">
+            <div class="mwl-text">Made with</div>
+            <div class="mwl-icon"><i class="far fa-heart"></i></div>
+        </div>
+    </div>
+</div>
+<!-- End page header -->
+<div id="page-content">
+    <div class="tt-section padding-bottom-xlg-150">
+        <div class="tt-section-inner tt-wrap max-width-1400">
+            <div class="row booking_form justify-content-center">
+                <div class="col-md-12">
+                    <form class="tt-form-lg">
+                        <div id="shop-wishlist">
+
+                            <div class="d-flex justify-content-end align-items-center mb-2">
+                                <div class="tt-heading tt-heading-xsm anim-fadeinup mb-0 mr-2" style="">
+                                    <h2 class="tt-heading-title">Sub Total: <span>$XYZ</span> </h2>
+                                </div>
+
+                                <div class="tt-btn tt-btn-dark">
+                                    <a href="#" data-hover="Expand" data-toggle="modal" data-target="#exampleModal">Expand <i class="fas fa-expand ml-2"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="table_con box-inner">
+                                <div class="table_con_in ">
+                                    <table class="tt-table shop-wishlist-table">
+                                        <thead class="shop-wishlist-table-head">
+                                            <tr>
+                                                <th class="swh-product-title" colspan="">
+                                                    Date & Event
+                                                </th>
+                                                <th class="swh-product-title" colspan="">
+                                                    Location & Photographer
+                                                </th>
+                                                <th class="swh-price">
+                                                    Traditional Photography
+                                                </th>
+                                                <th class="swh-quantity">
+                                                    Traditional Videography
+                                                </th>
+                                                <th class="swh-subtotal">
+                                                    Candid Photography
+                                                </th>
+                                                <th class="swh-subtotal">
+                                                    Cinematography
+                                                </th>
+                                                <th class="swh-subtotal">
+                                                    Drone
+                                                </th>
+                                                <th class="swh-subtotal">
+                                                    Action
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody class="shop-wishlist-table-body">
+                                            @if (Model.PackageDtl != null && Model.PackageDtl.Count > 0)
+                                            {
+                                                foreach (var item in Model.PackageDtl) 
+                                                {
+                                            <tr class="shop-wishlist-table-item customer_records">
+                                                <td class="swti-product-thumb">
+                                                    <div class="tt-form-group">
+                                                        <input class="tt-form-control" id="our_date" name="our_date" type="text" value="">
+                                                        <select class="tt-form-control" id="12323115" name="option">
+                                                            <option value="" disabled="" selected="">Event Type</option>
+                                                            @if (Model.EventList != null && Model.EventList.Count > 0)
+                                                            {
+                                                                foreach (var obj1 in Model.EventList)
+                                                                {
+                                                                    <option value="@obj1.ID">@obj1.DisplayText</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                                <td class="swti-product-title">
+                                                    <div class="tt-form-group">
+                                                        <input class="tt-form-control" id="" type="text" name="name" placeholder="Location"
+                                                               required="">
+                                                        <input class="tt-form-control" id="@item.PhotoGrapherTypeID" 
+                                                               type="text" name="name" value="@item.PhotoGrapherTypeDesc" disabled>
+                                                        @*<select class="tt-form-control" id="12323115" name="option">
+                                                            <option value="" disabled="" selected="">Photographer Type</option>
+                                                            <option value="option-1">Photographer Type</option>
+                                                            <option value="option-2">Photographer Type</option>
+                                                            <option value="option-3">Photographer Type</option>
+                                                        </select>*@
+                                                    </div>
+                                                </td>
+                                                <td class="swti-price check-t" data-title="Price">
+                                                    <div class="price_t">Price</div>
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked>
+                                                        <span class="slider round"></span>
+                                                        <span class="absolute-no">NO</span>
+                                                    </label>
+
+
+                                                </td>
+                                                <td class="swti-price check-t" data-title="Price">
+                                                    <div class="price_t">Price</div>
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked>
+                                                        <span class="slider round"></span>
+                                                        <span class="absolute-no">NO</span>
+                                                    </label>
+                                                </td>
+                                                <td class="swti-price check-t" data-title="Price">
+                                                    <div class="price_t">Price</div>
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked>
+                                                        <span class="slider round"></span>
+                                                        <span class="absolute-no">NO</span>
+                                                    </label>
+                                                </td>
+                                                <td class="swti-price check-t" data-title="Price">
+                                                    <div class="price_t">Price</div>
+                                                    <label class="switch">
+                                                        <input type="checkbox">
+                                                        <span class="slider round"></span>
+                                                        <span class="absolute-no">NO</span>
+                                                    </label>
+                                                </td>
+                                                <td class="swti-price check-t" data-title="Price">
+                                                    <div class="price_t">Price</div>
+                                                    <label class="switch">
+                                                        <input type="checkbox">
+                                                        <span class="slider round"></span>
+                                                        <span class="absolute-no">NO</span>
+                                                    </label>
+                                                </td>
+                                                <td class="swti-price" style="text-align:center">
+                                                    <span class="badge bg-secondary">
+                                                        <a href="#" id="#remove-button">Remove</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                                }
+                                            }
+                                            
+                                        @*<tr class="shop-wishlist-table-buttons">
+                                            <td colspan="8" class="text-right">
+                                                <div class="tt-btn tt-btn-primary my-0">
+                                                    <a href="#" class="extra-fields-customer" data-hover="Add">Add Day</a>
+                                                </div>
+                                            </td>
+                                        </tr>*@
+                                        </tbody>
+                                    </table>
+                                    <!-- End tt-Table -->
+                                </div>
+                            </div>
+
+
+                            <div class="box-outer d-flex justify-content-around py-3">
+                                <div class="arrow-left arrow"><i class="fas fa-chevron-left"></i></div>
+                                <div class="arrow-right arrow"><i class="fas fa-chevron-right"></i></div>
+                            </div>
+
+                            <div class="text-right">
+                                <div class="tt-btn tt-btn-link">
+                                    <a href="shop-checkout.html" data-hover="Checkout">Proceed to Checkout</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-3">
+                                <div class="tt-form-check mt-1">
+                                    <input type="checkbox" id="trigger" name="question">
+                                    <label for="trigger">Need Album ?</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="hidden_fields">
+                                    <div class="d-flex justify-content-between w-100 need_album">
+                                        <div class="tt-form-group w-50">
+                                            <label>Album Type<span class="required">*</span></label>
+                                            <select class="tt-form-control" id="result" name="result">
+                                                <option value="" selected> Select </option>
+                                                <option value="">Album 1</option>
+                                                <option value="">Album 2</option>
+                                            </select>
+                                        </div>
+                                        <div class="tt-form-group w-40" id="" style="">
+                                            <label>How many ? <span class="required">*</span></label>
+                                            <select class="tt-form-control" id="result" name="result">
+                                                <option value="" selected> Select </option>
+                                                <option value=""> 1</option>
+                                                <option value=""> 2</option>
+                                                <option value=""> 3</option>
+                                                <option value=""> 4</option>
+                                                <option value=""> 5</option>
+                                                <option value=""> 6</option>
+                                                <option value=""> 7</option>
+                                                <option value=""> 8</option>
+                                                <option value=""> 9</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div> <!-- /.tt-section-inner -->
+    </div>
+    <!-- End tt-section -->
+
+
+</div>
