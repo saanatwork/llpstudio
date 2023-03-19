@@ -1,0 +1,138 @@
+﻿@model llpstudio.Models.CheckOutCustomerDetails
+@using llpstudio.Models;
+@using System.Data;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    HttpCookie logincookie_llpstudio_User = Request.Cookies["logincookie_llpstudio_User"];
+    string fname = "";
+    string lname = "";
+    if (logincookie_llpstudio_User != null)
+    {
+        fname = logincookie_llpstudio_User["FirstName"];
+        lname = logincookie_llpstudio_User["LastName"];
+    }
+}
+
+<!-- *************************************
+                    *********** Begin page content ***********
+                    ************************************** -->
+<div id="page-content">
+
+    <!-- =======================
+    ///// Begin tt-section /////
+    ============================
+    * You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
+    -->
+    <div class="tt-section dashb_ton">
+        <div class="tt-section-inner tt-wrap">
+
+            <!-- Begin tt-Tabs
+            ====================
+            * Use class "tt-tabs-minimal" to enable tabs minimal style (no class = default style).
+            * Use class "tt-tabs-justified" to enable tabs justified style (not recommended if you have many tabs!).
+            * Important: class "tt-tabs" is required!
+            -->
+            <div class="tt-tabs row">
+
+                <!-- Begin tt-Tabs buttons
+                ===========================
+                * Note: Make sure the "data-content-id" and tab content "id" are identical and unique!
+                -->
+                <div class="tt-tabs-buttons col-md-3">
+                    @Html.Partial("_UserDashboardMenu")
+                </div>
+                <!-- End tt-Tabs buttons -->
+                <!-- Begin tt-Tabs content wrap
+                ================================ -->
+                <div class="tt-tab-content-wrap col-md-9">
+
+
+                    <!-- Begin tab content -->
+                    <div class="">
+                        <div class="tt-section-inner tt-wrap max-width-800">
+
+                            <!-- Begin form
+                            ================
+                            * Use class "tt-form-filled" or "tt-form-minimal" to change form style.
+                            * Use class "tt-form-sm" or "tt-form-lg" to change form size (no class = default size).
+                            -->
+                            <form class="tt-form-lg" action="@Url.Action("ShippingAddress","UserDashBoard")" method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="tt-form-group">
+                                            <label>First Name <span class="required">*</span></label>
+                                            @Html.TextBoxFor(m => m.FName, new { @class = "tt-form-control", @required = "required", @placeholder = "Enter your first name",@Value=fname })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="tt-form-group">
+                                            <label>Last Name <span class="required">*</span></label>
+                                            @Html.TextBoxFor(m => m.LName, new { @class = "tt-form-control", @required = "required", @placeholder = "Enter your last name", @Value = lname })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="tt-form-group">
+                                            <label>Phone <span class="required">*</span></label>
+                                            @Html.TextBoxFor(m => m.Phone, new { @class = "tt-form-control", @required = "required", @placeholder = "Enter your Phone" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="tt-form-group">
+                                            <label>Street 1 <span class="required">*</span></label>
+                                            @Html.TextBoxFor(m => m.Street1, new { @class = "tt-form-control", @required = "required", @placeholder = "House number and street name" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="tt-form-group">
+                                            <label>Street 2 <span class="required">*</span></label>
+                                            @Html.TextBoxFor(m => m.Street2, new { @class = "tt-form-control", @required = "required", @placeholder = "Apartment, suite, unit etc. (optional)" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="tt-form-group">
+                                            <label>City <span class="required">*</span></label>
+                                            @Html.TextBoxFor(m => m.City, new { @class = "tt-form-control", @required = "required", @placeholder = "Enter City" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="tt-form-group">
+                                            <label>State</label>
+                                            @Html.TextBoxFor(m => m.State, new { @class = "tt-form-control", @required = "required", @placeholder = "Enter State" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="tt-form-group">
+                                            <label>Pin <span class="required">*</span></label>
+                                            @Html.TextBoxFor(m => m.Pin, new { @class = "tt-form-control", @required = "required", @placeholder = "Enter PinCode" })
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="tt-btn tt-btn-light" style="overflow:visible;">*@
+                                    @*<a href="javascript:void(0);" onclick="document.getElementById('btnsave').click();" data-hover="Save">Save</a>*@
+                                    <input class="tt-btn tt-btn-light" style="padding: 0px 30px 0px 30px;" type="submit" id="btnsave" value="Save"/>
+                                @*</div>*@
+                                <div class="tt-btn tt-btn-primary">
+                                    <a href="@Url.Action("ShippingAddress","UserDashBoard")" style="overflow:visible;">Cancel</a>
+                                </div>
+                            </form>
+                            <!-- End form -->
+
+                        </div> <!-- /.tt-section-inner -->
+                    </div>
+                    <!-- End tab content -->
+
+
+                </div>
+                <!-- End tt-Tabs content wrap -->
+
+            </div>
+            <!-- End tt-Tabs -->
+
+        </div> <!-- /.tt-section-inner -->
+    </div>
+    <!-- End tt-section -->
+
+</div>
+<!-- End page content -->

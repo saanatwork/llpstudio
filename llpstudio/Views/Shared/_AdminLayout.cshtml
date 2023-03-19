@@ -1,0 +1,113 @@
+﻿@{ 
+    Layout = null;
+    HttpCookie logincookie_llpstudio_Admin = Request.Cookies["logincookie_llpstudio_Admin"];
+    if (logincookie_llpstudio_Admin == null)
+    {
+        Response.Redirect(Url.Action("Logout","Admin"));
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>llpstudio | Admin</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="@Url.Content("~/assets/img/salumi-kitchen-favicon.png")">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/adminassets/plugins/bootstrap/css/bootstrap.min.css")">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/adminassets/plugins/fontawesome/css/fontawesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/adminassets/plugins/fontawesome/css/all.min.css")">
+
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    @*<link rel="stylesheet" href="@Url.Content("~/adminassets/plugins/datatables/datatables.min.css")">*@
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/adminassets/css/animate.min.css")">
+    <!-- Select CSS -->
+    @*<link rel="stylesheet" href="@Url.Content("~/adminassets/css/select2.min.css")">*@
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/adminassets/css/admin.css")">
+
+</head>
+
+<body>
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <a href="@Url.Action("Index","Admin")" class="logo logo-small">
+                    <img src="@Url.Content("~/assets/img/demo_logo1.png")" alt="Logo" width="30" height="30" />
+                    @*<img src="@Url.Content("~/assets/img/demo_logo1.png")" class="img-fluid" />*@
+                </a>
+            </div>
+            <a href="javascript:void(0);" id="toggle_btn">
+                <i class="fas fa-align-left"></i>
+            </a>
+            <a class="mobile_btn" id="mobile_btn" href="javascript:void(0);">
+                <i class="fas fa-align-left"></i>
+            </a>
+
+            <ul class="nav user-menu">
+                <!-- Notifications -->
+                <!-- /Notifications -->
+                <!-- User Menu -->
+                <li class="nav-item dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle user-link  nav-link" data-toggle="dropdown">
+                        <span class="user-img">
+                            @*<img src="@Url.Content("~/assets/img/salumi-kitchen.jpg")" class="img-fluid" />*@
+                            <img class="rounded-circle" src="@Url.Content("~/adminassets/img/Admin-icon.jpg")" width="40" alt="Admin">
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        @*<a class="dropdown-item" href="admin-profile.html">Profile</a>*@
+                        <a class="dropdown-item" href="@Url.Action("Logout","Admin")">Logout</a>
+                    </div>
+                </li>
+                <!-- /User Menu -->
+
+            </ul>
+        </div>
+        <!-- /Header -->
+        <!-- Sidebar -->
+        @Html.Partial("_PartialAdminMenu")
+        <!-- /Sidebar -->
+
+        @RenderBody()
+    </div>
+
+    <!-- jQuery -->
+    <script src="@Url.Content("~/adminassets/js/jquery-3.5.0.min.js")"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="@Url.Content("~/adminassets/js/popper.min.js")"></script>
+    <script src="@Url.Content("~/adminassets/plugins/bootstrap/js/bootstrap.min.js")"></script>
+
+    <!-- Slimscroll JS -->
+    <script src="@Url.Content("~/adminassets/plugins/slimscroll/jquery.slimscroll.min.js")"></script>
+
+    <!-- Datatables JS -->
+    @*<script src="@Url.Content("~/adminassets/plugins/datatables/datatables.min.js")"></script>*@
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="@Url.Content("~/adminassets/js/select2.min.js")"></script>
+
+    <!-- Custom JS -->
+    <script src="@Url.Content("~/adminassets/js/admin.js")"></script>
+
+    @*<script>
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>*@
+
+    @RenderSection("scripts", false)
+</body>
+</html>

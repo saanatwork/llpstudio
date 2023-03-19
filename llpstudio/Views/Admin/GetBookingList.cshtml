@@ -1,0 +1,115 @@
+﻿@model llpstudio.Models.BookingModel
+@using System.Data
+
+@{
+    ViewBag.Title = "GetBookingList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    TempData["Booking"] = "aaa";
+    TempData["GetBookingList"] = "active";
+    DataSet ds = (DataSet)ViewBag.GetBookingList;
+    DataTable dt = new DataTable();
+    if (ds != null && ds.Tables[1].Rows.Count > 0)
+    {
+        dt = ds.Tables[1];
+    }
+}
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Booking List</h3>
+                </div>
+                <div class="col-auto text-right">
+                    @*<a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
+                            <i class="fas fa-filter"></i>
+                        </a>*@
+                    <a title="Add Category" href="@Url.Action("AddBooking","Admin")" class="btn btn-primary add-button ml-3">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+      
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @if (TempData["FoodCategorySuccess"] != null && !string.IsNullOrEmpty((string)TempData["FoodCategorySuccess"]))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["FoodCategorySuccess"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    }
+                    else if (TempData["FoodCategoryError"] != null && !string.IsNullOrWhiteSpace(TempData["FoodCategoryError"].ToString()))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> @TempData["FoodCategoryError"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0 datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Contact</th>
+                                        <th>Event</th>
+                                        <th>No Of Days</th>
+                                        <th>Booked On</th>
+                                        <th>Total Price</th>
+                                        <th>Photos</th>
+                                        <th class="text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (DataRow dr in dt.Rows)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @dr["Customer"]
+                                            </td>
+                                            <td>
+                                                @dr["Contact"]
+                                            </td>
+                                            <td>
+                                                @dr["Event"]
+                                            </td>
+                                            <td>
+                                                @dr["NoOfDays"]
+                                            </td>
+                                            <td>
+                                                @dr["EntryDateTime"]
+                                            </td>
+                                            <td>
+                                                @dr["TotalPrice"]
+                                            </td>
+                                            <td>
+                                                <img src="@Url.Content("~/assets/img/custom/")@dr["EventImageFile"]" style="width:80px;height:80px;" />
+                                            </td>
+                                            <td class="text-right">
+                                                <a href="@Url.Action("BookingDetails","Admin",new {@id=dr["BookingId"]})" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Details</a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

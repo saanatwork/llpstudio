@@ -1,0 +1,144 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    DataSet ds = (DataSet)ViewBag.UserList;
+    DataTable dt = new DataTable();
+    if (ds != null && ds.Tables[0].Rows.Count > 0)
+    {
+        dt = ds.Tables[0];
+    }
+    TempData["UserList"]="aaa";
+}
+
+<style>
+    .table-responsive {
+        white-space: normal;
+    }
+</style>
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">User List</h3>
+                </div>
+                <div class="col-auto text-right">
+                    @*<a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
+                            <i class="fas fa-filter"></i>
+                        </a>*@
+                    @*<a title="Add Add-On" href="@Url.Action("AddOnItem","Admin")" class="btn btn-primary add-button ml-3">
+                            <i class="fas fa-plus"></i>
+                        </a>*@
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+     
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @if (TempData["UserStatusSuccess"] != null && !string.IsNullOrEmpty((string)TempData["UserStatusSuccess"]))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["UserStatusSuccess"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    }
+                    else if (TempData["UserStatusError"] != null && !string.IsNullOrWhiteSpace(TempData["UserStatusError"].ToString()))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> @TempData["UserStatusError"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <div class="table-responsive" style="width:100%;overflow:initial;">
+                            <table class="table table-hover table-center mb-0 datatable">
+                                <thead>
+                                    <tr>
+                                        <th hidden>User Id</th>
+                                        <th>Name</th>
+                                        <th>MemberShip</th>
+                                        <th>PhoneNo</th>
+                                        <th>Email Id</th>
+                                        <th>Address</th>
+                                        <th>PinCode</th>
+                                        <th>Image</th>
+                                        <th>Status</th>
+                                        @*<th>Action</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (DataRow dr in dt.Rows)
+                                    {
+                                        <tr>
+                                            <td hidden>@dr["UserId"]</td>
+                                            <td>
+                                                @dr["FirstName"] @dr["LastName"]
+                                            </td>
+
+                                            <td>
+                                                @dr["MemberShipName"]
+                                            </td>
+                                            <td>
+                                                @dr["PhoneNo"]
+                                            </td>
+                                            <td>
+                                                @dr["EmailId"]
+                                            </td>
+                                            <td>
+
+                                                @dr["Address"]
+                                            </td>
+                                            <td>
+                                                @dr["PinCode"]
+
+                                                
+                                            </td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(@dr["ImageFile"].ToString()))
+                                                {
+                                                    <img src="@Url.Content("~/DataImages/FoodItem/"+@dr["ImageFile"])" style="width:80px;" />
+                                                }
+                                                else
+                                                {
+                                                    <img src="@Url.Content("~/adminassets/img/Noimage.png")" style="width:80px;" />
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @if (dr["IsActive"].ToString() == "True")
+                                                {
+
+                                                    <a href="@Url.Action("UserActiveDeactive","Admin",new { @id=dr["UserId"],@id1=dr["IsActive"]})" class="btn btn-sm bg-success-light mr-2">Active</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="@Url.Action("UserActiveDeactive","Admin",new { @id=dr["UserId"],@id1=dr["IsActive"]})" class="btn btn-sm bg-danger-light mr-2">Inactive</a>
+
+                                                }
+
+                                            </td>
+                                          
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+﻿@model llpstudio.Models.Product
+
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    TempData["Product"] = "aaa";
+    TempData["AddProduct"] = "active";
+
+}
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-xl-8 offset-xl-2">
+
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="page-title">Add Product</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Page Header -->
+
+                <div class="card">
+                    <div class="card-body">
+                        @if (TempData["ProductError"] != null && !string.IsNullOrWhiteSpace(TempData["ProductError"].ToString()))
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error!</strong> @TempData["ProductError"]
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error!</strong> @TempData["ProductSuccess"]
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            
+                        }
+                        <!-- Form -->
+                        <form method="post" action="@Url.Action("AddProduct","Admin")" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Product Category</label>
+                                        @Html.HiddenFor(model => model.ProductId, new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.ProductCategoryId, (IEnumerable<SelectListItem>)ViewBag.ProductCategory, "-Select Category-", new { @class = "product_select form-control", @required = "true" })
+                                        @* @Html.TextBoxFor(model => model.FoodCategory, new { @class = "form-control",@placeholder="Enter Food Category" })*@
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Product Name</label>
+                                        @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", @placeholder = "Enter Product Name", @required = "true" })
+
+                                    </div>
+                                </div>
+                              
+                                <div class="mt-4">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                    <a href="@Url.Action("ProductList","Admin")" class="btn btn-link">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Form -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showMyImage(fileInput) {
+        //if (checkFileExtension(fileInput) == true) {
+        var files = fileInput.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var imageType = /image.*/;
+            if (!file.type.match(imageType)) {
+                continue;
+            }
+            var img = document.getElementById("thumbnil");
+
+            img.file = file;
+
+            var reader = new FileReader();
+            reader.onload = (function (aImg) {
+                return function (e) {
+                    aImg.src = e.target.result;
+                };
+            })(img);
+            reader.readAsDataURL(file);
+        }
+        //}
+    }
+</script>
+

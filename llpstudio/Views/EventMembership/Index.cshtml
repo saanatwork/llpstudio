@@ -1,0 +1,185 @@
+﻿@model llpstudio.Models.PackageModel
+@using System.Data;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DataSet ds = (DataSet)ViewBag.PackageList;
+    DataTable dtPackageList = new DataTable();
+    if (ds.Tables[0].Rows.Count > 0)
+    {
+        dtPackageList = ds.Tables[0];
+    }
+}
+
+
+
+<!-- ========================
+                    ///// Begin page header /////
+                    =============================
+                    * ATENTION: This page header is slightly different from the default page header!
+                    It contains some extra elements and classes specifically for a portfolio single project.
+                    =============================
+                    * Use class "ph-full" to enable fullscreen size.
+                    * Use class "ph-cap-sm", "ph-cap-lg", "ph-cap-xlg" or "ph-cap-xxlg" to set caption size (no class = default size).).
+                    * Use class "ph-center" to enable content center position.
+                    * Use class "ph-bg-image" to enable page header background image (required for a portfolio single project!).
+                    * Use class "ph-bg-image-is-light" if needed, it makes the elements dark and more visible if you use a very light image (effect only with class "ph-bg-image").
+                    * Use class "ph-image-shadow" to enable page header background image (effect only with class "ph-bg-image").
+                    * Use class "ph-image-cropped" to crop image. It fixes image dimensions (no effect for "ph-bg-image"!).
+                    * Use class "ph-image-cover-*" to set image overlay opacity. For example "ph-image-cover-2" or "ph-image-cover-2-5" (up to "ph-image-cover-9-5").
+                    * Use class "ph-content-parallax" to enable content parallax.
+                    * Use class "ph-stroke" to enable caption title stroke style.
+                    * Use class "ph-inline" to enable content inline position (for a single project page only! No effect with class "ph-center"!).
+                    -->
+<div id="page-header" class="ph-full ph-center ph-bg-image ph-image-shadow ph-image-cover-5 ph-content-parallax">
+    <div class="page-header-inner tt-wrap">
+
+        <!-- Begin page header image
+        ============================= -->
+        <div class="ph-image">
+            <div class="ph-image-inner">
+                <img src="/assets/img/page-header/project-ph/project-ph-4.jpg" alt="Image">
+            </div>
+        </div>
+        <!-- End page header image -->
+        <!-- Begin page header caption
+        ===============================
+        Use class "max-width-*" to set caption max width if needed. For example "max-width-1000". More info about helper classes can be found in the file "helper.css".
+        -->
+        <div class="ph-caption">
+            <div class="ph-categories ph-appear">
+                <div class="ph-category" style="">Membership</div>
+                <!-- <div class="ph-category">Varia</div> -->
+            </div> <!-- /.ph-categories -->
+
+            <h2 class="ph-caption-title ph-appear">Our Packages</h2> <!-- You can use <br class="hide-from-lg"> to break a text line if needed -->
+            <!-- <h4 class="ph-caption-subtitle ph-appear">Subtitle</h4> -->
+        </div>
+        <!-- End page header caption -->
+        <!-- Begin project info list
+        =============================
+        * You can use the project info list as a standalone element outside of the page header if you want.
+        * Class "ph-appear" is for page header only!
+        -->
+        @if (dtPackageList.Rows != null)
+        {
+
+
+            <div class="project-info-list anim-fadeinup">
+                <ul>
+                    @foreach (DataRow item in dtPackageList.Rows)
+                    {
+                        <li>
+                            <div class="pi-list-heading">@item["PackageName"]</div>
+                            <div class="tt-btn tt-btn-light tt-btn-round tt-btn-ton">
+                                <a href="@Url.Action("Index","EventBookingDetails",new { @id=item["PackageId"],@id1=Model.EventId })" data-hover="View">
+                                <img src="/assets/img/custom/@item["PackageIcon"]" alt=""></a> <!-- Use short text only! -->
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+        <!-- End project info list -->
+
+    </div> 
+    <!-- /.page-header-inner -->
+    <!-- Begin made with love
+    ========================== -->
+    <div class="made-with-love ph-appear">
+        <div class="mwl-inner">
+            <div class="mwl-text">Made with</div>
+            <div class="mwl-icon"><i class="far fa-heart"></i></div>
+        </div>
+    </div>
+    <!-- End made with love -->
+    <!-- Begin page header share (share buttons are for design purposes only!)
+    ============================= -->
+    <div class="ph-share">
+        <div class="ph-share-trigger ph-appear">
+            <div class="ph-share-text">Share</div>
+            <div class="ph-share-icon magnetic-item"><i class="fas fa-share-alt"></i></div>
+        </div> <!-- /.ph-share-trigger -->
+
+        <div class="ph-share-content">
+            <div class="ph-share-close cursor-close"><div class="bg-noise"></div></div>
+            <div class="ph-share-inner">
+                <h1 class="ph-share-title ph-share-appear">Spread the Word!</h1>
+                <div class="ph-share-subtitle ph-share-appear">Share this project with your friends</div>
+
+                <div class="social-buttons ph-share-appear">
+                    <ul>
+                        <li><a href="#0" class="magnetic-item" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#0" class="magnetic-item" title="Share on Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#0" class="magnetic-item" title="Share on Pinterest"><i class="fab fa-pinterest"></i></a></li>
+                    </ul>
+                </div> <!-- /.social-buttons -->
+
+            </div> <!-- /.ph-share-inner -->
+
+            <div class="ph-share-ghost ph-share-appear">Share</div>
+        </div> <!-- /.ph-share-content -->
+    </div>
+    <!-- End page header share -->
+
+</div>
+<!-- End page header -->
+<!-- *************************************
+                    *********** Begin page content ***********
+                    ************************************** -->
+<div id="page-content">
+
+    <!-- =======================
+    ///// Begin tt-section /////
+    ============================
+    * You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
+    -->
+    <div class="tt-section">
+        <div class="tt-section-inner max-width-3000">
+
+
+
+
+            <!-- =======================
+            ///// Begin tt-section /////
+            ============================
+            * You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
+            -->
+            <div class="tt-section padding-top-xlg-150 padding-bottom-xlg-150">
+                <div class="tt-section-inner tt-wrap">
+
+                    <!-- Begin page nav
+                    ====================
+                    * Use class "tt-pn-stroke" to enable title stroke style.
+                    * Use class "tt-pn-scroll" to enable hover title scroll. Note: If "tt-pn-hover-title" text is wider than "tt-pn-link" then it scrolls by default. The longer the text, the faster it scrolls.
+                    -->
+                    <div class="tt-page-nav tt-pn-scroll">
+                        <a href="single-project-6.html" class="tt-pn-link anim-fadeinup">
+                            <div class="tt-pn-title">More Exciting</div>
+                            <div class="tt-pn-hover-title">Studio Shoot</div>
+                        </a> <!-- /.tt-pn-link -->
+
+                        <div class="tt-pn-subtitle anim-fadeinup">Explore More</div>
+
+                        <!-- Use if destination page contains page header image -->
+                        <div class="tt-pn-image">
+                            <img src="assets/img/custom/portfolio.jpg" alt="image">
+                        </div>
+                    </div>
+                    <!-- End page nav -->
+
+                </div> <!-- /.tt-section-inner -->
+            </div>
+            <!-- End tt-section -->
+
+
+        </div>
+        <!-- End page content -->
+
+
+
+    </div>
+    <!-- End content wrap -->
+
+</div>
+<!-- End scroll container -->

@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUserRegister.cshtml";
+}
+
+<!-- *************************************
+*********** Begin page content ***********
+************************************** -->
+<div id="page-content">
+
+    <!-- =======================
+    ///// Begin tt-section /////
+    ============================
+    * You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
+    -->
+    <div class="tt-section no-padding-top">
+        <div class="tt-section-inner tt-wrap">
+
+            <div class="tt-row">
+                <div class="tt-col-lg-6">
+
+                    <!-- Begin shop register box
+                    ============================= -->
+                    <div class="slr-box shop-register-box">
+                        <h4 class="slr-heading"><i class="fas fa-plug"></i> Create an Account</h4>
+
+                        <!-- Begin form (Note: for design purposes only!)
+                        ================
+                        * Use class "tt-form-filled" or "tt-form-minimal" to change form style.
+                        * Use class "tt-form-sm" or "tt-form-lg" to change form size (no class = default size).
+                        -->
+                        <form class="tt-register-form tt-form-minimal" method="post" action="@Url.Action("Index","Registration")">
+                            <div class="tt-form-group">
+                                <label>First Name <span class="required">*</span></label>
+                                <input type="text" class="tt-form-control" name="FirstName" required>
+                            </div>
+
+                            <div class="tt-form-group">
+                                <label>Last Name <span class="required">*</span></label>
+                                <input type="text" class="tt-form-control" name="LastName" required>
+                            </div>
+
+                            <div class="tt-form-group">
+                                <label>Email address <span class="required">*</span></label>
+                                <input type="email" class="tt-form-control" name="Email" required>
+                            </div>
+
+                            <div class="tt-form-group">
+                                <label>Phone Number <span class="required">*</span></label>
+                                <input type="text" class="tt-form-control" name="Mobile" required>
+                            </div>
+
+                            <div class="tt-form-group">
+                                <label>WhatsApp Number <span class="required">*</span></label>
+                                <input type="text" class="tt-form-control" name="WhatsApp" required>
+                            </div>
+
+                            <div class="tt-form-group">
+                                <label>Address <span class="required">*</span></label>
+                                <input type="text" class="tt-form-control" name="Address" required>
+                            </div>
+
+                            <div class="tt-form-group">
+                                <label>Password <span class="required">*</span></label>
+                                <input type="password" class="tt-form-control" name="Password" required>
+                            </div>
+
+                            <small class="tt-form-text">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="dummy-page.html" class="tt-link-2" target="_blank" rel="noopener">privacy policy</a>.</small>
+
+                            <div class="tt-btn tt-btn-primary tt-btn-block margin-top-40">
+                                <button type="submit" data-hover="Register">Register</button>
+                            </div>
+                        </form>
+                        <!-- End form -->
+
+                    </div>
+                    <!-- End shop register box -->
+
+                </div> <!-- /.tt-col -->
+
+                <div class="tt-col-lg-6">
+
+                    <!-- Begin shop go to login box
+                    ================================ -->
+                    <div class="slr-box shop-goto-login-box">
+                        <h4 class="slr-heading"><i class="fas fa-unlock-alt"></i> Already have an account?</h4>
+                        <small class="tt-form-text">Login here by filling you're username and password to enter to the shop. Shop login will simplify the purchase process and allows you to manage your personal account.</small>
+
+                        <div class="tt-btn tt-btn-light margin-top-30">
+                            <a href="@Url.Action("Index","Login")" data-hover="Log in">Log in</a>
+                        </div>
+                    </div>
+                    <!-- End shop go to login box -->
+
+                </div> <!-- /.tt-col -->
+            </div><!-- /.tt-row -->
+
+        </div> <!-- /.tt-section-inner -->
+    </div>
+    <!-- End tt-section -->
+
+
+</div>
+<!-- End page content -->
+@*  *@

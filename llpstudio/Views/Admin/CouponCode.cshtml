@@ -1,0 +1,132 @@
+﻿@model llpstudio.Models.CouponCodeModel
+
+@{
+    ViewBag.Title = "CouponCode";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    TempData["CouponCode"] = "aaa";
+    TempData["CouponCode"] = "active";
+}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="page-title">Add Coupon Code</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Page Header -->
+
+                <div class="card">
+                    <div class="card-body">
+                        @if (TempData["CouponCodeerror"] != null && !string.IsNullOrWhiteSpace(TempData["CouponCodeerror"].ToString()))
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error!</strong> @TempData["CouponCodeerror"]
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+                        <!-- Form -->
+                        <form method="post" action="@Url.Action("CouponCode","Admin")">
+                            <div class="form-group">
+                                @Html.HiddenFor(model => model.CouponCodeId, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label>Coupon Code</label>
+                                @Html.TextBoxFor(model => model.CouponCode, new { @class = "form-control", @placeholder = "Coupon Code", @required = "true", style = "width:500px" })
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>CouponCode Type</label>
+                                @Html.DropDownListFor(model => model.CouponCodeTypeId, (IEnumerable<SelectListItem>)ViewBag.getCategory, "-Select CouponCodeType-", new { @class = "form-control", style = "width:500px", @required = "true", @onchange = "showamount();" })
+                            </div>
+
+                            <div class="form-group" id="showamt" style="display:none;">
+                                <label>Amount</label>
+                                @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", @placeholder = "Amount", style = "width:500px", @OnKeyDown = "return numericallow(event);" })
+
+                            </div>
+
+                            <div class="form-group" id="showper" style="display:none;">
+                                <label>Percentage(%)</label>
+                                @Html.TextBoxFor(model => model.Percentage, new { @class = "form-control", @placeholder = "Percentage", style = "width:500px", @OnKeyDown = "return numericallow(event);" })
+
+                            </div>
+                            <div class="mt-4">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <a href="@Url.Action("CouponCodeList","Admin")" class="btn btn-link">Cancel</a>
+                            </div>
+                        </form>
+                        <!-- Form -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+
+        function numericallow(event) {
+            if (event.shiftKey == true) {
+                event.preventDefault();
+            }
+            if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 46 || event.keyCode == 190) {
+
+            } else {
+                event.preventDefault();
+            }
+            if (event.keyCode == 190)
+                event.preventDefault();
+        }
+
+
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            showamount();
+        });
+
+        function showamount() {
+            if (document.getElementById("CouponCodeTypeId").value == "1") {
+
+                document.getElementById("showamt").style.display = 'block';
+                document.getElementById("showper").style.display = 'none';
+                $("#Amount").attr('required', 'required');
+                $("#Percentage").removeAttr('required');
+                $("#Percentage").val('');
+            }
+            else if (document.getElementById("CouponCodeTypeId").value == "2") {
+                document.getElementById("showamt").style.display = 'none';
+                $("#Percentage").attr('required', 'required');
+                $("#Amount").removeAttr('required');
+                $("#Amount").val('');
+
+                document.getElementById("showper").style.display = 'block';
+            } else {
+                document.getElementById("showamt").style.display = 'none';
+                document.getElementById("showper").style.display = 'none';
+                $("#Percentage").removeAttr('required');
+                $("#Amount").removeAttr('required');
+                $("#Amount").val('');
+                $("#Percentage").val('');
+
+            }
+        }
+
+    </script>
+}
+
+

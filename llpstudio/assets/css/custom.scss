@@ -1,0 +1,550 @@
+
+
+/* *********************************************** tonmoy styles ***************************************** */
+@font-face {
+    font-family: LemonMilk;
+    // src: url("../font/LemonMilk.otf");
+    // src: url("../font/LemonMilkbold.otf");
+    // src: url("../font/LemonMilkbolditalic.otf");
+    // src: url("../font/LemonMilkitalic.otf");
+    src: url("../font/LemonMilklight.otf");
+    // src: url("../font/LemonMilklightitalic.otf");
+}
+*{
+    font-family: LemonMilk;
+    letter-spacing: 3px;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, #ball, .tt-main-menu, .ph-caption-title-ghost, .ph-caption-subtitle, .scroll-down-circle, .made-with-love, .tt-ol-menu-toggle-btn-text, .tt-m-menu-toggle-btn-text, .tt-ol-menu-list, .tt-heading, .tt-btn, .social-buttons, .footer-social, .tt-ps-nav-pagination, .tt-pc-navigation, .tt-cc-pagination, .pli-counter, .ttgr-cat-trigger-wrap, .ttgr-cat-list, .portfolio-interactive-item, .tt-copyright, .project-info-list, .tt-pn-link, .tt-pn-subtitle, .ph-share-ghost, .tt-search-ghost, .tt-pagination, .tt-scrolling-text, #blog-list.bli-compact .bli-info::before, .blog-interactive-item::before{
+    font-family: LemonMilk;
+}
+
+
+// ********************************************Custom changes****************************************
+            body{
+                // overflow-y: scroll !important;
+            }
+
+            // virtual scrollbar hiding
+            #scroll-container {
+                // height: fit-content !important;
+            }
+            // virtual scrollbar hiding
+
+
+            // header class change 
+            .header-alt{
+                height: 114px;
+                background-color: #17001f;
+                position: absolute;
+                z-index: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+            }
+            // header class change
+
+            .tt-header-fixed{
+                background-color: #17001f;
+            }
+
+            // scrollbar  STYLE
+            #body::-webkit-scrollbar-track
+            {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                border-radius: 10px;
+                background-color: transparent;
+            }
+
+            #body::-webkit-scrollbar
+            {
+                width: 8px;
+                background-color: transparent;
+            }
+
+            #body::-webkit-scrollbar-thumb
+            {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                background: rgb(52, 45, 45) !important;
+                opacity: .25;
+                width: 8px;
+            }
+            // scrollbar  STYLE
+
+
+            .box-outer{
+                .arrow {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    height: 40px;
+                    width: 40px;
+                    border: 1px solid rgba(255,255,255,0.5);
+                    border-style: dashed;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    transition-duration: .5s;
+
+                    &:hover{
+                        background-color: rgba(255,255,255,0.3);
+                    }
+                }
+            }
+// ********************************************Custom changes****************************************
+
+
+
+.dashb_ton{
+    padding: 0 50px;
+    padding-top: 130px;
+    
+    .tt-section-inner{
+        max-width: inherit !important;
+    }
+
+	.tt-tabs-buttons {
+        ul.nav{
+            background: black;
+            padding-top: 20px;
+            .tt-heading {
+                h2, h3 {
+                    // font-family: 'Poppins', sans-serif;
+                    font-weight: 400;
+                }
+            }
+            font-family: 'Poppins', sans-serif;
+            li{
+                margin-right: 0;
+            }
+            .prof_pic {
+                text-align: center;
+                img{
+                    height: 100px;
+                }
+            }
+        }
+    }
+
+    
+    .tt-section-inner{
+        table {
+            .swti-product-thumb img{
+                height: 120px;
+            }
+        }
+    }
+    
+}
+.tt-btn-ton{
+    width: 170px;
+    height: 170px;
+    > * {
+        max-width: 100%;
+    }
+} 
+.ttgr-height-ton:after{
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: block;
+        background-image: url(../img/custom/brusheffect.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+.ttgr-height-ton2:after{
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    background-image: url(../img/custom/brusheffect3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ph-image-inner-ton::before{
+    background-image: url(../img/custom/brusheffect2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: transparent !important;
+}
+
+.booking-in-bg{
+    background: #0d0012;
+    padding: 11px;
+    border-radius: 10px;
+}
+.custom-bg{
+    background: #0d0012;
+}
+.nostroke{
+    -webkit-text-fill-color: white;
+}
+.frame_upload{
+    input{
+        background-color: transparent;
+        height: 55px;
+    }
+}
+
+.bg-black{
+    background-color: black;
+}
+.booking_form {
+    .tt-heading-title{
+        font-family: 'Poppins', sans-serif;
+    }
+    .tt-form-lg{
+        label{
+            font-size: 15px;
+        }
+        .tt-form-control:not(textarea):not([size]){
+            height: 35px !important;
+            font-size: 14px;
+        }
+    }
+    .tt-form-group {
+        margin-bottom: 0px;
+    }
+    .tt-form-control + .tt-form-control {
+        margin-top: 10px;
+    }
+
+    table.tt-table tbody td {
+        padding: 16px 20px;
+    }
+
+    .booking_form table.tt-table thead th {
+        text-shadow: 0 0px 15px #ffffffb5;
+        letter-spacing: 1px;
+    }
+
+    table.tt-table thead {
+        background-color: #440059;
+    }
+}
+
+.tt-btn-primary, .sp-adc-btn{
+    background-color: #440059;
+}
+
+.modal-dialog-ton{
+    max-width: 50%;
+    @media (max-width: 1024px) {
+        max-width: 90%;
+    }
+    .modal-content{
+        background-color: #440059;
+    }
+}
+.over_scroll{
+    overflow: scroll;
+}
+.need_album{
+    .w-40{
+        width: 40%;
+    }
+    @media (max-width: 500px) {
+        flex-direction: column;
+        >div{
+            width: 100% !important;
+        }
+    }
+}
+
+
+// calender 
+#calenderMain {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+  
+  .main {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    color: white;
+    background: #440059;
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+    border-radius: 0rem;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: none;
+  }
+  .month {
+    text-align: center;
+    padding: 10px;
+  }
+  .week {
+    display: inline-flex;
+    text-align: center;
+    padding: 10px;
+  }
+  .week .wDay {
+    padding: 10px;
+    margin: 10px;
+    color: silver;
+  }
+  .date {
+    color: silver;
+  }
+  #fillDate {
+    width: 100%;
+    color: silver;
+  }
+  #fillDate tr,
+  td {
+    padding: 10px;
+    color: silver;
+  }
+  .date:hover {
+    background: white;
+    color: #440059;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .date td:hover {
+    background: white;
+    color: #440059;
+    font-weight: bold;
+  }
+  .year,
+  .month {
+    padding: 5px;
+    cursor: pointer;
+  }
+  .yearDiv {
+    position: relative;
+    font-size: 25px;
+    padding: 10px;
+  }
+  .monthDiv {
+    position: relative;
+    font-size: 20px;
+    padding: 10px;
+  }
+  .left {
+    position: absolute;
+    left: 10px;
+    cursor: pointer;
+  }
+  .right {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+  .wDay {
+    cursor: default;
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+// calender 
+
+
+
+  .shop-wishlist-table-item {
+    border-right: 1px solid #36273c;
+  }
+
+  table.tt-table tbody tr:nth-of-type(odd) {
+    background-color: rgba(133, 133, 133, .1);
+}
+  table.tt-table tbody tr.customer_records{
+    background-color: rgba(133, 133, 133, 0);
+  }
+
+  .check-t{
+            .ques {
+                color: darkslateblue;
+            }
+            .switch {
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            }
+            
+            .switch input {display:none;}
+            
+            .slider {
+            position: absolute;
+            cursor: pointer;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #b3b0b4;
+            -webkit-transition: .4s;
+            transition: .4s;
+            }
+            
+            .slider:before {
+            position: absolute;
+            z-index: 2;
+            content: "";
+            height: 34px;
+            width: 34px;
+            left: 2px;
+            bottom: 2px;
+            background-color: darkslategrey;
+            -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+            -webkit-transition: .4s;
+            transition: all 0.4s ease-in-out;
+            }
+            .slider:after {
+            position: absolute;
+            left: 0;
+            z-index: 1;
+            content: "YES";
+                font-size: 16px;
+                text-align: left !important;
+                line-height: 40px;
+                padding-left: 0;
+                width: 100px;
+                color: #fff;
+                height: 40px;
+                border-radius: 100px;
+                background-color: #440059;
+                -webkit-transform: translateX(-160px);
+                -ms-transform: translateX(-160px);
+                transform: translateX(-160px);
+                transition: all 0.4s ease-in-out;
+            }
+            
+            input:checked + .slider:after {
+            -webkit-transform: translateX(0px);
+            -ms-transform: translateX(0px);
+            transform: translateX(0px);
+            /*width: 235px;*/
+            padding-left: 25px;
+            }
+            
+            input:checked + .slider:before {
+            background-color: #fff;
+            }
+            
+            input:checked + .slider:before {
+            -webkit-transform: translateX(60px);
+            -ms-transform: translateX(60px);
+            transform: translateX(60px);
+            }
+            
+            /* Rounded sliders */
+            .slider.round {
+            border-radius: 100px;
+            }
+            
+            .slider.round:before {
+            border-radius: 50%;
+            }
+            .absolute-no {
+                position: absolute;
+                left: 0;
+                color: darkslategrey;
+                text-align: right !important;
+                font-size: 16px;
+                width: calc(100% - 25px);
+                height: 40px;
+                line-height: 40px;
+                cursor: pointer;
+            }
+  }
+
+.modal-content.t{
+    .modal-header{
+        background: #0d0012;
+        span{
+            color: #fff !important;
+        }
+    }
+    .modal-body{
+        padding: 10px;
+    }
+}
+
+#st-el-1{
+    display: none !important;
+}
+
+.ph-caption.t{
+    .ph-caption-title{
+        font-size: 40px !important;
+    }
+}
+
+.tt-ol-menu-list.t{
+    @media (min-width: 767.95px) {
+        width: 45%;
+    }
+    .tt-ol-submenu-wrap{
+        a{
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            i{
+                margin-right: 10px;
+            }
+        }
+        &.active{
+            .tt-btn{
+                background: white;
+                a{
+                    color: black !important;
+                }
+            }
+        }
+        &:hover{
+            .tt-btn{
+                background: rgba(255, 255, 255, 0.5);
+            }
+        }
+    }
+}
+
+.g_review{
+    .WidgetTitle__Header-sc-ruy1gu-2{
+        display: none;
+    }
+}
+
+.table_con {
+    overflow-x: scroll;
+    .table_con_in{
+        width: 1450px;
+    }
+}
+
+.modal-content.t{
+    background: transparent;
+}
+
+.pgi-categories-wrap.t{
+    white-space: inherit;
+    .pgi-category{
+        // text-align: justify;
+        margin-left: 0px;
+    }
+}

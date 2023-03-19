@@ -1,0 +1,386 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ========================
+                    ///// Begin page header /////
+                    =============================
+                    * Use class "ph-full" to enable fullscreen size.
+                    * Use class "ph-cap-sm", "ph-cap-lg", "ph-cap-xlg" or "ph-cap-xxlg" to set caption size (no class = default size).
+                    * Use class "ph-center" to enable content center position.
+                    * Use class "ph-bg-image" to enable page header background image (required for a portfolio single project!).
+                    * Use class "ph-bg-image-is-light" if needed, it makes the elements dark and more visible if you use a very light image (effect only with class "ph-bg-image").
+                    * Use class "ph-image-shadow" to enable page header background image (effect only with class "ph-bg-image").
+                    * Use class "ph-image-cropped" to crop image. It fixes image dimensions (no effect for "ph-bg-image"!).
+                    * Use class "ph-image-cover-*" to set image overlay opacity. For example "ph-image-cover-2" or "ph-image-cover-2-5" (up to "ph-image-cover-9-5").
+                    * Use class "ph-content-parallax" to enable content parallax.
+                    * Use class "ph-stroke" to enable caption title stroke style.
+                    -->
+<div id="page-header" class="ph-full ph-cap-xxlg ph-center ph-image-cropped ph-image-cover-2 ph-content-parallax">
+    <div class="page-header-inner tt-wrap">
+
+        <!-- Begin page header image
+        ============================= -->
+        <!-- <div class="ph-image">
+            <div class="ph-image-inner">
+                <img src="assets/img/page-header/ph-3.jpg" alt="Image">
+            </div>
+        </div> -->
+        <!-- End page header image -->
+        <!-- Begin page header caption
+        ===============================
+        Use class "max-width-*" to set caption max width if needed. For example "max-width-1000". More info about helper classes can be found in the file "helper.css".
+        -->
+        <div class="ph-caption">
+            <h1 class="ph-caption-title ph-appear">Booking Forms</h1>
+            <div class="ph-caption-title-ghost ph-appear">Events</div>
+            <div class="ph-caption-subtitle ph-appear">Book your photographers</div>
+        </div>
+        <!-- End page header caption -->
+
+    </div> <!-- /.page-header-inner -->
+    <!-- Begin scroll down circle (you can change "data-offset" to set scroll top offset)
+    ============================== -->
+    <a href="#page-content" class="scroll-down-circle" data-offset="30">
+        <div class="sdc-inner ph-appear">
+            <div class="sdc-icon"><i class="fas fa-chevron-down"></i></div>
+            <svg viewBox="0 0 500 500">
+                <defs>
+                    <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
+                </defs>
+                <text dy="30">
+                    <textPath xlink:href="#textcircle">Scroll down - Scroll down -</textPath>
+                </text>
+            </svg>
+        </div> <!-- /.sdc-inner -->
+    </a>
+    <!-- End scroll down circle -->
+    <!-- Begin made with love
+    ========================== -->
+    <div class="made-with-love ph-appear">
+        <div class="mwl-inner">
+            <div class="mwl-text">Made with</div>
+            <div class="mwl-icon"><i class="far fa-heart"></i></div>
+        </div>
+    </div>
+    <!-- End made with love -->
+
+</div>
+<!-- End page header -->
+<!-- *************************************
+*********** Begin page content ***********
+************************************** -->
+<div id="page-content">
+
+
+    <!-- =======================
+    ///// Begin tt-section /////
+    ============================
+    * You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
+    -->
+    <div class="tt-section padding-bottom-xlg-150">
+        <div class="tt-section-inner tt-wrap max-width-1400">
+
+            <!-- Begin form
+            ================
+            * Use class "tt-form-filled" or "tt-form-minimal" to change form style.
+            * Use class "tt-form-sm" or "tt-form-lg" to change form size (no class = default size).
+            -->
+            <div class="row booking_form justify-content-center">
+                <div class="col-md-12">
+                    <form class="tt-form-lg">
+
+                        <!-- <div class="row mb-3 booking-in-bg dynamic-field" id="dynamic-field-1">
+
+                            <div class="col-md-4">
+                                <div class="tt-form-group">
+                                    <label>Select Date: <span class="required">*</span></label>
+                                    <input id="d" class="tt-form-control" type="date"  onclick="calender(this)">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="tt-form-group">
+                                    <label>Photographer type: <span class="required">*</span></label>
+                                    <select class="tt-form-control" id="12323115" name="option">
+                                        <option value="" selected>Pro-photographer</option>
+                                        <option value="option-1">Award winning photographer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12"></div>
+                            <div class="col-md-4">
+                                <div class="tt-form-group">
+                                    <label>Sub-Event type: <span class="required">*</span></label>
+                                    <select class="tt-form-control" id="12323115" name="option">
+                                        <option value="" disabled selected>Mehendi</option>
+                                        <option value="option-1">Sangeet</option>
+                                        <option value="option-2">Reception</option>
+                                        <option value="option-3">Marriage day</option>
+                                        <option value="option-4">Rice Ceremony (½ Day)</option>
+                                        <option value="option-5">Rice Ceremony (Full Day)</option>
+                                        <option value="option-6">Anniversary (½ Day)</option>
+                                        <option value="option-6">Anniversary (Full Day)</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="tt-form-group">
+                                    <label>Enter location <span class="required">*</span></label>
+                                    <input class="tt-form-control" id="88733492" type="text" name="name" placeholder="Enter your location" >
+                                </div>
+                            </div>
+
+                            <div class="col-12"></div>
+
+                            <div class="col-md-4">
+                                <div class="tt-form-check">
+                                    <input type="checkbox" id="" name="check-1" checked>
+                                    <label for="48898335">Add Drone Photography </label>
+                                </div>
+                                <div class="tt-form-check">
+                                    <input type="checkbox" id="29908388" name="check-2">
+                                    <label for="29908388">Add Candid Photography</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="tt-form-check">
+                                    <input type="checkbox" id="" name="check-1" checked>
+                                    <label for="48898335">Full HD Photos </label>
+                                </div>
+                                <div class="tt-form-check">
+                                    <input type="checkbox" id="29908388" name="check-2">
+                                    <label for="29908388">Teaser Video and a Cinematic Wedding Film</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex justify-content-end align-items-end">
+                                <span class="badge bg-secondary">
+                                    <a href="#" id="#remove-button">Remove</a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col-md-12">
+                                <div class="tt-btn tt-btn-primary">
+                                    <a href="#" data-hover="Add Day" id="add-button">Add Day</a>
+                                </div>
+
+                            </div>
+                        </div> -->
+
+                        <div id="shop-wishlist">
+
+                            <div class="d-flex justify-content-end align-items-center mb-2">
+                                <div class="tt-heading tt-heading-xsm anim-fadeinup mb-0 mr-2" style="">
+                                    <h2 class="tt-heading-title">Sub Total: <span>$XYZ</span> </h2>
+                                </div>
+
+                                <div class="tt-btn tt-btn-dark">
+                                    <a href="#" data-hover="Expand" data-toggle="modal" data-target="#exampleModal">Expand <i class="fas fa-expand ml-2"></i></a>
+                                </div>
+                            </div>
+
+                            <!-- Begin tt-Table
+                            ==================== -->
+                            <table class="tt-table shop-wishlist-table">
+                                <thead class="shop-wishlist-table-head">
+                                    <tr>
+                                        <th class="swh-product-title" colspan="">
+                                            Date & Event
+                                        </th>
+                                        <th class="swh-product-title" colspan="">
+                                            Location & Photographer
+                                        </th>
+                                        <th class="swh-price">
+                                            Traditional Photography
+                                        </th>
+                                        <th class="swh-quantity">
+                                            Traditional Videography
+                                        </th>
+                                        <th class="swh-subtotal">
+                                            Candid Photography
+                                        </th>
+                                        <th class="swh-subtotal">
+                                            Cinematography
+                                        </th>
+                                        <th class="swh-subtotal">
+                                            Drone
+                                        </th>
+                                        <th class="swh-subtotal">
+                                            Action
+                                        </th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody class="shop-wishlist-table-body">
+
+                                    <!-- Begin wishlist table item -->
+                                    <tr class="shop-wishlist-table-item customer_records">
+
+                                        <td class="swti-product-thumb">
+                                            <div class="tt-form-group">
+                                                <input id="d" class="tt-form-control" type="date" onclick="calender(this)">
+
+                                                <select class="tt-form-control" id="12323115" name="option">
+                                                    <option value="" disabled="" selected="">Event Type</option>
+                                                    <option value="option-1">Event Type</option>
+                                                    <option value="option-2">Event Type</option>
+                                                    <option value="option-3">Event Type</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td class="swti-product-title">
+                                            <div class="tt-form-group">
+                                                <input class="tt-form-control" id="" type="text" name="name" placeholder="Location" required="">
+
+                                                <select class="tt-form-control" id="12323115" name="option">
+                                                    <option value="" disabled="" selected="">Photographer Type</option>
+                                                    <option value="option-1">Photographer Type</option>
+                                                    <option value="option-2">Photographer Type</option>
+                                                    <option value="option-3">Photographer Type</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td class="swti-price check-t" data-title="Price">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                                <span class="absolute-no">NO</span>
+                                            </label>
+                                        </td>
+                                        <td class="swti-price check-t" data-title="Price">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                                <span class="absolute-no">NO</span>
+                                            </label>
+                                        </td>
+                                        <td class="swti-price check-t" data-title="Price">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                                <span class="absolute-no">NO</span>
+                                            </label>
+                                        </td>
+                                        <td class="swti-price check-t" data-title="Price">
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                                <span class="absolute-no">NO</span>
+                                            </label>
+                                        </td>
+                                        <td class="swti-price check-t" data-title="Price">
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                                <span class="absolute-no">NO</span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <!-- End wishlist table item -->
+
+                                <tbody class="customer_records_dynamic"></tbody>
+
+                                <tr class="shop-wishlist-table-buttons">
+                                    <td colspan="8" class="text-right">
+                                        <div class="tt-btn tt-btn-primary my-0">
+                                            <a href="#" class="extra-fields-customer" data-hover="Add">Add Day</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <!-- End tt-Table -->
+
+                            <div class="text-right">
+                                <div class="tt-btn tt-btn-link">
+                                    <a href="@Url.Action("Index","ShopCheckout")" data-hover="Checkout">Proceed to Checkout</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End shop wishlist -->
+                        <!-- <div class="row">
+                            <div class="customer_records">
+                              <input name="customer_name" type="text" value="name">
+                              <input name="customer_age" type="number" value="age">
+                              <input name="customer_email" type="email" value="email">
+
+                              <a class="extra-fields-customer" href="#">ADD</a>
+                            </div>
+
+                            <div class="customer_records_dynamic"></div>
+
+                          </div> -->
+
+
+                        <div class="row mb-5">
+                            <div class="col-md-3">
+                                <div class="tt-form-check mt-1">
+                                    <input type="checkbox" id="trigger" name="question">
+                                    <label for="trigger">Need Album ?</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="hidden_fields">
+                                    <div class="d-flex justify-content-between w-100 need_album">
+                                        <div class="tt-form-group w-50">
+                                            <label>Album Type<span class="required">*</span></label>
+                                            <select class="tt-form-control" id="result" name="result">
+                                                <option value="" selected> Select </option>
+                                                <option value="">Album 1</option>
+                                                <option value="">Album 2</option>
+                                            </select>
+                                        </div>
+                                        <div class="tt-form-group w-40" id="" style="">
+                                            <label>How many ? <span class="required">*</span></label>
+                                            <select class="tt-form-control" id="result" name="result">
+                                                <option value="" selected> Select </option>
+                                                <option value=""> 1</option>
+                                                <option value=""> 2</option>
+                                                <option value=""> 3</option>
+                                                <option value=""> 4</option>
+                                                <option value=""> 5</option>
+                                                <option value=""> 6</option>
+                                                <option value=""> 7</option>
+                                                <option value=""> 8</option>
+                                                <option value=""> 9</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+            <!-- End form -->
+            <!-- Begin form
+            ================
+            * Use class "tt-form-filled" or "tt-form-minimal" to change form style.
+            * Use class "tt-form-sm" or "tt-form-lg" to change form size (no class = default size).
+            -->
+            <!-- <form class="tt-form-lg">
+                <div class="tt-form-btn-inside">
+                    <input class="tt-form-control" type="email" id="subscribe" placeholder="Enter your email address..." required>
+                    <button type="submit"><i class="far fa-envelope"></i></button>
+                    <small class="tt-form-text">Do not worry, we will not send spam.</small>
+                </div>
+            </form> -->
+            <!-- End form -->
+
+        </div> <!-- /.tt-section-inner -->
+    </div>
+    <!-- End tt-section -->
+
+
+</div>
+<!-- End page content -->

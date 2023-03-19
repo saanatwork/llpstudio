@@ -1,0 +1,138 @@
+﻿@model llpstudio.Models.FoodItemModel
+
+@{
+    ViewBag.Title = "FoodItem";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    TempData["FoodItem"] = "aaa";
+    TempData["FoodItemAdd"] = "active";
+}
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-xl-8 offset-xl-2">
+
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="page-title">Add Food Item</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Page Header -->
+
+                <div class="card">
+                    <div class="card-body">
+                        @if (TempData["FoodItemError"] != null && !string.IsNullOrWhiteSpace(TempData["FoodItemError"].ToString()))
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error!</strong> @TempData["FoodItemError"]
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+                        <!-- Form -->
+                        <form method="post" action="@Url.Action("FoodItem","Admin")" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Food Category</label>
+                                        @Html.HiddenFor(model => model.FoodItemId, new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.FoodCategoryId, (IEnumerable<SelectListItem>)ViewBag.getFoodCategory, "-Select Category-", new { @class = "product_select form-control", @required = "true" })
+                                        @* @Html.TextBoxFor(model => model.FoodCategory, new { @class = "form-control",@placeholder="Enter Food Category" })*@
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Item Name</label>
+                                        @Html.TextBoxFor(model => model.FoodItem, new { @class = "form-control", @placeholder = "Enter Food Name", @required = "true" })
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        @Html.TextBoxFor(model => model.Price, new {@min="0",@type="number", @class = "form-control", @placeholder = "Enter Price", @required = "true" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Quantity</label>
+                                        @Html.TextBoxFor(model => model.Quantity, new { @min = "0", @type = "number", @class = "form-control", @placeholder = "Enter Quantity", @required = "true" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Item Units</label>
+                                        @Html.DropDownListFor(model => model.ItemUnitId, (IEnumerable<SelectListItem>)ViewBag.getItemUnit, "-Select Units-", new { @class = "product_select form-control", @required = "true" })
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder = "Enter Quantity" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Image</label>
+                                        <input type="file" name="ImageFile" class="form-control" onchange="showMyImage(this)"/>
+                                    </div>
+                                    <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @if(!string.IsNullOrEmpty(Model.ImageFile))
+                                        {
+                                            <img id="thumbnil" src="@Url.Content("~/DataImages/FoodItem/" + Model.ImageFile)" style="width: 150px;height:150px;" alt="Item Image" />
+                                        }
+                                        else
+                                        {
+                                            <img id="thumbnil" src="@Url.Content("~/adminassets/img/Noimage.png")" style="width:150px;height:150px;" alt="Item Image" />
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                    <a href="@Url.Action("FoodItemList","Admin")" class="btn btn-link">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Form -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showMyImage(fileInput) {
+        //if (checkFileExtension(fileInput) == true) {
+        var files = fileInput.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var imageType = /image.*/;
+            if (!file.type.match(imageType)) {
+                continue;
+            }
+            var img = document.getElementById("thumbnil");
+
+            img.file = file;
+
+            var reader = new FileReader();
+            reader.onload = (function (aImg) {
+                return function (e) {
+                    aImg.src = e.target.result;
+                };
+            })(img);
+            reader.readAsDataURL(file);
+        }
+        //}
+    }
+</script>

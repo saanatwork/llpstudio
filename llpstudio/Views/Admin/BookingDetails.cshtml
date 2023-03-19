@@ -1,0 +1,488 @@
+﻿@model llpstudio.Models.BookingModel
+@{
+    ViewBag.Title = "MemberShipPlan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    TempData["MemberShipPlan"] = "aaa";
+    TempData["MemberShipAdd"] = "active";
+}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Booking </h3>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @if (TempData["FoodCategorySuccess"] != null && !string.IsNullOrEmpty((string)TempData["FoodCategorySuccess"]))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["FoodCategorySuccess"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    }
+                    else if (TempData["FoodCategoryError"] != null && !string.IsNullOrWhiteSpace(TempData["FoodCategoryError"].ToString()))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> @TempData["FoodCategoryError"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Booked On</th>
+                                        <th>Event</th>
+                                        <th>Photos</th>
+                                        <th>No Of Days</th>
+                                        <th>Total Price</th>
+
+                                    </tr>
+                                </thead>
+
+                                @*@foreach (llpstudio.Models.BookingModel item in ViewBag.Booking)
+                                    {*@
+                                <tr>
+                                    <td>
+                                        @*@item["EntryDateTime"]*@
+                                        @ViewBag.Booking.EntryDateTime
+                                    </td>
+                                    <td>
+                                        @*@item["Event"]*@
+                                        @ViewBag.Booking.Event
+                                    </td>
+                                    <td>
+                                        @*<img src="@Url.Content("~/assets/img/custom/")@item["EventImageFile"]" style="width:80px;height:80px;" />*@
+                                        <img src="@Url.Content("~/assets/img/custom/")@ViewBag.Booking.EventImageFile" style="width:80px;height:80px;" />
+                                    </td>
+                                    <td>
+                                        @*  @item["NoOfDays"]*@
+                                        @ViewBag.Booking.NoOfDays
+                                    </td>
+
+                                    <td>
+                                        @*@item["TotalPrice"]*@
+                                        @ViewBag.Booking.TotalPrice
+                                    </td>
+
+
+                                </tr>
+                                @*}*@
+
+
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Booking Details</h3>
+                </div>
+
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @if (TempData["FoodCategorySuccess"] != null && !string.IsNullOrEmpty((string)TempData["FoodCategorySuccess"]))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["FoodCategorySuccess"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    }
+                    else if (TempData["FoodCategoryError"] != null && !string.IsNullOrWhiteSpace(TempData["FoodCategoryError"].ToString()))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> @TempData["FoodCategoryError"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Event</th>
+                                        <th>PhotographerType</th>
+                                        <th>Component</th>
+                                        <th>Location</th>
+                                        <th>Date</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                @if (ViewBag.BookingList != null)
+                                {
+                                    foreach (llpstudio.Models.BookingModel item in ViewBag.BookingList)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.Event
+                                            </td>
+                                            <td>
+                                                @item.PhotographerType
+                                            </td>
+                                            <td>
+                                                @item.Component
+                                            </td>
+                                            <td>
+                                                @item.Location
+                                            </td>
+                                            <td>
+                                                @item.DateEvt
+                                            </td>
+                                            <td>
+                                                @item.Price
+                                                @*<img src="@Url.Content("~/assets/img/custom/")@dr["EventImageFile"]" style="width:80px;height:80px;" />*@
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+
+
+
+
+                            </table>
+                            @if (ViewBag.Count > 0)
+                            {
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Album Type</th>
+                                            <th>No of Album</th>
+                                            <th>Unit Price</th>
+                                            <th>Total Price</th>
+                                        </tr>
+                                    </thead>
+
+                                    @foreach (llpstudio.Models.PackageModel item in ViewBag.AlbumList)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.AlbumType
+                                            </td>
+                                            <td>
+                                                @item.AlbumQty
+                                            </td>
+                                            <td>
+                                                @item.eventPrice
+                                            </td>
+                                            <td>
+                                                @item.TotalPrice
+                                            </td>
+
+
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><b>Total Price</b></td>
+                                        <td>@Model.TotalPrice</td>
+                                    </tr>
+
+
+                                </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Album Details</h3>
+                </div>
+
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @if (TempData["FoodCategorySuccess"] != null && !string.IsNullOrEmpty((string)TempData["FoodCategorySuccess"]))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["FoodCategorySuccess"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    }
+                    else if (TempData["FoodCategoryError"] != null && !string.IsNullOrWhiteSpace(TempData["FoodCategoryError"].ToString()))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> @TempData["FoodCategoryError"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Album Type</th>
+                                        <th>No of Album</th>
+                                        <th>Unit Price</th>
+                                        <th>Total Price</th>
+                                    </tr>
+                                </thead>
+
+                                @if (ViewBag.AlbumList != null)
+                                {
+                                    foreach (llpstudio.Models.PackageModel item in ViewBag.AlbumList)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.AlbumType
+                                            </td>
+                                            <td>
+                                                @item.AlbumQty
+                                            </td>
+                                            <td>
+                                                @item.eventPrice
+                                            </td>
+                                            <td>
+                                                @item.TotalPrice
+                                            </td>
+
+
+                                        </tr>
+                                    }
+                                }
+
+
+
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Customer Details</h3>
+                </div>
+
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @if (TempData["FoodCategorySuccess"] != null && !string.IsNullOrEmpty((string)TempData["FoodCategorySuccess"]))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["FoodCategorySuccess"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    }
+                    else if (TempData["FoodCategoryError"] != null && !string.IsNullOrWhiteSpace(TempData["FoodCategoryError"].ToString()))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> @TempData["FoodCategoryError"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                        <th>WhatsApp</th>
+                                        <th>Address</th>
+                                    </tr>
+                                </thead>
+
+                                @if (ViewBag.CustomerList != null)
+                                {
+                                    foreach (llpstudio.Models.UserAccount item in ViewBag.CustomerList)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.FirstName
+                                            </td>
+                                            <td>
+                                                @item.LastName
+                                            </td>
+                                            <td>
+                                                @item.Email
+                                            </td>
+                                            <td>
+                                                @item.Mobile
+                                            </td>
+                                            <td>
+                                                @item.WhatsApp
+                                            </td>
+                                            <td>
+                                                @item.Address
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+
+
+
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Page Header -->
+
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Customer Address Details</h3>
+                </div>
+
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @if (TempData["FoodCategorySuccess"] != null && !string.IsNullOrEmpty((string)TempData["FoodCategorySuccess"]))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["FoodCategorySuccess"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    }
+                    else if (TempData["FoodCategoryError"] != null && !string.IsNullOrWhiteSpace(TempData["FoodCategoryError"].ToString()))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> @TempData["FoodCategoryError"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Mobile</th>
+                                        <th>1st Street</th>
+                                        <th>2nd Street</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Pin</th>
+                                    </tr>
+                                </thead>
+
+                                @if (ViewBag.CheOut != null)
+                                {
+                                    foreach (llpstudio.Models.CheckOutCustomerDetails item in ViewBag.CheOut)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.FName
+                                            </td>
+                                            <td>
+                                                @item.Phone
+                                            </td>
+                                            <td>
+                                                @item.Street1
+                                            </td>
+                                            <td>
+                                                @item.Street2
+                                            </td>
+                                            <td>
+                                                @item.City
+                                            </td>
+                                            <td>
+                                                @item.State
+                                            </td>
+                                            <td>
+                                                @item.Pin
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                }
+
+
+
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

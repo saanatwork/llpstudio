@@ -1,0 +1,709 @@
+﻿@{ 
+    HttpCookie logincookie_llpstudio_User = Request.Cookies["logincookie_llpstudio_User"];
+
+    string usrnme = "";
+    if (logincookie_llpstudio_User != null)
+    {
+        usrnme = logincookie_llpstudio_User["FirstName"];
+    }
+
+}
+
+
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+<head>
+
+    <!-- Title -->
+    <title>llpstudio Photography</title>
+
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6315e49f6e703a0012b610ac&product=powr-social-feed' async='async'></script>
+    <div class="sharethis-sticky-share-buttons"></div>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon (http://www.favicon-generator.org/) -->
+    <link rel="shortcut icon" href="@Url.Content("~/assets/img/favicon.png")" type="image/x-icon">
+    <link rel="icon" href="@Url.Content("~/assets/img/favicon.png")" type="image/x-icon">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5S1B0KX911"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-5S1B0KX911');</script>
+    <!-- Google fonts (https://www.google.com/fonts) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"> <!-- Body font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&amp;display=swap" rel="stylesheet"> <!-- Secondary/Alter font -->
+    <!-- Libs and Plugins CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="@Url.Content("~/assets/vendor/normalize/normalize.min.css")"> <!-- Normalize CSS (https://necolas.github.io/normalize.css/) -->
+    <link rel="stylesheet" href="@Url.Content("~/assets/vendor/fontawesome/css/fontawesome-all.min.css")"> <!-- Font Icons CSS (https://fontawesome.com) Free version! -->
+    <link rel="stylesheet" href="@Url.Content("~/assets/vendor/swiper/css/swiper-bundle.min.css")"> <!-- Swiper CSS (https://swiperjs.com/) -->
+    <link rel="stylesheet" href="@Url.Content("~/assets/vendor/lightgallery/css/lightgallery.min.css")"> <!-- lightGallery CSS (http://sachinchoolur.github.io/lightGallery) -->
+    <!-- Template master CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/helper.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/shop.css")"> <!-- Note: Used on shop-related pages only! -->
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/theme.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/custom.css")">
+
+
+</head>
+
+
+<!-- ===========
+///// Body /////
+================
+* Use class "tt-boxed" to enable page boxed layout globally (affects all elements containing class "tt-wrap").
+* Use class "tt-smooth-scroll" to enable page smooth scrolling.
+* Use class "tt-transition" to enable page transitions.
+* Use class "tt-magic-cursor" to enable magic cursor.
+-->
+<!-- background-color: #17001f; -->
+<!-- <body id="body" class="tt-transition tt-boxed tt-smooth-scroll tt-magic-cursor" style="background-color: #440059;"> -->
+<body id="body" class="tt-transition tt-boxed tt-smooth-scroll tt-magic-cursor">
+
+
+    <!-- *************************************
+    *********** Begin body inner *************
+    ************************************** -->
+    <main id="body-inner">
+
+        <!-- Begin page transition (do not remove!!!)
+        =========================== -->
+        <div id="page-transition">
+            <div class="ptr-overlay"></div>
+            <div class="ptr-preloader">
+                <div class="ptr-prel-content">
+                    <!-- Hint: You may need to change the img height and opacity to match your logo type. You can do this from the "theme.css" file (find: ".ptr-prel-image"). -->
+                    <img src="@Url.Content("~/assets/img/demo_logo1.png")" class="ptr-prel-image tt-logo-light" alt="Logo">
+                </div> <!-- /.ptr-prel-content -->
+            </div> <!-- /.ptr-preloader -->
+        </div>
+        <!-- End page transition -->
+        <!-- Begin magic cursor
+        ======================== -->
+        <div id="magic-cursor">
+            <div id="ball"></div>
+        </div>
+        <!-- End magic cursor -->
+        <!-- Begin noise background -->
+        <div class="bg-noise"></div>
+        <!-- End noise background -->
+        <!-- *****************************************
+        *********** Begin scroll container ***********
+        ****************************************** -->
+        <div id="scroll-container">
+
+            <!-- ===================
+            ///// Begin header /////
+            ========================
+            * Use class "tt-header-fixed" to set header to fixed position.
+            -->
+            <header id="tt-header" class="tt-header-fixed">
+                <div class="tt-header-inner">
+                    <!-- add/remove class "tt-wrap" to enable/disable element boxed layout (class "tt-boxed" is required in <body> tag!). Note: additionally you can use prepared helper class "max-width-*" to add custom width to "tt-wrap". Example: "max-width-1500" (class "tt-wrap" is still required!). More info about helper classes can be found in the file "helper.css". -->
+
+                    <div class="tt-header-col">
+
+                        <!-- Begin logo
+                        ================ -->
+                        <div class="tt-logo">
+                            <a href="@Url.Action("Index","Home")">
+                                <!-- Hint: You may need to change the img height to match your logo type. You can do this from the "theme.css" file (find: ".tt-logo img"). -->
+                                <img src="@Url.Content("~/assets/img/demo_logo1.png")" class="tt-logo-light magnetic-item" alt="Logo"> <!-- logo light -->
+                                <img src="@Url.Content("~/assets/img/demo_logo2.png")" class="tt-logo-dark magnetic-item" alt="Logo"> <!-- logo dark -->
+                            </a>
+                        </div>
+                        <!-- End logo -->
+
+                    </div> <!-- /.tt-header-col -->
+
+                    <div class="tt-header-col">
+
+                        <!-- Begin overlay menu toggle button -->
+                        <div id="tt-ol-menu-toggle-btn-wrap">
+                            <!-- Begin header tools item (User account) -->
+                            <div class="tt-header-tools-item to-shop-user-account-btn-wrap">
+                                <div class="to-shop-user-account-btn">
+
+                                    <a href="@Url.Action("Index","Login")" class="tt-hti-btn to-shop-user-account-btn-icon magnetic-item" title="My Account">
+                                        <span>@usrnme</span>  <i class="fas fa-user"></i>
+                                    </a>
+                                </div> <!-- /.to-shop-user-account-btn -->
+                            </div>
+                            <!-- End header tools item -->
+                            <!-- Begin header tools item (Wishlist) -->
+                            <div class="tt-header-tools-item to-shop-wishlist-btn-wrap mr-3">
+                                <div class="to-shop-wishlist-btn">
+                                    <a href="@Url.Action("Index","ShopCart")" class="tt-hti-btn to-shop-wishlist-btn-icon magnetic-item" title="Wishlist">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        @*<span class="tt-hti-btn-count to-shop-wishlist-btn-count"></span>*@
+                                    </a>
+                                </div> <!-- /.to-shop-wishlist-btn -->
+                            </div>
+                            <!-- End header tools item -->
+
+                            <div class="tt-ol-menu-toggle-btn-text">
+                                <span class="text-menu" data-hover="Open">Menu</span>
+                                <span class="text-close">Close</span>
+                            </div>
+                            <div class="tt-ol-menu-toggle-btn-holder">
+                                <a href="#" class="tt-ol-menu-toggle-btn magnetic-item"><span></span></a>
+                            </div>
+                        </div>
+                        <!-- End overlay menu toggle button -->
+                        <!-- Begin overlay menu
+                        ========================
+                        * Use class "tt-ol-menu-center" to align menu to center.
+                        * Use class "tt-ol-menu-count" to enable menu counter.
+                        -->
+                        <nav class="tt-overlay-menu tt-ol-menu-center tt-ol-menu-count">
+                            <div class="tt-ol-menu-holder">
+                                <div class="tt-ol-menu-inner tt-wrap">
+                                    <div class="tt-ol-menu-content">
+
+                                        <!-- Begin menu list -->
+                                        <ul class="tt-ol-menu-list t">
+
+                                            <!-- <li><a href="">Single Link</a></li> -->
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tt-ol-submenu-wrap active">
+                                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                                    <a href="@Url.Action("Index","Home")" data-hover="Home"><i class="fas fa-home"></i> Home</a>
+                                                </div>
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tt-ol-submenu-wrap">
+                                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                                    <a href="@Url.Action("Index","EventBooking")" data-hover="Photographer"><i class="fas fa-camera-retro"></i>Need A Photographer ?</a>
+                                                </div>
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tt-ol-submenu-wrap">
+                                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                                    <a href="@Url.Action("Index","EventMembership")" data-hover="Film Maker"><i class="fas fa-video"></i>Need A Film Maker ?</a>
+                                                </div>
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tt-ol-submenu-wrap">
+                                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                                    <a href="@Url.Action("Index","ShopList")" data-hover="Photo Frame"><i class="fas fa-crop-alt"></i>Buy Photo Frame</a>
+                                                </div>
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tt-ol-submenu-wrap">
+                                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                                    <a href="@Url.Action("Index","Gallery")" data-hover="Gallery"><i class="fas fa-photo-video"></i> Gallery</a>
+                                                </div>
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tt-ol-submenu-wrap">
+                                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                                    <a href="@Url.Action("Index","Portfolio")" data-hover="Portfolio"><i class="far fa-file-alt"></i> Portfolio</a>
+                                                </div>
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tt-ol-submenu-wrap">
+                                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                                    <a href="@Url.Action("Index","Services")" data-hover="Services"><i class="fas fa-briefcase"></i> Services</a>
+                                                </div>
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tt-ol-submenu-wrap">
+                                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                                    <a href="@Url.Action("Index","About")" data-hover="About"><i class="far fa-address-card"></i> About</a>
+                                                </div>
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tt-ol-submenu-wrap">
+                                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                                    <a href="@Url.Action("Index","Blog")" data-hover="Blog"><i class="fas fa-blog"></i> Blog</a>
+                                                </div>
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tt-ol-submenu-wrap">
+                                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                                    <a href="@Url.Action("Index","Contact")" data-hover="Contact"><i class="fas fa-address-book"></i>Contact</a>
+                                                </div>
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+
+                                        </ul>
+                                        <!-- End menu list -->
+
+                                    </div> <!-- /.tt-ol-menu-content -->
+                                </div> <!-- /.tt-ol-menu-inner -->
+                            </div> <!-- /.tt-ol-menu-holder -->
+                            <!-- Begin noise background -->
+                            <div class="bg-noise"></div>
+                            <!-- End noise background -->
+
+                        </nav>
+                        <!-- End overlay menu -->
+
+                    </div> <!-- /.header-col -->
+                </div> <!-- /.header-inner -->
+            </header>
+            <!-- End header -->
+            <!-- *************************************
+            *********** Begin content wrap ***********
+            ************************************** -->
+            <div id="content-wrap">
+                @if (ViewBag.Title == "Home Page")
+                {
+                    <!-- ========================
+                    ///// Begin page header /////
+                    =============================
+                    * Use class "ph-full" to enable fullscreen size.
+                    * Use class "ph-cap-sm", "ph-cap-lg", "ph-cap-xlg" or "ph-cap-xxlg" to set caption size (no class = default size).
+                    * Use class "ph-center" to enable content center position.
+                    * Use class "ph-bg-image" to enable page header background image (required for a portfolio single project!).
+                    * Use class "ph-bg-image-is-light" if needed, it makes the elements dark and more visible if you use a very light image (effect only with class "ph-bg-image").
+                    * Use class "ph-image-shadow" to enable page header background image (effect only with class "ph-bg-image").
+                    * Use class "ph-image-cropped" to crop image. It fixes image dimensions (no effect for "ph-bg-image"!).
+                    * Use class "ph-image-cover-*" to set image overlay opacity. For example "ph-image-cover-2" or "ph-image-cover-2-5" (up to "ph-image-cover-9-5").
+                    * Use class "ph-content-parallax" to enable content parallax.
+                    * Use class "ph-stroke" to enable caption title stroke style.
+                    -->
+                    <div id="page-header" class="ph-full ph-cap-sm ph-image-cropped ph-image-cover-3 ph-content-parallax">
+                        <div class="page-header-inner tt-wrap">
+
+                            <!-- Begin page header image
+                            ============================= -->
+                            <div class="ph-image">
+                                <div class="ph-image-inner">
+                                    <img src="@Url.Content("~/assets/img/custom/banner2.jpg")" alt="Image">
+                                </div>
+                            </div>
+                            <!-- End page header image -->
+                            <!-- Begin page header caption
+                            ===============================
+                            Use class "max-width-*" to set caption max width if needed. For example "max-width-1000". More info about helper classes can be found in the file "helper.css".
+                            -->
+                            <div class="ph-caption t max-width-1000">
+                                <h1 class="ph-caption-title ph-appear font-normal">
+                                    <em>We are a creative design agency ,</em>
+                                    <br>
+                                    based in India.
+                                </h1>
+                                <div class="ph-caption-title-ghost ph-appear">Hello!</div>
+                                <!-- <div class="ph-caption-subtitle ph-appear">Subtitle</div> -->
+                            </div>
+                            <!-- End page header caption -->
+
+                            <div class="head_btn d-flex mt-4">
+                                <div class="tt-btn tt-btn-light">
+                                    <a href="@Url.Action("Index","EventBooking")" data-hover="Photographer">Need A Photographer ?</a>
+                                </div>
+                                <div class="tt-btn tt-btn-light-outline">
+                                    <a href="@Url.Action("Index","ShopList")" data-hover="Frame">Buy Frame </a>
+                                </div>
+                                <div class="tt-btn tt-btn-primary">
+                                    <a href="@Url.Action("Index","EventMembership")" data-hover="Frame">Need A Film Maker ?</a>
+                                </div>
+                            </div>
+                        </div> <!-- /.page-header-inner -->
+                        <!-- Begin scroll down circle (you can change "data-offset" to set scroll top offset)
+                        ============================== -->
+                        <a href="#page-content" class="scroll-down-circle" data-offset="30">
+                            <div class="sdc-inner ph-appear">
+                                <div class="sdc-icon"><i class="fas fa-chevron-down"></i></div>
+                                <svg viewBox="0 0 500 500">
+                                    <defs>
+                                        <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
+                                    </defs>
+                                    <text dy="30">
+                                        <textPath xlink:href="#textcircle">Scroll down - Scroll down -</textPath>
+                                    </text>
+                                </svg>
+                            </div> <!-- /.sdc-inner -->
+                        </a>
+                        <!-- End scroll down circle -->
+                        <!-- Begin made with love
+                        ========================== -->
+                        <div class="made-with-love ph-appear">
+                            <div class="mwl-inner">
+                                <div class="mwl-text">Made with</div>
+                                <div class="mwl-icon"><i class="far fa-heart"></i></div>
+                            </div>
+                        </div>
+                        <!-- End made with love -->
+
+                    </div>
+                    <!-- End page header -->}
+
+                @RenderBody()
+                <!-- ======================
+                ///// Begin tt-footer /////
+                =========================== -->
+                <footer id="tt-footer">
+                    <div class="tt-footer-inner">
+
+                        <!-- Begin footer column
+                        ========================= -->
+                        <div class="footer-col tt-align-center-left">
+                            <div class="footer-col-inner">
+
+                                <!-- You can use whatever button or link here -->
+                                <div class="tt-btn tt-btn-link">
+                                    <a href="#" class="scroll-to-top" data-hover="Back to top">Back to top</a>
+                                </div>
+
+                            </div> <!-- /.footer-col-inner -->
+                        </div>
+                        <!-- Begin footer column -->
+                        <!-- Begin footer column
+                        ========================= -->
+                        <div class="footer-col tt-align-center order-m-last">
+                            <div class="footer-col-inner">
+
+                                <div class="tt-copyright">
+                                    © Copyright - <a href="http://www.aarontechnologies.co.in/" target="_blank" rel="noopener" class="tt-link">Aaron Technologies</a>
+                                </div>
+
+                            </div> <!-- /.footer-col-inner -->
+                        </div>
+                        <!-- Begin footer column -->
+                        <!-- Begin footer column
+                        ========================= -->
+                        <div class="footer-col tt-align-center-right">
+                            <div class="footer-col-inner">
+
+                                <div class="footer-social">
+                                    <div class="footer-social-text"><span>Follow</span><i class="fas fa-share-alt"></i></div>
+                                    <div class="social-buttons">
+                                        <ul>
+                                            <li><a href="" class="magnetic-item" target="_blank" rel="noopener">Fb.</a></li>
+                                            <li><a href="" class="magnetic-item" target="_blank" rel="noopener">Tw.</a></li>
+                                            <li><a href="" class="magnetic-item" target="_blank" rel="noopener">Yt.</a></li>
+                                            <li><a href="" class="magnetic-item" target="_blank" rel="noopener">Dr.</a></li>
+                                            <li><a href="" class="magnetic-item" target="_blank" rel="noopener">Be.</a></li>
+                                        </ul>
+                                    </div> <!-- /.social-buttons -->
+                                </div> <!-- /.footer-social -->
+
+                            </div> <!-- /.footer-col-inner -->
+                        </div>
+                        <!-- Begin footer column -->
+
+                    </div> <!-- /.tt-section-inner -->
+                </footer>
+                <!-- End tt-footer -->
+
+
+            </div>
+            <!-- End content wrap -->
+
+        </div>
+        <!-- End scroll container -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content t">
+
+                    <div class="modal-body">
+                        <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="shop-cart-totals shop-cart-box custom-bg p-3">
+                            <h4 class="shop-cart-box-heading">Quote total:</h4>
+
+                            <!-- Begin table -->
+                            <table class="shop-cart-totals-table">
+                                <tbody>
+                                    <tr class="sc-totals-subtotal">
+                                        <th>Subtotal:</th>
+                                        <td>
+                                            <bdi>₹xy.00</bdi>
+                                        </td>
+                                    </tr>
+                                    <tr class="sc-totals-subtotal">
+                                        <th>Album:</th>
+                                        <td>
+                                            <bdi>₹xy.00</bdi>
+                                        </td>
+                                    </tr>
+                                    <tr class="sc-totals-shipping">
+                                        <th>Shipping:</th>
+                                        <td>
+                                            <span>Free shipping</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="sc-totals-total">
+                                        <th>gst:</th>
+                                        <td>
+                                            <span>₹xy.00</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="sc-totals-total">
+                                        <th>Total:</th>
+                                        <td>
+                                            <bdi>₹50,000</bdi>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                            <!-- End table -->
+
+                            <h4 class="shop-cart-box-heading">Discount Code</h4>
+
+                            <!-- Begin shopping cart discount form (Note: for design purposes only!)
+                                                                    =======================================
+                                                                    * Use class "tt-form-filled" or "tt-form-minimal" to change form style.
+                                                                    * Use class "tt-form-sm" or "tt-form-lg" to change form size (no class = default size).
+                                                                    -->
+                            <form class="cart-discount-form tt-form-minimal">
+                                <small class="tt-form-text">Enter your code if you have one.</small>
+                                <input type="text" name="coupon-code" class="tt-form-control margin-bottom-20" id="coupon-code" value=""
+                                       placeholder="Coupon code" required>
+                                <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                    <button type="submit" data-hover="Apply Coupon">Apply Coupon</button>
+                                </div>
+                            </form>
+                            <!-- shopping cart discount form -->
+                            <div class="tt-btn tt-btn-primary tt-btn-block">
+                                <a href="shop-checkout.html" data-hover="Proceed to Checkout">Proceed to Checkout</a>
+                            </div>
+
+                        </div>
+                        <!-- End shopping cart totals -->
+                        <!-- Begin shopping cart discount code -->
+                        <div class="shop-cart-discount shop-cart-box bg-black"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <!-- End body inner -->
+    <!-- ====================
+    ///// Scripts below /////
+    ===================== -->
+    <!-- Core JS -->
+    <script src="@Url.Content("~/assets/vendor/jquery/jquery.min.js")"></script> <!-- jquery JS (https://jquery.com) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <!-- Libs and Plugins JS -->
+    <script src="@Url.Content("~/assets/vendor/gsap/gsap.min.js")"></script> <!-- GSAP JS (https://greensock.com/gsap/) -->
+    <script src="@Url.Content("~/assets/vendor/gsap/ScrollToPlugin.min.js")"></script> <!-- GSAP ScrollToPlugin JS (https://greensock.com/scrolltoplugin/) -->
+    <script src="@Url.Content("~/assets/vendor/gsap/ScrollTrigger.min.js")"></script> <!-- GSAP ScrollTrigger JS (https://greensock.com/scrolltrigger/) -->
+
+    <script src="@Url.Content("~/assets/vendor/smooth-scrollbar.js")"></script> <!-- Smooth Scrollbar JS (https://github.com/idiotWu/smooth-scrollbar/) -->
+    <script src="@Url.Content("~/assets/vendor/swiper/js/swiper-bundle.min.js")"></script> <!-- Swiper JS (https://swiperjs.com/) -->
+    <script src="@Url.Content("~/assets/vendor/isotope/imagesloaded.pkgd.min.js")"></script> <!-- imagesloaded JS (more info: https://imagesloaded.desandro.com/) -->
+    <script src="@Url.Content("~/assets/vendor/isotope/isotope.pkgd.min.js")"></script> <!-- Isotope JS (http://isotope.metafizzy.co) -->
+    <script src="@Url.Content("~/assets/vendor/isotope/packery-mode.pkgd.min.js")"></script> <!-- Isotope Packery Mode JS (https://isotope.metafizzy.co/layout-modes/packery.html) -->
+    <script src="@Url.Content("~/assets/vendor/lightgallery/js/lightgallery-all.min.js")"></script> <!-- lightGallery Plugins JS (http://sachinchoolur.github.io/lightGallery) -->
+    <script src="@Url.Content("~/assets/vendor/jquery.mousewheel.min.js")"></script> <!-- A jQuery plugin that adds cross browser mouse wheel support (https://github.com/jquery/jquery-mousewheel) -->
+    <!-- for bootstrap 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- for bootstrap 4 -->
+    <!-- Theme master JS -->
+    <script src="@Url.Content("~/assets/js/shop.js")"></script>
+    <!-- Note: Used on shop-related pages only! -->
+    <script src="@Url.Content("~/assets/js/theme.js")"></script>
+
+
+
+
+    <!-- need album -->
+    <script>
+        $(function () {
+
+            // Get the form fields and hidden div
+            var checkbox = $("#trigger");
+            var hidden = $("#hidden_fields");
+
+            // Hide the fields.
+            // Use JS to do this in case the user doesn't have JS
+            // enabled.
+            hidden.hide();
+
+            // Setup an event listener for when the state of the
+            // checkbox changes.
+            checkbox.change(function () {
+                // Check to see if the checkbox is checked.
+                // If it is, show the fields and populate the input.
+                // If not, hide the fields.
+                if (checkbox.is(':checked')) {
+                    // Show the hidden fields.
+                    hidden.show();
+
+                } else {
+                    // Make sure that the hidden fields are indeed
+                    // hidden.
+                    hidden.hide();
+                    // You may also want to clear the value of the
+                    // hidden fields here. Just in case somebody
+                    // shows the fields, enters data to them and then
+                    // unticks the checkbox.
+                    //
+                    // This would do the job:
+                    //
+                    // $("#hidden_field").val("");
+                }
+            });
+        });
+    </script>
+    <!-- need album -->
+    <!-- calender ui -->
+    <script>
+        function calender(e) {
+            if ($(".main").length != 0) {
+                $("#calenderMain").remove();
+                return false;
+            }
+
+            date = new Date();
+            currMonth = date.getMonth();
+            currYear = date.getFullYear();
+            days = [];
+            monthArray = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ];
+            week = ["w1", "w2", "w3", "w4", "w5", "w6"];
+            var cal = `<div class="main"> <div class="yearDiv"> <span onclick="setCalender(currMonth,currYear-=1)" class="left"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                </svg></span> <span class="year"></span> <span onclick="setCalender(currMonth,currYear+=1)" class="right"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg></span> </div> <div class="monthDiv"> <span onclick="setCalender(currMonth<1?currMonth=11:currMonth-=1,currYear)" class="left"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                </svg></span> <span class="month"></span> <span onclick="setCalender(currMonth>10?currMonth=0:currMonth+=1,currYear)" class="right"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg></span> </div> <div class="dateMain"> <table id="fillDate"> <tr class="weekT"> <td class="wDay" value="0">S</td> <td class="wDay" value="1">M</td> <td class="wDay" value="2">T</td> <td class="wDay" value="3">W</td> <td class="wDay" value="4">T</td> <td class="wDay" value="5">F</td> <td class="wDay" value="6">S</td> </tr> <tr class="w1"></tr> <tr class="w2"></tr> <tr class="w3"></tr> <tr class="w4"></tr> <tr class="w5"></tr> </table> </div> </div> </div>`;
+
+            $("body").append('<div id="calenderMain"></div>');
+
+            $("#calenderMain").append(cal);
+            $(".main").fadeIn();
+
+            setCalender(date.getMonth(), date.getFullYear(), e);
+        }
+
+        function setCalender(month, year, e) {
+            selectedDate = "";
+            clearCalender();
+            days = [];
+            var weekCount = 0;
+            console.log(month, year);
+            var d = new Date(year, month, 1);
+            $(".main .month").html(monthArray[d.getMonth()]);
+            $(".main .year").html(d.getFullYear());
+            while (d.getMonth() === month) {
+                days.push(new Date(d));
+                d.setDate(d.getDate() + 1);
+            }
+            for (i = 0; i < days.length; i++) {
+                if (days[i].getDay() <= 5) {
+                    $("." + week[weekCount]).append(
+                        '<td class="date" value="' +
+                        days[i].getDate() +
+                        '">' +
+                        days[i].getDate() +
+                        "</td>"
+                    );
+                } else {
+                    $("." + week[weekCount]).append(
+                        '<td class="date" value="' +
+                        days[i].getDate() +
+                        '">' +
+                        days[i].getDate() +
+                        "</td>"
+                    );
+                    weekCount += 1;
+                }
+            }
+
+            var tot;
+            if ($(".w1").children().length != 7) {
+                tot = 7 - $(".w1").children().length;
+                for (j = 0; j < tot; j++) {
+                    console.log("test");
+                    $(".w1").prepend("<td>&nbsp</td>");
+                }
+            }
+
+            $(".date").each(function () {
+                $(this).click(function () {
+                    selectedDate = "";
+                    selectedDate =
+                        currYear +
+                        "-" +
+                        (String(currMonth + 1).length > 1
+                            ? currMonth + 1
+                            : "0" + (currMonth + 1)) +
+                        "-" +
+                        (String($(this).attr("value")).length > 1
+                            ? $(this).attr("value")
+                            : "0" + $(this).attr("value"));
+                    console.log(selectedDate);
+                    $(".main").slideUp();
+                    $("#calenderMain").remove();
+                    $(e).val(selectedDate.toString());
+                });
+            });
+        }
+
+        function clearCalender() {
+            $(".w1,.w2,.w3,.w4,.w5").children().remove();
+        }
+
+        $("#calenderMain").click(function () {
+            $("#calenderMain").remove();
+        });
+
+
+    </script>
+    <!-- calender ui -->
+    @RenderSection("scripts", false)
+</body>
+
+</html>

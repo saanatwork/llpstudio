@@ -1,0 +1,45 @@
+body{
+	overflow-y: scroll !important;
+}
+#body-inner{
+	min-height: auto;
+}
+
+
+
+.headoneA {
+	font-size: 68px;
+}
+.headoneB{
+	font-size: 150px;
+}
+
+.headtwoA {
+	font-size: 58px;
+}
+.headtwoB {
+	font-size: 26px;
+}
+.headtwoC{
+	font-size: 73px;
+}
+
+.headthreeA{
+	font-size: 52px;
+}
+
+h4 span{
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	
+	font-size: 14px;
+	color: white;
+	padding: 10px;
+	margin: 0 5px;
+}
+u.head {
+	background: white;
+	color: black;
+	padding: 5px;
+}

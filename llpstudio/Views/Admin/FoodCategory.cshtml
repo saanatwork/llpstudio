@@ -1,0 +1,60 @@
+﻿@model llpstudio.Models.FoodCategoryModel
+@{
+    ViewBag.Title = "FoodCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    TempData["FoodCategory"] = "aaa";
+    TempData["FoodCategoryAdd"] = "active";
+}
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-xl-8 offset-xl-2">
+
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="page-title">Add Food Category</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Page Header -->
+
+                <div class="card">
+                    <div class="card-body">
+                        @if (TempData["FoodCategoryError"] != null && !string.IsNullOrWhiteSpace(TempData["FoodCategoryError"].ToString()))
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error!</strong> @TempData["FoodCategoryError"]
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+                        <!-- Form -->
+                        <form method="post" action="@Url.Action("FoodCategory","Admin")">
+                            <div class="form-group">
+                                @*<label>Category Name</label>*@
+                                @Html.HiddenFor(model => model.FoodCategoryId, new { @class = "form-control" })
+                                @* @Html.TextBoxFor(model => model.FoodCategory, new { @class = "form-control",@placeholder="Enter Food Category" })*@
+                            </div>
+                            <div class="form-group">
+                                <label>Category Name</label>
+                                @Html.TextBoxFor(model => model.FoodCategory, new { @class = "form-control", @placeholder = "Enter Food Category",@required="true" })
+
+                            </div>
+                            <div class="mt-4">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <a href="@Url.Action("FoodCategoryList","Admin")" class="btn btn-link">Cancel</a>
+                            </div>
+                        </form>
+                        <!-- Form -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

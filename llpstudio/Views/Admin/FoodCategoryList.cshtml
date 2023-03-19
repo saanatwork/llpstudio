@@ -1,0 +1,140 @@
+﻿@model llpstudio.Models.FoodCategoryModel
+@using System.Data
+
+@{
+    ViewBag.Title = "FoodCategoryList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    TempData["FoodCategory"] = "aaa";
+    TempData["FoodCategoryList"] = "active";
+    DataSet ds = (DataSet)ViewBag.FoodCategorylist;
+    DataTable dt = new DataTable();
+    if (ds != null && ds.Tables[0].Rows.Count > 0)
+    {
+        dt = ds.Tables[0];
+    }
+}
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Food Category List</h3>
+                </div>
+                <div class="col-auto text-right">
+                    @*<a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
+                            <i class="fas fa-filter"></i>
+                        </a>*@
+                    <a title="Add Category" href="@Url.Action("FoodCategory","Admin")" class="btn btn-primary add-button ml-3">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!-- Search Filter -->
+        @*<div class="card filter-card" id="filter_inputs">
+                <div class="card-body pb-0">
+                    <form action="#" method="post">
+                        <div class="row filter-row">
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select class="form-control select">
+                                        <option>Select category</option>
+                                        <option>Automobile</option>
+                                        <option>Construction</option>
+                                        <option>Interior</option>
+                                        <option>Cleaning</option>
+                                        <option>Electrical</option>
+                                        <option>Carpentry</option>
+                                        <option>Computer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <div class="cal-icon">
+                                        <input class="form-control datetimepicker" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <label>To Date</label>
+                                    <div class="cal-icon">
+                                        <input class="form-control datetimepicker" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>*@
+        <!-- /Search Filter -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @if (TempData["FoodCategorySuccess"] != null && !string.IsNullOrEmpty((string)TempData["FoodCategorySuccess"]))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["FoodCategorySuccess"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    }
+                    else if (TempData["FoodCategoryError"] != null && !string.IsNullOrWhiteSpace(TempData["FoodCategoryError"].ToString()))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> @TempData["FoodCategoryError"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0 datatable">
+                                <thead>
+                                    <tr>
+                                        <th hidden>Category Id</th>
+                                        <th>Food Category</th>
+                                        @*<th>Date</th>*@
+                                        <th class="text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (DataRow dr in dt.Rows)
+                                    {
+                                        <tr>
+                                            <td hidden>@dr["FoodCategoryId"]</td>
+                                            <td>
+                                                @dr["FoodCategory"]
+                                            </td>
+
+                                            <td class="text-right">
+                                                <a href="@Url.Action("FoodCategory","Admin",new { @id=dr["FoodCategoryId"]})" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

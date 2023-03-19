@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUserRegister.cshtml";
+}
+
+<div id="page-content">
+
+    <!-- =======================
+    ///// Begin tt-section /////
+    ============================
+    * You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
+    -->
+    <div class="tt-section no-padding-top">
+        <div class="tt-section-inner tt-wrap">
+
+            <div class="tt-row">
+                <div class="tt-col-lg-6">
+
+                    <!-- Begin shop login box
+                    ========================== -->
+                    <div class="slr-box shop-login-box">
+                        <h4 class="slr-heading"><i class="fas fa-unlock-alt"></i> Log in</h4>
+
+                        <!-- Begin form (Note: for design purposes only!)
+                        ================
+                        * Use class "tt-form-filled" or "tt-form-minimal" to change form style.
+                        * Use class "tt-form-sm" or "tt-form-lg" to change form size (no class = default size).
+                        -->
+                        <form class="tt-login-form tt-form-minimal" method="post" action="@Url.Action("Index","Login")">
+                            <div class="tt-form-group">
+                                <label>Username or email address <span class="required">*</span></label>
+                                <input type="text" class="tt-form-control" name="Email" required>
+                            </div>
+
+                            <div class="tt-form-group">
+                                <label>Password <span class="required">*</span></label>
+                                <input type="password" class="tt-form-control" name="Password" required>
+                            </div>
+
+                            <div class="tt-form-check">
+                                <input type="checkbox" id="login-remember" name="rememberme">
+                                <label for="login-remember">Remember me</label>
+                            </div>
+
+                            <small class="tt-form-text margin-top-20"><a href="shop-reset-password.html" class="tt-link-2">Lost your password?</a></small>
+
+                            <div class="tt-btn tt-btn-primary tt-btn-block margin-top-40">
+                                <button type="submit" data-hover="Log in">Log in</button>
+                            </div>
+                        </form>
+                        <!-- End form -->
+
+                    </div>
+                    <!-- End shop login box -->
+
+                </div> <!-- /.tt-col -->
+
+                <div class="tt-col-lg-6">
+
+                    <!-- Begin shop go to register box
+                    =================================== -->
+                    <div class="slr-box shop-goto-register-box">
+                        <h4 class="slr-heading"><i class="fas fa-plug"></i> Don't have an account yet?</h4>
+                        <small class="tt-form-text">Registering for this shop allows you to access your order status and history. Just fill in the fields, and we’ll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</small>
+
+                        <div class="tt-btn tt-btn-light margin-top-30">
+                            <a href="@Url.Action("Index","Registration")" data-hover="Register Now!">Register Now!</a>
+                        </div>
+                    </div>
+                    <!-- End shop go to register box -->
+
+                </div> <!-- /.tt-col -->
+            </div><!-- /.tt-row -->
+
+        </div> <!-- /.tt-section-inner -->
+    </div>
+    <!-- End tt-section -->
+
+
+</div>

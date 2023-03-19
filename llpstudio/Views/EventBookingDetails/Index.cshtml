@@ -1,0 +1,720 @@
+﻿@model llpstudio.Models.PackageModel
+@using System.Data;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DataSet ds = (DataSet)ViewBag.ComponentList;
+    DataSet dsPkg = (DataSet)ViewBag.PackageList;
+
+    DataTable dtComponentList = new DataTable();
+    if (ds.Tables[0].Rows.Count > 0)
+    {
+        dtComponentList = ds.Tables[0];
+    }
+    DataTable dtPkg = new DataTable();
+    if (dsPkg.Tables[0].Rows.Count > 0)
+    {
+        dtPkg = dsPkg.Tables[1];
+    }
+
+    DataTable dtgroup = new DataTable();
+    var aa = 0;
+    var pp = 0;
+
+    int MaxDayNo = 2;// ViewBag.PackageList.OrderByDescending(o => o.DayNo).FirstOfDefault().DayNo;
+}
+<!-- ========================
+                    ///// Begin page header /////
+                    =============================
+                    * Use class "ph-full" to enable fullscreen size.
+                    * Use class "ph-cap-sm", "ph-cap-lg", "ph-cap-xlg" or "ph-cap-xxlg" to set caption size (no class = default size).
+                    * Use class "ph-center" to enable content center position.
+                    * Use class "ph-bg-image" to enable page header background image (required for a portfolio single project!).
+                    * Use class "ph-bg-image-is-light" if needed, it makes the elements dark and more visible if you use a very light image (effect only with class "ph-bg-image").
+                    * Use class "ph-image-shadow" to enable page header background image (effect only with class "ph-bg-image").
+                    * Use class "ph-image-cropped" to crop image. It fixes image dimensions (no effect for "ph-bg-image"!).
+                    * Use class "ph-image-cover-*" to set image overlay opacity. For example "ph-image-cover-2" or "ph-image-cover-2-5" (up to "ph-image-cover-9-5").
+                    * Use class "ph-content-parallax" to enable content parallax.
+                    * Use class "ph-stroke" to enable caption title stroke style.
+                    -->
+<div id="page-header" class="ph-full ph-cap-xxlg ph-center ph-image-cropped ph-image-cover-2 ph-content-parallax">
+    <div class="page-header-inner tt-wrap">
+
+        <!-- Begin page header image
+        ============================= -->
+        <!-- <div class="ph-image">
+            <div class="ph-image-inner">
+                <img src="assets/img/page-header/ph-3.jpg" alt="Image">
+            </div>
+        </div> -->
+        <!-- End page header image -->
+        <!-- Begin page header caption
+        ===============================
+        Use class "max-width-*" to set caption max width if needed. For example "max-width-1000". More info about helper classes can be found in the file "helper.css".
+        -->
+        <div class="ph-caption">
+            <h1 class="ph-caption-title ph-appear">Booking Forms</h1>
+            <div class="ph-caption-title-ghost ph-appear">Events</div>
+            <div class="ph-caption-subtitle ph-appear">Book your photographers</div>
+        </div>
+        <!-- End page header caption -->
+
+    </div> <!-- /.page-header-inner -->
+    <!-- Begin scroll down circle (you can change "data-offset" to set scroll top offset)
+    ============================== -->
+    <a href="#page-content" class="scroll-down-circle" data-offset="30">
+        <div class="sdc-inner ph-appear">
+            <div class="sdc-icon"><i class="fas fa-chevron-down"></i></div>
+            <svg viewBox="0 0 500 500">
+                <defs>
+                    <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
+                </defs>
+                <text dy="30">
+                    <textPath xlink:href="#textcircle">Scroll down - Scroll down -</textPath>
+                </text>
+            </svg>
+        </div> <!-- /.sdc-inner -->
+    </a>
+    <!-- End scroll down circle -->
+    <!-- Begin made with love
+    ========================== -->
+    <div class="made-with-love ph-appear">
+        <div class="mwl-inner">
+            <div class="mwl-text">Made with</div>
+            <div class="mwl-icon"><i class="far fa-heart"></i></div>
+        </div>
+    </div>
+    <!-- End made with love -->
+
+</div>
+<!-- End page header -->
+<!-- *************************************
+*********** Begin page content ***********
+************************************** -->
+<div id="page-content">
+
+
+    <!-- =======================
+    ///// Begin tt-section /////
+    ============================
+    * You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
+    -->
+    <div class="tt-section padding-bottom-xlg-150">
+        <div class="tt-section-inner tt-wrap max-width-1400">
+
+            <!-- Begin form
+            ================
+            * Use class "tt-form-filled" or "tt-form-minimal" to change form style.
+            * Use class "tt-form-sm" or "tt-form-lg" to change form size (no class = default size).
+            -->
+            <div class="row booking_form justify-content-center">
+                <div class="col-md-12">
+                    <form class="tt-form-lg">
+
+                        <!-- <div class="row mb-3 booking-in-bg dynamic-field" id="dynamic-field-1">
+
+                            <div class="col-md-4">
+                                <div class="tt-form-group">
+                                    <label>Select Date: <span class="required">*</span></label>
+                                    <input id="d" class="tt-form-control" type="date"  onclick="calender(this)">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="tt-form-group">
+                                    <label>Photographer type: <span class="required">*</span></label>
+                                    <select class="tt-form-control" id="12323115" name="option">
+                                        <option value="" selected>Pro-photographer</option>
+                                        <option value="option-1">Award winning photographer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12"></div>
+                            <div class="col-md-4">
+                                <div class="tt-form-group">
+                                    <label>Sub-Event type: <span class="required">*</span></label>
+                                    <select class="tt-form-control" id="12323115" name="option">
+                                        <option value="" disabled selected>Mehendi</option>
+                                        <option value="option-1">Sangeet</option>
+                                        <option value="option-2">Reception</option>
+                                        <option value="option-3">Marriage day</option>
+                                        <option value="option-4">Rice Ceremony (½ Day)</option>
+                                        <option value="option-5">Rice Ceremony (Full Day)</option>
+                                        <option value="option-6">Anniversary (½ Day)</option>
+                                        <option value="option-6">Anniversary (Full Day)</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="tt-form-group">
+                                    <label>Enter location <span class="required">*</span></label>
+                                    <input class="tt-form-control" id="88733492" type="text" name="name" placeholder="Enter your location" >
+                                </div>
+                            </div>
+
+                            <div class="col-12"></div>
+
+                            <div class="col-md-4">
+                                <div class="tt-form-check">
+                                    <input type="checkbox" id="" name="check-1" checked>
+                                    <label for="48898335">Add Drone Photography </label>
+                                </div>
+                                <div class="tt-form-check">
+                                    <input type="checkbox" id="29908388" name="check-2">
+                                    <label for="29908388">Add Candid Photography</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="tt-form-check">
+                                    <input type="checkbox" id="" name="check-1" checked>
+                                    <label for="48898335">Full HD Photos </label>
+                                </div>
+                                <div class="tt-form-check">
+                                    <input type="checkbox" id="29908388" name="check-2">
+                                    <label for="29908388">Teaser Video and a Cinematic Wedding Film</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex justify-content-end align-items-end">
+                                <span class="badge bg-secondary">
+                                    <a href="#" id="#remove-button">Remove</a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col-md-12">
+                                <div class="tt-btn tt-btn-primary">
+                                    <a href="#" data-hover="Add Day" id="add-button">Add Day</a>
+                                </div>
+
+                            </div>
+                        </div> -->
+
+                        <div id="shop-wishlist">
+
+                            <div class="d-flex justify-content-end align-items-center mb-2">
+                                <div class="tt-heading tt-heading-xsm anim-fadeinup mb-0 mr-2" style="">
+                                    <h2 class="tt-heading-title">Sub Total: <span>₹00.00</span> </h2>
+                                </div>
+
+                                <div class="tt-btn tt-btn-dark">
+                                    <a href="#" data-hover="Expand" data-toggle="modal" data-target="#exampleModal">Expand <i class="fas fa-expand ml-2"></i></a>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Begin tt-Table
+                            ==================== -->
+                            <table class="tt-table shop-wishlist-table">
+                                <thead class="shop-wishlist-table-head">
+
+                                    <tr>
+                                        <th class="swh-product-title" colspan="">
+                                            Date & Event
+                                        </th>
+
+                                        <th class="swh-product-title" colspan="">
+                                            Location & Photographer
+                                        </th>
+                                        @if (dtComponentList.Rows != null)
+                                        {
+                                            foreach (DataRow item in dtComponentList.Rows)
+                                            {
+                                                <th class="swh-product-title" colspan="">
+                                                    @item["ComponentName"]
+                                                </th>
+                                            }
+                                        }
+
+                                        <th class="swh-subtotal">
+                                            Action
+                                        </th>
+
+                                    </tr>
+                                </thead>
+
+
+                                <tbody class="shop-wishlist-table-body">
+                                    @Html.Hidden("id1")
+                                    @for (int i = 1; i <= MaxDayNo; i++)
+                                    {
+
+                                        <!-- Begin wishlist table item -->
+                                        <tr class="shop-wishlist-table-item">
+
+                                            <td class="swti-product-thumb">
+                                                <div class="tt-form-group">
+                                                    <input class="tt-form-control" id="our_date" name="our_date" type="text" value="">
+                                                    @*<input id="d" name="lsteventDate" class="tt-form-control lsteventDate lsteventDate_@i" type="date" onclick="calender(this)">*@
+                                                    @Html.DropDownList("lstEventTypeId", (IEnumerable<SelectListItem>)ViewBag.EventType, "Event Type", new { @class = "tt-form-control lstEventTypeId lstEventTypeId_" + @i + "", @required = "true" })
+                                                </div>
+                                            </td>
+                                            <td class="swti-product-title">
+                                                <div class="tt-form-group">
+                                                    @Html.TextBox("lstLocation", "", new { @class = "tt-form-control lstLocation lstLocation_" + @i + "", @placeholder = "Location" })
+                                                    @*<input class="tt-form-control" type="text" name="Location" placeholder="Location" required="">*@
+                                                    @Html.DropDownList("lstPhotographerTypeId", (IEnumerable<SelectListItem>)ViewBag.PhotographerType, "Photographer Type", new { @class = "tt-form-control lstPhotographerTypeId lstPhotographerTypeId_" + @i + "", @required = "true", @readOnly = "true" })
+
+                                                </div>
+                                            </td>
+                                            @foreach (DataRow item in dtComponentList.Rows)
+                                            {
+                                                foreach (DataRow compItem in dtPkg.Select("componentid=" + item["componentid"].ToString() + " AND DayNo=" + i))
+                                                {
+                                                    if (compItem["componentid"].ToString() == item["componentid"].ToString())
+                                                    {
+                                                        var a = @i + "_" + @aa;
+
+                                                        <td class="swti-price check-t comploop_@i" data-title="Price">
+                                                            @if (Convert.ToBoolean(compItem["IsIncludedInPackage"]))
+                                                            {
+                                                                <label class="price_t">@compItem["Price"]</label>
+                                                                <label class="switch">
+                                                                    <input type="checkbox" class="componentidEvt_@a" value="@compItem["componentid"].ToString()" checked>
+                                                                    <span class="slider round"></span>
+                                                                    <span class="absolute-no">NO</span>
+                                                                </label>
+                                                                <label id="priceEvent_@a" style="display:none;">@compItem["price"].ToString()</label>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <label class="price_t">@compItem["Price"]</label>
+                                                                <label class="switch">
+                                                                    <input type="checkbox" class="componentidEvt_@a" value="@compItem["componentid"].ToString()">
+                                                                    <span class="slider round"></span>
+                                                                    <span class="absolute-no">NO</span>
+                                                                </label>
+                                                                <label id="priceEvent_@a" style="display:none;">@compItem["price"].ToString()</label>
+                                                            }
+                                                        </td>
+
+                                                    }
+                                                    aa++;
+                                                }
+                                            }
+                                            @*<td class="swti-price check-t comploop_@i" data-title="Price">
+                                                    <label class="switch">
+                                                        <input type="checkbox" class="componentidEvt_@a" value="@compItem["componentid"].ToString()" checked>
+                                                        <span class="slider round"></span>
+                                                        <span class="absolute-no">NO</span>
+                                                    </label>
+                                                    <label id="priceEvent_@a" style="display:none;">@compItem["price"].ToString()</label>
+                                                </td>*@
+                                            @*@for (int ii = 0; ii < dtComponentList.Rows.Count - aa; ii++)
+                                                {
+                                                    <td class="swti-price check-t" data-title="Price">
+                                                        <label class="switch">
+                                                            <input type="checkbox">
+                                                            <span class="slider round"></span>
+                                                            <span class="absolute-no">NO</span>
+                                                        </label>
+                                                    </td>
+                                                }*@
+
+                                        </tr>
+                                        <!-- End wishlist table item -->
+                                        aa = 0;
+                                    }
+
+                                </tbody>
+                                @*<tbody class="customer_records_dynamic"></tbody>
+
+                                    <tr class="shop-wishlist-table-buttons">
+                                        <td colspan="8" class="text-right">
+                                            <div class="tt-btn tt-btn-primary my-0">
+                                                <a href="#" class="extra-fields-customer" data-hover="Add">Add Day</a>
+                                            </div>
+                                        </td>
+                                    </tr>*@
+
+                            </table>
+                            <!-- End tt-Table -->
+
+                            <div class="text-right">
+                                <div class="tt-btn tt-btn-link">
+                                    @*<a href="@Url.Action("Index","ShopCheckout")" data-hover="Checkout">Proceed to Checkout</a>*@
+                                    <a href="javascript:void(0)" id="btnproceedtochkout" data-hover="Checkout">Proceed to Checkout</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End shop wishlist -->
+                        <!-- <div class="row">
+                            <div class="customer_records">
+                              <input name="customer_name" type="text" value="name">
+                              <input name="customer_age" type="number" value="age">
+                              <input name="customer_email" type="email" value="email">
+
+                              <a class="extra-fields-customer" href="#">ADD</a>
+                            </div>
+
+                            <div class="customer_records_dynamic"></div>
+
+                          </div> -->
+
+
+                        <div class="row mb-5">
+                            <div class="col-md-3">
+                                <div class="tt-form-check mt-1">
+                                    <input type="checkbox" id="trigger" name="question">
+                                    <label for="trigger">Need Album ?</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="hidden_fields">
+                                    <div class="d-flex justify-content-between w-100 need_album">
+                                        <div class="tt-form-group w-50">
+                                            <label>Album Type<span class="required">*</span></label>
+                                            @Html.DropDownList("AlbumTypeId", (IEnumerable<SelectListItem>)ViewBag.AlbumType, "Album Type", new { @class = "tt-form-control", @required = "true" })
+                                        </div>
+                                        <div class="tt-form-group w-40" id="" style="">
+                                            <label>How many ? <span class="required">*</span></label>
+                                            <select class="tt-form-control" id="AlbumQty" name="AlbumQty">
+                                                <option value="0" selected>Select</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                            </select>
+                                        </div>
+
+                                        @*<div class="tt-form-group w-40" id="" style="">
+                                                <label>Album Price <span class="required">*</span></label>
+                                                @Html.DropDownList("TotalPrice", (IEnumerable<SelectListItem>)ViewBag.AlbumPrice, "Album Price",
+                                               new { @class = "tt-form-control", @required = "true" })
+                                            </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+            <!-- End form -->
+            <!-- Begin form
+            ================
+            * Use class "tt-form-filled" or "tt-form-minimal" to change form style.
+            * Use class "tt-form-sm" or "tt-form-lg" to change form size (no class = default size).
+            -->
+            <!-- <form class="tt-form-lg">
+                <div class="tt-form-btn-inside">
+                    <input class="tt-form-control" type="email" id="subscribe" placeholder="Enter your email address..." required>
+                    <button type="submit"><i class="far fa-envelope"></i></button>
+                    <small class="tt-form''-text">Do not worry, we will not send spam.</small>
+                </div>
+            </form> -->
+            <!-- End form -->
+
+        </div> <!-- /.tt-section-inner -->
+    </div>
+    <!-- End tt-section -->
+
+
+</div>
+<!-- End page content -->
+@section scripts{
+    <script>
+        $('#btnproceedtochkout').click(function () {
+            debugger;
+            alert("hii");
+            var model = new Array();
+            $(".shop-wishlist-table-item").each(function (i) {
+               
+                var row = $(this);
+                var prc = "";
+                var comid = "";
+                var packageData = {};
+                packageData.EventTypeId = $('.lstEventTypeId_'+(i+1)).val();
+                packageData.Location = $('.lstLocation_' + (i + 1)).val();
+                packageData.eventDate = $('.lsteventDate_' + (i + 1)).val();
+                $(".comploop_" + (i + 1)).each(function (ii) {
+                    if ($('.componentidEvt_' + (i + 1) + '_' + ii).is(':checked')) {
+                        comid += $('.componentidEvt_' + (i + 1) + '_' + ii + ":checked").val() + ',';
+                        prc += $('#priceEvent_' + (i + 1) + '_' + ii).html() + ',';
+                    }
+
+                    //comid += $('.componentidEvt_' + (i + 1) + '_' + ii + ":checked").val() == undefined ? 0 + ',' : $('.componentidEvt_' + (i + 1) + '_' + ii + ":checked").val() + ',';
+                    //alert(comid);
+                })
+
+                let str1 = prc ;
+
+                const split_string = str1.split("");
+                var arr = split_string;
+                var total = 0;
+                for (var i in arr) {
+                    total += arr[i];
+                }
+
+
+                packageData.eventPrice = prc;
+                //var a = sumStr(prc);
+                //alert(a);
+                packageData.PhotographerTypeCompomentLinkId = comid;
+                packageData.AlbumTypeId = $('#AlbumTypeId').val().split('_')[0];//spbd35 fash50fb mega caf45 sprb3
+                packageData.TotalPrice = $('#AlbumTypeId').val().split('_')[1];
+                packageData.AlbumQty = $('#AlbumQty').val();
+
+                
+                
+
+                model.push(packageData, result);
+
+            });
+
+            //model.TotalPrice = $('#AlbumTypeId').val().split('_')[1];
+           // packageData.EventTypeId = $('.lstEventTypeId_' + (i + 1)).val();
+           // packageData.EventTypeId = $('#totalprc').val().split('_')[1];
+
+
+            var urls = '@Url.Action("eventBooking", "EventBookingDetails")';
+            $.post(urls, { modeldata: model }, function (data) {
+                window.location.href='@Url.Action("Index", "ShopCheckout",new { id=Request.QueryString["id1"]})';
+            })
+        })
+        //function sumStr(prc) {
+        //            let strArr = prc.split(",");
+        //            let sum = strArr.reduce(function (total, num) {
+        //                return parseFloat(total) + parseFloat(num);
+        //            });
+
+        //            return sum;
+        //        }
+
+        $(function () {
+            $(':checkbox').click(function () {
+                if ($(this).is(':checked')) {
+                    var valchk = $(this).attr('class');
+                    $('.' +valchk).attr("checked",true);
+                    //alert($('.'+valchk).val());
+                } else {
+                    var valchk = $(this).attr('class');
+                    $('.' +valchk).attr("checked", false);
+                   // alert($('.' + valchk).val());
+                }
+
+            })
+
+
+            $('.shop-wishlist-table-item:last').addClass('customer_records');
+        })
+
+        $('.extra-fields-customer').click(function () {
+            $('.customer_records').clone().appendTo('.customer_records_dynamic');
+            //var len = $('.customer_records').length;
+            ////alert(len);
+            //var aa = document.getElementsByClassName('customer_records')[1].parentElement.innerHTML;//$('.customer_records')[1].parent().html();
+            //$('.customer_records_dynamic').append(aa);
+            $('.customer_records_dynamic .customer_records').addClass('single remove');
+            $('.single .extra-fields-customer').remove();
+            // $('.single').append('<a href="#" class="remove-field btn-remove-customer">Remove</a>');
+            $('.single').append('<td class="swti-product-remove"><a href="#" class="remove-field btn-remove-customer"><i class="fas fa-trash-alt fa-x text-danger"></i></a></td>');
+            $('.customer_records_dynamic > .single').attr("class", "remove");
+
+            $('.customer_records_dynamic input').each(function () {
+                var count = 0;
+                var fieldname = $(this).attr("name");
+                $(this).attr('name', fieldname + count);
+                count++;
+            });
+
+        });
+
+        $(document).on('click', '.remove-field', function (e) {
+            $(this).parent('.swti-product-remove').parent('.remove').remove();
+            e.preventDefault();
+        });
+    </script>
+    <!-- need album -->
+    <script>
+        $(function () {
+
+            // Get the form fields and hidden div
+            var checkbox = $("#trigger");
+            var hidden = $("#hidden_fields");
+
+            // Hide the fields.
+            // Use JS to do this in case the user doesn't have JS
+            // enabled.
+            hidden.hide();
+
+            // Setup an event listener for when the state of the
+            // checkbox changes.
+            checkbox.change(function () {
+                // Check to see if the checkbox is checked.
+                // If it is, show the fields and populate the input.
+                // If not, hide the fields.
+                if (checkbox.is(':checked')) {
+                    // Show the hidden fields.
+                    hidden.show();
+
+                } else {
+                    // Make sure that the hidden fields are indeed
+                    // hidden.
+                    hidden.hide();
+                    // You may also want to clear the value of the
+                    // hidden fields here. Just in case somebody
+                    // shows the fields, enters data to them and then
+                    // unticks the checkbox.
+                    //
+                    // This would do the job:
+                    //
+                    // $("#hidden_field").val("");
+                }
+            });
+        });
+    </script>
+    <!-- need album -->
+    <!-- calender ui -->
+
+    <script>
+        $(document).ready(function () {
+
+            $("#our_date").datepicker({
+                minDate: 'today',
+                maxDate: new Date(2025, 3 - 1, 10)
+            });
+
+            $("#our_form").validate({
+                rules: {
+                    our_date: {
+                        required: true,
+                        //dateITA: true   Goodbye troubles!
+                    }
+                }
+            });
+        });
+
+    </script>
+
+    @*<script>
+            function calender(e) {
+                if ($(".main").length != 0) {
+                    $("#calenderMain").remove();
+                    return false;
+                }
+
+                date = new Date();
+                currMonth = date.getMonth();
+                currYear = date.getFullYear();
+                days = [];
+                monthArray = [
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December"
+                ];
+                week = ["w1", "w2", "w3", "w4", "w5", "w6"];
+                var cal = `<div class="main"> <div class="yearDiv"> <span onclick="setCalender(currMonth,currYear-=1)" class="left"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                        </svg></span> <span class="year"></span> <span onclick="setCalender(currMonth,currYear+=1)" class="right"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                        </svg></span> </div> <div class="monthDiv"> <span onclick="setCalender(currMonth<1?currMonth=11:currMonth-=1,currYear)" class="left"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                        </svg></span> <span class="month"></span> <span onclick="setCalender(currMonth>10?currMonth=0:currMonth+=1,currYear)" class="right"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                        </svg></span> </div> <div class="dateMain"> <table id="fillDate"> <tr class="weekT"> <td class="wDay" value="0">S</td> <td class="wDay" value="1">M</td> <td class="wDay" value="2">T</td> <td class="wDay" value="3">W</td> <td class="wDay" value="4">T</td> <td class="wDay" value="5">F</td> <td class="wDay" value="6">S</td> </tr> <tr class="w1"></tr> <tr class="w2"></tr> <tr class="w3"></tr> <tr class="w4"></tr> <tr class="w5"></tr> </table> </div> </div> </div>`;
+
+                $("body").append('<div id="calenderMain"></div>');
+
+                $("#calenderMain").append(cal);
+                $(".main").fadeIn();
+
+                setCalender(date.getMonth(), date.getFullYear(), e);
+            }
+
+            function setCalender(month, year, e) {
+                selectedDate = "";
+                clearCalender();
+                days = [];
+                var weekCount = 0;
+                console.log(month, year);
+                var d = new Date(year, month, 1);
+                $(".main .month").html(monthArray[d.getMonth()]);
+                $(".main .year").html(d.getFullYear());
+                while (d.getMonth() === month) {
+                    days.push(new Date(d));
+                    d.setDate(d.getDate() + 1);
+                }
+                for (i = 0; i < days.length; i++) {
+                    if (days[i].getDay() <= 5) {
+                        $("." + week[weekCount]).append(
+                            '<td class="date" value="' +
+                            days[i].getDate() +
+                            '">' +
+                            days[i].getDate() +
+                            "</td>"
+                        );
+                    } else {
+                        $("." + week[weekCount]).append(
+                            '<td class="date" value="' +
+                            days[i].getDate() +
+                            '">' +
+                            days[i].getDate() +
+                            "</td>"
+                        );
+                        weekCount += 1;
+                    }
+                }
+
+                var tot;
+                if ($(".w1").children().length != 7) {
+                    tot = 7 - $(".w1").children().length;
+                    for (j = 0; j < tot; j++) {
+                        console.log("test");
+                        $(".w1").prepend("<td>&nbsp</td>");
+                    }
+                }
+
+                $(".date").each(function () {
+                    $(this).click(function () {
+                        selectedDate = "";
+                        selectedDate =
+                            currYear +
+                            "-" +
+                            (String(currMonth + 1).length > 1
+                                ? currMonth + 1
+                                : "0" + (currMonth + 1)) +
+                            "-" +
+                            (String($(this).attr("value")).length > 1
+                                ? $(this).attr("value")
+                                : "0" + $(this).attr("value"));
+                        console.log(selectedDate);
+                        $(".main").slideUp();
+                        $("#calenderMain").remove();
+                        $(e).val(selectedDate.toString());
+                    });
+                });
+            }
+
+            function clearCalender() {
+                $(".w1,.w2,.w3,.w4,.w5").children().remove();
+            }
+
+            $("#calenderMain").click(function () {
+                $("#calenderMain").remove();
+            });
+
+
+        </script>*@
+    <!-- calender ui -->
+}

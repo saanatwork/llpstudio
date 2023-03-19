@@ -1,0 +1,168 @@
+﻿@model llpstudio.Models.DietaryAddModel
+@using System.Data
+
+@{
+    ViewBag.Title = "CouponCodeList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    TempData["CouponCode"] = "aaa";
+    TempData["CouponCodeList"] = "active";
+    DataSet ds = (DataSet)ViewBag.CouponCodeList;
+    DataTable dt = new DataTable();
+    if (ds != null && ds.Tables[0].Rows.Count > 0)
+    {
+        dt = ds.Tables[0];
+    }
+}
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Coupon Code List</h3>
+                </div>
+                <div class="col-auto text-right">
+                    @*<a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
+                            <i class="fas fa-filter"></i>
+                        </a>*@
+                    <a title="Add Dietary" href="@Url.Action("CouponCode","Admin")" class="btn btn-primary add-button ml-3">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!-- Search Filter -->
+        @*<div class="card filter-card" id="filter_inputs">
+                <div class="card-body pb-0">
+                    <form action="#" method="post">
+                        <div class="row filter-row">
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select class="form-control select">
+                                        <option>Select category</option>
+                                        <option>Automobile</option>
+                                        <option>Construction</option>
+                                        <option>Interior</option>
+                                        <option>Cleaning</option>
+                                        <option>Electrical</option>
+                                        <option>Carpentry</option>
+                                        <option>Computer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <div class="cal-icon">
+                                        <input class="form-control datetimepicker" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <label>To Date</label>
+                                    <div class="cal-icon">
+                                        <input class="form-control datetimepicker" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>*@
+        <!-- /Search Filter -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @if (TempData["CouponCodeSuccess"] != null && !string.IsNullOrEmpty((string)TempData["CouponCodeSuccess"]))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> @TempData["CouponCodeSuccess"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    }
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0 datatable">
+                                <thead>
+                                    <tr>
+                                        <th hidden>CouponCodeId</th>
+                                        <th>Coupon Code</th>
+                                        <th>Amount($)</th>
+                                        <th>Percentage(%)</th>
+                                        <th>Status</th>
+                                        @*<th>Action</th>*@
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (DataRow dr in dt.Rows)
+                                    {
+                                    <tr>
+                                        <td hidden>@dr["CouponCodeId"]</td>
+                                        <td>
+                                            @dr["CouponCode"]
+                                        </td>
+                                        <td>
+                                            @dr["Amount"]
+                                        </td>
+                                        <td>
+                                            @dr["Percentage"]
+                                        </td>
+                                        <td>
+                                            @if (dr["IsActive"].ToString() == "True")
+                                            {
+
+                                                <a href="@Url.Action("CouponCodeActiveDeactive","Admin",new { @id=dr["CouponCodeId"],@id1=dr["IsActive"],@id2=dr["CouponCodeId"]})" class="btn btn-sm bg-success-light mr-2">Active</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("CouponCodeActiveDeactive","Admin",new { @id=dr["CouponCodeId"],@id1=dr["IsActive"],@id2=dr["CouponCodeId"]})" class="btn btn-sm bg-danger-light mr-2">Inactive</a>
+
+                                            }
+
+                                        </td>
+                                        <td class="text-center">
+
+                                            <a href="@Url.Action("CouponCode","Admin",new { @id=dr["CouponCodeId"]})" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-2"></i> Edit</a>
+                                            <a href="@Url.Action("CouponCodeDelete","Admin",new { @id=dr["CouponCodeId"]})" class="btn btn-sm bg-danger-light mr-2">	<i class="far fa-edit mr-2"></i> Delete</a>
+                                        
+                                        
+                                        </td>
+                                    </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        //$(document).ready(function () {
+        //    //$('#example').DataTable();
+        //    $('#example').DataTable({
+        //        "order": [[0, "desc"]]
+        //    });
+        //});
+    </script>
+    }

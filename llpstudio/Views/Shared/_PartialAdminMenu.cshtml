@@ -1,0 +1,175 @@
+﻿<style>
+    .aaa {
+        background-color: #e8e8e8;
+        color: #000;
+    }
+</style>
+
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+        <a href="@Url.Action("Index","Admin")">
+            <img src="@Url.Content("~/assets/img/demo_logo1.png")" class="img-fluid" alt="" style="width:160px;height:auto;"/>
+            @*<img src="@Url.Content("~/yourlogo.png")" class="img-fluid" alt="" style="width:130px;" />*@
+        </a>
+    </div>
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+                <li class="@TempData["dashboard"]">
+                    <a href="@Url.Action("Index","Admin")"><i class="fas fa-columns"></i> <span>Dashboard</span></a>
+                </li>
+                @*<li class="submenu">
+            <a href="#" class="@TempData["FoodCategory"]">
+                <i class="fas fa-border-all"></i>
+                <span> Food Category</span> <span class="menu-arrow"></span>
+            </a>
+            <ul style="display: none;">
+                <li><a class="@TempData["FoodCategoryAdd"]" href="@Url.Action("FoodCategory","Admin")">Add Food</a></li>
+                <li><a class="@TempData["FoodCategoryList"]" href="@Url.Action("FoodCategoryList","Admin")">List</a></li>
+
+            </ul>
+        </li>*@
+
+                @*<li class="submenu">
+            <a href="#" class="@TempData["FoodItem"]">
+                <i class="fas fa-border-all"></i>
+                <span> Food Item</span> <span class="menu-arrow"></span>
+            </a>
+            <ul style="display: none;">
+                <li><a class="@TempData["FoodItemAdd"]" href="@Url.Action("FoodItem","Admin")">Add Food</a></li>
+                <li><a class="@TempData["FoodItemList"]" href="@Url.Action("FoodItemList","Admin")">List</a></li>
+
+            </ul>
+        </li>*@
+
+                <li class="submenu">
+                    <a href="#" class="@TempData["Booking"]">
+                        <i class="fas fa-border-all"></i>
+                        <span>Booking</span> <span class="menu-arrow"></span>
+                    </a>
+                    <ul style="display: none;">
+                        @*<li><a class="@TempData["AddBooking"]" href="@Url.Content("~/Admin/Index")">Customer List</a></li>*@
+                        <li><a class="@TempData["BookingList"]" href="@Url.Content("~/Admin/GetBookingList")">Booking List</a></li>
+
+                    </ul>
+                </li>
+                @*<li class="submenu">
+                    <a href="#" class="@TempData["Product"]">
+                        <i class="fas fa-pizza-slice"></i>
+                        <span>Product</span> <span class="menu-arrow"></span>
+                    </a>
+                    <ul style="display: none;">
+                        <li><a class="@TempData["AddProduct"]" href="@Url.Content("~/Admin/AddProduct")">Add</a></li>
+                        <li><a class="@TempData["DietaryList"]" href="@Url.Content("~/Admin/ProductList")">List</a></li>
+
+                    </ul>
+                </li>*@
+                @*  <li class="submenu">
+            <a href="#" class="@TempData["AddOn"]">
+                <i class="fas fa-border-all"></i>
+                <span>Add-On Item</span> <span class="menu-arrow"></span>
+            </a>
+            <ul style="display: none;">
+                <li><a class="@TempData["AddOnList"]" href="@Url.Content("~/Admin/AddOnforFoodItemList")">Add/View</a></li>
+
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#" class="@TempData["MemberShipPlan"]">
+                <i class="fas fa-user-plus"></i>
+                <span>MemberShip Plan</span> <span class="menu-arrow"></span>
+            </a>
+            <ul style="display: none;">
+                <li><a class="@TempData["MemberShipAdd"]" href="@Url.Content("~/Admin/MemberShipPlan")">Add</a></li>
+                <li><a class="@TempData["MemberShipList"]" href="@Url.Content("~/Admin/MemberShipPlanList")">List</a></li>
+
+            </ul>
+        </li>
+        <li class="@TempData["UserList"]">
+            <a href="@Url.Content("~/Admin/UserList")">
+                <i class="fas fa-user"></i>
+                <span>User List</span>
+            </a>
+        </li>
+
+        <li class="submenu">
+            <a href="#" class="@TempData["CouponCode"]">
+                <i class="fas fa-share-square"></i>
+                <span>Coupon Code</span> <span class="menu-arrow"></span>
+            </a>
+            <ul style="display: none;">
+                <li><a class="@TempData["CouponCodeAdd"]" href="@Url.Content("~/Admin/CouponCode")">Add</a></li>
+                <li><a class="@TempData["CouponCodeList"]" href="@Url.Content("~/Admin/CouponCodeList")">List</a></li>
+
+            </ul>
+        </li>
+
+        <li class="@TempData["Menu Order List"]">
+            <a href="@Url.Content("~/Admin/MenuOrderList")">
+                <i class="fa fa-list" style="font-size:24px"></i>
+                <span>Menu Order List</span>
+            </a>
+        </li>
+
+        <li class="submenu">
+            <a href="#" class="@TempData["GiftCard"]">
+                <i class="fas fa-gift"></i>
+                <span>Gift Card</span> <span class="menu-arrow"></span>
+            </a>
+            <ul style="display: none;">
+                <li><a class="@TempData["GiftCard"]" href="@Url.Content("~/Admin/GiftCard")">Add</a></li>
+                <li><a class="@TempData["GiftCardList"]" href="@Url.Content("~/Admin/GiftCardList")">List</a></li>
+
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#" class="@TempData["DeliveryChargeType"]">
+                <i class="fab fa-stack-exchange"></i>
+                <span>Delivery Charge</span> <span class="menu-arrow"></span>
+            </a>
+            <ul style="display: none;">
+                <li><a class="@TempData["AddDeliveryCharge"]" href="@Url.Content("~/Admin/DeliveryChargeType")">Add Delivery Charge</a></li>
+                <li><a class="@TempData["DeliveryChargeList"]" href="@Url.Content("~/Admin//DeliveryChargeList")">Delivery Charge List</a></li>
+                <li><a class="@TempData["ActiveDeliveryChargeType"]" href="@Url.Content("~/Admin/ActiveDeliveryChargeType")">Active Delivery Charge Type</a></li>
+            </ul>
+        </li>
+
+        <li class="@TempData["Gift Card Order List"]">
+            <a href="@Url.Content("~/Admin/GiftCardOrderList")">
+                <i class="fa fa-list" style="font-size:24px"></i>
+                <span>Gift Card Order List</span>
+            </a>
+        </li>
+
+        <li class="@TempData["Gift Card Payment List"]">
+            <a href="@Url.Content("~/Admin/GiftCardPaymentList")">
+                <i class="fa fa-list" style="font-size:24px"></i>
+                <span>Gift Card Payment List</span>
+            </a>
+        </li>
+
+
+        <li class="@TempData["Menu Order Payment List"]">
+            <a href="@Url.Content("~/Admin/MenuOrderPaymentList")">
+                <i class="fa fa-list" style="font-size:24px"></i>
+                <span>Menu Order Payment List</span>
+            </a>
+        </li>
+
+        <li class="submenu">
+            <a href="#" class="@TempData["Driver"]">
+                <i class="fas fa-user-plus"></i>
+                <span>Driver</span> <span class="menu-arrow"></span>
+            </a>
+            <ul style="display: none;">
+                <li><a class="@TempData["AddDriver"]" href="@Url.Content("~/Admin/AddDriver")">Add</a></li>
+                <li><a class="@TempData["DriverList"]" href="@Url.Content("~/Admin/DriverList")">List</a></li>
+
+            </ul>
+        </li>*@
+            </ul>
+        </div>
+    </div>
+</div>

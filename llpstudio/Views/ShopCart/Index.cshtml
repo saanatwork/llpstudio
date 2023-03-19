@@ -1,0 +1,716 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ========================
+                    ///// Begin page header /////
+                    =============================
+                    * Use class "ph-full" to enable fullscreen size.
+                    * Use class "ph-cap-sm", "ph-cap-lg", "ph-cap-xlg" or "ph-cap-xxlg" to set caption size (no class = default size).
+                    * Use class "ph-center" to enable content center position.
+                    * Use class "ph-bg-image" to enable page header background image (required for a portfolio single project!).
+                    * Use class "ph-bg-image-is-light" if needed, it makes the elements dark and more visible if you use a very light image (effect only with class "ph-bg-image").
+                    * Use class "ph-image-shadow" to enable page header background image (effect only with class "ph-bg-image").
+                    * Use class "ph-image-cropped" to crop image. It fixes image dimensions (no effect for "ph-bg-image"!).
+                    * Use class "ph-image-cover-*" to set image overlay opacity. For example "ph-image-cover-2" or "ph-image-cover-2-5" (up to "ph-image-cover-9-5").
+                    * Use class "ph-content-parallax" to enable content parallax.
+                    * Use class "ph-stroke" to enable caption title stroke style.
+                    -->
+<div id="page-header" class="ph-cap-sm ph-center ph-image-cropped ph-image-cover-4 ph-content-parallax">
+    <div class="page-header-inner tt-wrap">
+
+        <!-- Begin page header image
+        ============================= -->
+        <!-- <div class="ph-image">
+            <div class="ph-image-inner">
+                <img src="assets/img/page-header/ph-2.jpg" alt="Image">
+            </div>
+        </div> -->
+        <!-- End page header image -->
+        <!-- Begin page header caption
+        ===============================
+        Use class "max-width-*" to set caption max width if needed. For example "max-width-1000". More info about helper classes can be found in the file "helper.css".
+        -->
+        <div class="ph-caption">
+            <h1 class="ph-caption-title ph-appear">Shopping Cart</h1>
+            <div class="ph-caption-title-ghost ph-appear">Cart</div>
+            <div class="ph-caption-subtitle ph-appear">My Shopping Cart</div>
+        </div>
+        <!-- End page header caption -->
+
+    </div> <!-- /.page-header-inner -->
+    <!-- Begin scroll down circle (you can change "data-offset" to set scroll top offset)
+    ============================== -->
+    <a href="#page-content" class="scroll-down-circle" data-offset="30">
+        <div class="sdc-inner ph-appear">
+            <div class="sdc-icon"><i class="fas fa-chevron-down"></i></div>
+            <svg viewBox="0 0 500 500">
+                <defs>
+                    <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
+                </defs>
+                <text dy="30">
+                    <textPath xlink:href="#textcircle">Scroll down - Scroll down -</textPath>
+                </text>
+            </svg>
+        </div> <!-- /.sdc-inner -->
+    </a>
+    <!-- End scroll down circle -->
+    <!-- Begin made with love
+    ========================== -->
+    <div class="made-with-love ph-appear">
+        <div class="mwl-inner">
+            <div class="mwl-text">Made with</div>
+            <div class="mwl-icon"><i class="far fa-heart"></i></div>
+        </div>
+    </div>
+    <!-- End made with love -->
+
+</div>
+<!-- End page header -->
+<!-- *************************************
+*********** Begin page content ***********
+************************************** -->
+<div id="page-content">
+
+
+    <!-- =======================
+    ///// Begin tt-section /////
+    ============================
+    * You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
+    -->
+    <div class="tt-section no-padding-top">
+        <div class="tt-section-inner tt-wrap">
+
+            <!-- Begin shopping cart empty (use it if no products are on the shopping cart)
+            =============================== -->
+            <!-- <div class="shop-cart-empty">
+                <div class="shop-cart-empty-icon"><i class="fas fa-shopping-cart"></i></div>
+                <div class="shop-cart-empty-text">No products added to the shopping cart.</div>
+                <div class="shop-cart-empty-button">
+                    <div class="tt-btn tt-btn-primary">
+                        <a href="shop-list.html" data-hover="Go Shopping">Go Shopping</a>
+                    </div>
+                </div>
+            </div> -->
+            <!-- End shopping cart empty -->
+
+            <div class="tt-row">
+                <div class="tt-col-xxl-8 padding-right-xlg-20">
+
+                    <!-- Begin cart list
+                    ===================== -->
+                    <div id="shop-cart-list">
+                        <form class="shop-cart-form">
+
+                            <!-- Begin tt-Table
+                            ==================== -->
+                            <table class="tt-table shop-cart-table">
+                                <thead class="shop-cart-table-head">
+                                    <tr>
+                                        <th class="scth-product-title" colspan="2">
+                                            Product
+                                        </th>
+                                        <th class="scth-price">
+                                            Price
+                                        </th>
+                                        <th class="scth-quantity">
+                                            Quantity
+                                        </th>
+                                        <th class="scth-subtotal">
+                                            Subtotal
+                                        </th>
+                                        <th class="scth-subtotal">
+                                            Delete
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="shop-cart-table-body">
+
+                                    <!-- Begin cart table item -->
+                                    <tr class="shop-cart-table-item">
+
+                                        <td class="cti-product-thumb">
+                                            <a href="@Url.Action("Index","Details")">
+                                                <img src="/assets/img/custom/frame 7.png" alt="image" />
+                                            </a>
+                                        </td>
+                                        <td class="cti-product-title">
+                                            <div class="cti-product-title-inner">
+                                                <a href="@Url.Action("Index","Details")">photo frame</a>
+                                                <div class="cti-product-variations">
+                                                    <div class="ctip-variation">lorem <span>ipsum</span></div>
+                                                </div> <!-- /.cti-product-variations -->
+                                            </div> <!-- /.cti-product-title-inner -->
+                                        </td>
+                                        <td class="cti-price" data-title="Price">
+                                            <bdi>₹21.00</bdi>
+                                        </td>
+                                        <td class="cti-quantity" data-title="Quantity">
+                                            <!-- Begin single product quantity -->
+                                            <div class="single-product-quantity hide-cursor" title="Quantity">
+                                                <div class="qtybutton inc">+</div>
+                                                <input type="number" value="1" class="cart-plus-minus-box" step="1" min="1" name="quantity">
+                                                <div class="qtybutton dec">-</div>
+                                            </div>
+                                            <!-- End single product quantity -->
+                                        </td>
+                                        <td class="cti-subtotal" data-title="Subtotal">
+                                            <bdi>₹21.00</bdi>
+                                        </td>
+                                        <td class="cti-product-remove">
+                                            <a href="#" title="Remove this item"><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                    <!-- End cart table item -->
+                                    <!-- Begin cart table item -->
+                                    <tr class="shop-cart-table-item">
+
+                                        <td class="cti-product-thumb">
+                                            <a href="@Url.Action("Index","Details")">
+                                                <img src="/assets/img/custom/frame 4.png" alt="image" />
+                                            </a>
+                                        </td>
+                                        <td class="cti-product-title">
+                                            <div class="cti-product-title-inner">
+                                                <a href="@Url.Action("Index","Details")">photo frame</a>
+                                                <div class="cti-product-variations">
+                                                    <div class="ctip-variation">lorem: <span>text</span></div>
+                                                </div> <!-- /.cti-product-variations -->
+                                            </div> <!-- /.cti-product-title-inner -->
+                                        </td>
+                                        <td class="cti-price" data-title="Price">
+                                            <bdi>₹21.00</bdi>
+                                        </td>
+                                        <td class="cti-quantity" data-title="Quantity">
+                                            <!-- Begin single product quantity -->
+                                            <div class="single-product-quantity hide-cursor" title="Quantity">
+                                                <div class="qtybutton inc">+</div>
+                                                <input type="number" value="1" class="cart-plus-minus-box" step="1" min="1" name="quantity" placeholder="">
+                                                <div class="qtybutton dec">-</div>
+                                            </div>
+                                            <!-- End single product quantity -->
+                                        </td>
+                                        <td class="cti-subtotal" data-title="Subtotal">
+                                            <bdi>₹21.00</bdi>
+                                        </td>
+                                        <td class="cti-product-remove">
+                                            <a href="#" title="Remove this item"><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                    <!-- End cart table item -->
+
+                                    <tr class="shop-cart-table-buttons">
+                                        <td colspan="6" class="text-center">
+                                            <div class="tt-btn tt-btn-light mr-0">
+                                                <a href="@Url.Action("Index","ShopList")" data-hover="Continue Shopping">Continue Shopping</a>
+                                            </div>
+                                            <div class="tt-btn tt-btn-light-outline">
+                                                <button type="submit" data-hover="Update Cart">Update Cart</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- End tt-Table -->
+
+                        </form> <!-- /.shop-cart-form -->
+                    </div>
+                    <!-- End cart list -->
+
+                </div> <!-- /.tt-col -->
+
+                <div class="tt-col-xxl-4">
+
+                    <!-- Begin shopping cart totals -->
+                    <div class="shop-cart-totals shop-cart-box">
+                        <h4 class="shop-cart-box-heading">Cart Totals</h4>
+
+                        <!-- Begin table -->
+                        <table class="shop-cart-totals-table">
+                            <tbody>
+                                <tr class="sc-totals-subtotal">
+                                    <th>Subtotal:</th>
+                                    <td>
+                                        <bdi>₹42.00</bdi>
+                                    </td>
+                                </tr>
+                                <tr class="sc-totals-shipping">
+                                    <th>Shipping:</th>
+                                    <td>
+                                        <span>Free shipping</span>
+                                    </td>
+                                </tr>
+                                <tr class="sc-totals-total">
+                                    <th>gst:</th>
+                                    <td>
+                                        <span>₹42.00</span>
+                                    </td>
+                                </tr>
+                                <tr class="sc-totals-total">
+                                    <th>Total:</th>
+                                    <td>
+                                        <bdi class="text-white">₹42.00</bdi>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- End table -->
+
+                        <div class="tt-btn tt-btn-primary tt-btn-block">
+                            <a href="shop-checkout.html" data-hover="Proceed to Checkout">Checkout</a>
+                        </div>
+
+                    </div>
+                    <!-- End shopping cart totals -->
+                    <!-- Begin shopping cart discount code -->
+                    <div class="shop-cart-discount shop-cart-box">
+                        <h4 class="shop-cart-box-heading">Discount Code</h4>
+
+                        <!-- Begin shopping cart discount form (Note: for design purposes only!)
+                        =======================================
+                        * Use class "tt-form-filled" or "tt-form-minimal" to change form style.
+                        * Use class "tt-form-sm" or "tt-form-lg" to change form size (no class = default size).
+                        -->
+                        <form class="cart-discount-form tt-form-minimal">
+                            <small class="tt-form-text">Enter your code if you have one.</small>
+                            <input type="text" name="coupon-code" class="tt-form-control margin-bottom-20" id="coupon-code" value="" placeholder="Coupon code" required>
+                            <div class="tt-btn tt-btn-light tt-btn-block">
+                                <button type="submit" data-hover="Apply Coupon">Apply Coupon</button>
+                            </div>
+                        </form>
+                        <!-- shopping cart discount form -->
+
+                    </div>
+                    <!-- End shopping cart discount code -->
+
+                </div> <!-- /.tt-col -->
+            </div> <!-- /.tt-row -->
+
+        </div> <!-- /.tt-section-inner -->
+    </div>
+    <!-- End tt-section -->
+    <!-- =======================
+    ///// Begin tt-section /////
+    ============================
+    * You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
+    -->
+    <div class="tt-section padding-top-lg-40 no-padding-top padding-bottom-lg-150">
+        <div class="tt-section-inner tt-wrap">
+
+            <!-- Begin product carousel (featured products)
+            ============================
+            * Use class "ttp-fixed-height" or "ttp-fixed-height-portrait" to enable product fixed heigt (images will be cropped!).
+            * Use class "ttp-info-inside" to change product info position.
+            * Use class "prc-nav-outside" or "prc-nav-top" to set navigation position (no effect on smaller screens!).
+            * Hint: For better user experience, use images with the same dimensions.
+            * Important: class "tt-product-carousel" is required!
+            * Available data attributes:
+                    data-slides-per-view="4"..............(no effect on screens smaller than 1200px width!)
+                    data-space-between="30"...............(default is "0")
+                    data-speed="800"......................(milliseconds)
+                    data-autoplay="5000"..................(milliseconds. Note: disabled after user first interactions)
+                    data-simulate-touch="true"............(true/false)
+                    data-loop="true"......................(true/false)
+            -->
+            <div class="tt-product-carousel tt-featured-products-carousel ttp-fixed-height prc-nav-outside anim-fadeinup" data-space-between="30" data-loop="true" data-simulate-touch="true">
+
+                <h2 class="tt-prc-heading">You may be interested in…</h2>
+
+                <!-- Begin swiper container -->
+                <div class="swiper">
+
+                    <!-- Begin swiper wrapper (required) -->
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+
+                            <!-- Begin tt-Product
+                            ====================== -->
+                            <div class="tt-product">
+                                <div class="tt-product-image-holder">
+                                    <a href="@Url.Action("Index","Details")" class="tt-product-image-wrap">
+                                        <figure class="tt-product-image">
+                                            <img class="swiper-lazy" src="/assets/img/shop/shop-low-qlt-thumb.jpg" data-src="/assets/img/custom/frame 2.png" alt="image" />
+                                        </figure> <!-- /.tt-product-image -->
+
+                                        <figure class="tt-product-hover-image">
+                                            <img class=" swiper-lazy" src="/assets/img/shop/shop-low-qlt-thumb.jpg" data-src="/assets/img/custom/frame 2.png" alt="image" />
+                                        </figure> <!-- /.tt-product-hover-image -->
+                                        <!-- <div class="tt-product-padges">
+                                            <div class="pr-padge pr-sale-padge" title="Sale">-16%</div>
+                                            <div class="pr-padge pr-new-padge" title="New product">New</div>
+                                            <div class="pr-padge pr-hot-padge" title="Featured product">Hot!</div>
+                                        </div> -->
+                                        <!-- <div class="tt-product-out-of-stock">Out of Stock</div> -->
+                                    </a> <!-- /.tt-product-image-wrap -->
+
+                                    <div class="tt-product-additional-buttons">
+                                        <div class="tt-pr-addit-btn-wrap">
+                                            <a href="#" class="tt-pab-btn tt-add-to-wishlist-btn" title="Add to wishlist"><span><i class="far fa-heart"></i></span></a>
+                                            <a href="shop-wishlist.html" class="tt-pab-btn tt-add-to-wishlist-btn-active" title="Browse wishlist"><span><i class="fas fa-heart"></i></span></a>
+                                        </div>
+
+                                        <!-- <div class="tt-pr-addit-btn-wrap">
+                                            <a href="#" class="tt-pab-btn tt-add-to-compare-btn" title="Compare"><span><i class="fas fa-retweet"></i></span></a>
+                                            <a href="" class="tt-pab-btn tt-add-to-compare-btn-active" title="Browse compare list"><span><i class="fas fa-check"></i></span></a>
+                                        </div> -->
+                                        <!-- <a href="#" class="tt-pab-btn" title="Quick view"><i class="fas fa-search-plus"></i></a> -->
+
+                                    </div> <!-- /.tt-product-additional-buttons -->
+                                </div> <!-- /.tt-product-image-holder -->
+
+                                <div class="tt-product-info">
+                                    <!-- <div class="tt-product-categories">
+                                        <a href="" class="tt-product-category">Mockups</a>
+                                    </div> -->
+
+                                    <h3 class="tt-product-title"><a href="@Url.Action("Index","Details")" title="Photo frame - lorem text">Photo frame - lorem text</a></h3>
+
+                                    <!-- <div class="tt-product-rating">
+                                        <div class="tt-product-rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="tt-pi-price-btn-wrap">
+                                        <div class="tt-product-price">
+                                            <bdi>₹25.00</bdi>
+                                            <!-- <ins class="pp-current-price"><bdi>₹21.00</bdi></ins>
+                                            <del class="pp-old-price"><bdi>₹25.00</bdi></del> -->
+                                        </div> <!-- /.tt-product-price -->
+
+                                        <div class="tt-product-buttons">
+                                            <a href="#" class="tt-product-btn tt-product-adc-btn"><span>Add to Cart</span></a>
+                                            <!-- <a href="shop-single.html" class="tt-product-btn tt-product-sel-opt-btn"><span>Select Options</span></a> -->
+                                        </div> <!-- /.tt-product-buttons -->
+                                    </div> <!-- /.tt-pi-price-btn-wrap -->
+                                </div> <!-- /.tt-product-info -->
+                            </div>
+                            <!-- End tt-Product -->
+
+                        </div> <!-- /.swiper-slide -->
+
+                        <div class="swiper-slide">
+
+                            <!-- Begin tt-Product
+                            ====================== -->
+                            <div class="tt-product">
+                                <div class="tt-product-image-holder">
+                                    <a href="@Url.Action("Index","Details")" class="tt-product-image-wrap">
+                                        <figure class="tt-product-image">
+                                            <img class="swiper-lazy" src="/assets/img/shop/shop-low-qlt-thumb.jpg" data-src="/assets/img/custom/frame 3.jpg" alt="image" />
+                                        </figure> <!-- /.tt-product-image -->
+
+                                        <figure class="tt-product-hover-image">
+                                            <img class=" swiper-lazy" src="/assets/img/shop/shop-low-qlt-thumb.jpg" data-src="/assets/img/custom/frame 3.jpg" alt="image" />
+                                        </figure> <!-- /.tt-product-hover-image -->
+                                        <!-- <div class="tt-product-padges">
+                                            <div class="pr-padge pr-sale-padge" title="Sale">-16%</div>
+                                            <div class="pr-padge pr-new-padge" title="New product">New</div>
+                                            <div class="pr-padge pr-hot-padge" title="Featured product">Hot!</div>
+                                        </div> -->
+                                        <!-- <div class="tt-product-out-of-stock">Out of Stock</div> -->
+                                    </a> <!-- /.tt-product-image-wrap -->
+
+                                    <div class="tt-product-additional-buttons">
+                                        <div class="tt-pr-addit-btn-wrap">
+                                            <a href="#" class="tt-pab-btn tt-add-to-wishlist-btn" title="Add to wishlist"><span><i class="far fa-heart"></i></span></a>
+                                            <a href="shop-wishlist.html" class="tt-pab-btn tt-add-to-wishlist-btn-active" title="Browse wishlist"><span><i class="fas fa-heart"></i></span></a>
+                                        </div>
+
+                                        <!-- <div class="tt-pr-addit-btn-wrap">
+                                            <a href="#" class="tt-pab-btn tt-add-to-compare-btn" title="Compare"><span><i class="fas fa-retweet"></i></span></a>
+                                            <a href="" class="tt-pab-btn tt-add-to-compare-btn-active" title="Browse compare list"><span><i class="fas fa-check"></i></span></a>
+                                        </div> -->
+                                        <!-- <a href="#" class="tt-pab-btn" title="Quick view"><i class="fas fa-search-plus"></i></a> -->
+
+                                    </div> <!-- /.tt-product-additional-buttons -->
+                                </div> <!-- /.tt-product-image-holder -->
+
+                                <div class="tt-product-info">
+                                    <!-- <div class="tt-product-categories">
+                                        <a href="" class="tt-product-category">Mockups</a>
+                                    </div> -->
+
+                                    <h3 class="tt-product-title"><a href="@Url.Action("Index","Details")" title="Photo frame - lorem text">Photo frame - lorem text</a></h3>
+
+                                    <!-- <div class="tt-product-rating">
+                                        <div class="tt-product-rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="tt-pi-price-btn-wrap">
+                                        <div class="tt-product-price">
+                                            <bdi>₹25.00</bdi>
+                                            <!-- <ins class="pp-current-price"><bdi>₹21.00</bdi></ins>
+                                            <del class="pp-old-price"><bdi>₹25.00</bdi></del> -->
+                                        </div> <!-- /.tt-product-price -->
+
+                                        <div class="tt-product-buttons">
+                                            <a href="#" class="tt-product-btn tt-product-adc-btn"><span>Add to Cart</span></a>
+                                            <!-- <a href="shop-single.html" class="tt-product-btn tt-product-sel-opt-btn"><span>Select Options</span></a> -->
+                                        </div> <!-- /.tt-product-buttons -->
+                                    </div> <!-- /.tt-pi-price-btn-wrap -->
+                                </div> <!-- /.tt-product-info -->
+                            </div>
+                            <!-- End tt-Product -->
+
+                        </div> <!-- /.swiper-slide -->
+
+                        <div class="swiper-slide">
+
+                            <!-- Begin tt-Product
+                            ====================== -->
+                            <div class="tt-product">
+                                <div class="tt-product-image-holder">
+                                    <a href="@Url.Action("Index","Details")" class="tt-product-image-wrap">
+                                        <figure class="tt-product-image">
+                                            <img class="swiper-lazy" src="/assets/img/shop/shop-low-qlt-thumb.jpg" data-src="/assets/img/custom/frame 5.png" alt="image" />
+                                        </figure> <!-- /.tt-product-image -->
+
+                                        <figure class="tt-product-hover-image">
+                                            <img class=" swiper-lazy" src="/assets/img/shop/shop-low-qlt-thumb.jpg" data-src="/assets/img/custom/frame 5.png" alt="image" />
+                                        </figure> <!-- /.tt-product-hover-image -->
+
+                                        <div class="tt-product-padges">
+                                            <div class="pr-padge pr-sale-padge" title="Sale">-16%</div>
+                                            <!-- <div class="pr-padge pr-new-padge" title="New product">New</div> -->
+                                            <!-- <div class="pr-padge pr-hot-padge" title="Featured product">Hot!</div> -->
+                                        </div>
+
+                                        <!-- <div class="tt-product-out-of-stock">Out of Stock</div> -->
+                                    </a> <!-- /.tt-product-image-wrap -->
+
+                                    <div class="tt-product-additional-buttons">
+                                        <div class="tt-pr-addit-btn-wrap">
+                                            <a href="#" class="tt-pab-btn tt-add-to-wishlist-btn" title="Add to wishlist"><span><i class="far fa-heart"></i></span></a>
+                                            <a href="shop-wishlist.html" class="tt-pab-btn tt-add-to-wishlist-btn-active" title="Browse wishlist"><span><i class="fas fa-heart"></i></span></a>
+                                        </div>
+
+                                        <!-- <div class="tt-pr-addit-btn-wrap">
+                                            <a href="#" class="tt-pab-btn tt-add-to-compare-btn" title="Compare"><span><i class="fas fa-retweet"></i></span></a>
+                                            <a href="" class="tt-pab-btn tt-add-to-compare-btn-active" title="Browse compare list"><span><i class="fas fa-check"></i></span></a>
+                                        </div> -->
+                                        <!-- <a href="#" class="tt-pab-btn" title="Quick view"><i class="fas fa-search-plus"></i></a> -->
+
+                                    </div> <!-- /.tt-product-additional-buttons -->
+                                </div> <!-- /.tt-product-image-holder -->
+
+                                <div class="tt-product-info">
+                                    <!-- <div class="tt-product-categories">
+                                        <a href="" class="tt-product-category">Mockups</a>
+                                    </div> -->
+
+                                    <h3 class="tt-product-title"><a href="@Url.Action("Index","Details")" title="Photo frame - lorem text">Photo frame - lorem text</a></h3>
+
+                                    <!-- <div class="tt-product-rating">
+                                        <div class="tt-product-rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="tt-pi-price-btn-wrap">
+                                        <div class="tt-product-price">
+                                            <!-- <bdi>₹25.00</bdi> -->
+                                            <ins class="pp-current-price"><bdi>₹21.00</bdi></ins>
+                                            <del class="pp-old-price"><bdi>₹25.00</bdi></del>
+                                        </div> <!-- /.tt-product-price -->
+
+                                        <div class="tt-product-buttons">
+                                            <!-- <a href="#" class="tt-product-btn tt-product-adc-btn"><span>Add to Cart</span></a> -->
+                                            <a href="@Url.Action("Index","Details")" class="tt-product-btn tt-product-sel-opt-btn"><span>Select Options</span></a>
+                                        </div> <!-- /.tt-product-buttons -->
+                                    </div> <!-- /.tt-pi-price-btn-wrap -->
+                                </div> <!-- /.tt-product-info -->
+                            </div>
+                            <!-- End tt-Product -->
+
+                        </div> <!-- /.swiper-slide -->
+
+                        <div class="swiper-slide">
+
+                            <!-- Begin tt-Product
+                            ====================== -->
+                            <div class="tt-product">
+                                <div class="tt-product-image-holder">
+                                    <a href="@Url.Action("Index","Details")" class="tt-product-image-wrap">
+                                        <figure class="tt-product-image">
+                                            <img class="swiper-lazy" src="/assets/img/shop/shop-low-qlt-thumb.jpg" data-src="/assets/img/custom/frame 4.png" alt="image" />
+                                        </figure> <!-- /.tt-product-image -->
+
+                                        <figure class="tt-product-hover-image">
+                                            <img class=" swiper-lazy" src="/assets/img/shop/shop-low-qlt-thumb.jpg" data-src="/assets/img/custom/frame 4.png" alt="image" />
+                                        </figure> <!-- /.tt-product-hover-image -->
+                                        <!-- <div class="tt-product-padges">
+                                            <div class="pr-padge pr-sale-padge" title="Sale">-16%</div>
+                                            <div class="pr-padge pr-new-padge" title="New product">New</div>
+                                            <div class="pr-padge pr-hot-padge" title="Featured product">Hot!</div>
+                                        </div> -->
+                                        <!-- <div class="tt-product-out-of-stock">Out of Stock</div> -->
+                                    </a> <!-- /.tt-product-image-wrap -->
+
+                                    <div class="tt-product-additional-buttons">
+                                        <div class="tt-pr-addit-btn-wrap">
+                                            <a href="#" class="tt-pab-btn tt-add-to-wishlist-btn" title="Add to wishlist"><span><i class="far fa-heart"></i></span></a>
+                                            <a href="shop-wishlist.html" class="tt-pab-btn tt-add-to-wishlist-btn-active" title="Browse wishlist"><span><i class="fas fa-heart"></i></span></a>
+                                        </div>
+
+                                        <!-- <div class="tt-pr-addit-btn-wrap">
+                                            <a href="#" class="tt-pab-btn tt-add-to-compare-btn" title="Compare"><span><i class="fas fa-retweet"></i></span></a>
+                                            <a href="" class="tt-pab-btn tt-add-to-compare-btn-active" title="Browse compare list"><span><i class="fas fa-check"></i></span></a>
+                                        </div> -->
+                                        <!-- <a href="#" class="tt-pab-btn" title="Quick view"><i class="fas fa-search-plus"></i></a> -->
+
+                                    </div> <!-- /.tt-product-additional-buttons -->
+                                </div> <!-- /.tt-product-image-holder -->
+
+                                <div class="tt-product-info">
+                                    <!-- <div class="tt-product-categories">
+                                        <a href="" class="tt-product-category">Mockups</a>
+                                    </div> -->
+
+                                    <h3 class="tt-product-title"><a href="@Url.Action("Index","Details")" title="Photo frame - lorem text">Photo frame - lorem text</a></h3>
+
+                                    <!-- <div class="tt-product-rating">
+                                        <div class="tt-product-rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="tt-pi-price-btn-wrap">
+                                        <div class="tt-product-price">
+                                            <bdi>₹25.00</bdi>
+                                            <!-- <ins class="pp-current-price"><bdi>₹21.00</bdi></ins>
+                                            <del class="pp-old-price"><bdi>₹25.00</bdi></del> -->
+                                        </div> <!-- /.tt-product-price -->
+
+                                        <div class="tt-product-buttons">
+                                            <a href="#" class="tt-product-btn tt-product-adc-btn"><span>Add to Cart</span></a>
+                                            <!-- <a href="shop-single.html" class="tt-product-btn tt-product-sel-opt-btn"><span>Select Options</span></a> -->
+                                        </div> <!-- /.tt-product-buttons -->
+                                    </div> <!-- /.tt-pi-price-btn-wrap -->
+                                </div> <!-- /.tt-product-info -->
+                            </div>
+                            <!-- End tt-Product -->
+
+                        </div> <!-- /.swiper-slide -->
+
+                        <div class="swiper-slide">
+
+                            <!-- Begin tt-Product
+                            ====================== -->
+                            <div class="tt-product">
+                                <div class="tt-product-image-holder">
+                                    <a href="@Url.Action("Index","Details")" class="tt-product-image-wrap">
+                                        <figure class="tt-product-image">
+                                            <img class="swiper-lazy" src="/assets/img/shop/shop-low-qlt-thumb.jpg" data-src="/assets/img/custom/frame 7.png" alt="image" />
+                                        </figure> <!-- /.tt-product-image -->
+
+                                        <figure class="tt-product-hover-image">
+                                            <img class=" swiper-lazy" src="/assets/img/shop/shop-low-qlt-thumb.jpg" data-src="/assets/img/custom/frame 7.png" alt="image" />
+                                        </figure> <!-- /.tt-product-hover-image -->
+
+                                        <div class="tt-product-padges">
+                                            <div class="pr-padge pr-sale-padge" title="Sale">-16%</div>
+                                            <!-- <div class="pr-padge pr-new-padge" title="New product">New</div> -->
+                                            <!-- <div class="pr-padge pr-hot-padge" title="Featured product">Hot!</div> -->
+                                        </div>
+
+                                        <!-- <div class="tt-product-out-of-stock">Out of Stock</div> -->
+                                    </a> <!-- /.tt-product-image-wrap -->
+
+                                    <div class="tt-product-additional-buttons">
+                                        <div class="tt-pr-addit-btn-wrap">
+                                            <a href="#" class="tt-pab-btn tt-add-to-wishlist-btn" title="Add to wishlist"><span><i class="far fa-heart"></i></span></a>
+                                            <a href="shop-wishlist.html" class="tt-pab-btn tt-add-to-wishlist-btn-active" title="Browse wishlist"><span><i class="fas fa-heart"></i></span></a>
+                                        </div>
+
+                                        <!-- <div class="tt-pr-addit-btn-wrap">
+                                            <a href="#" class="tt-pab-btn tt-add-to-compare-btn" title="Compare"><span><i class="fas fa-retweet"></i></span></a>
+                                            <a href="" class="tt-pab-btn tt-add-to-compare-btn-active" title="Browse compare list"><span><i class="fas fa-check"></i></span></a>
+                                        </div> -->
+                                        <!-- <a href="#" class="tt-pab-btn" title="Quick view"><i class="fas fa-search-plus"></i></a> -->
+
+                                    </div> <!-- /.tt-product-additional-buttons -->
+                                </div> <!-- /.tt-product-image-holder -->
+
+                                <div class="tt-product-info">
+                                    <!-- <div class="tt-product-categories">
+                                        <a href="" class="tt-product-category">Mockups</a>
+                                    </div> -->
+
+                                    <h3 class="tt-product-title"><a href="@Url.Action("Index","Details")" title="Photo frame - lorem text">Photo frame - lorem text</a></h3>
+
+                                    <!-- <div class="tt-product-rating">
+                                        <div class="tt-product-rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="tt-pi-price-btn-wrap">
+                                        <div class="tt-product-price">
+                                            <!-- <bdi>₹25.00</bdi> -->
+                                            <ins class="pp-current-price"><bdi>₹21.00</bdi></ins>
+                                            <del class="pp-old-price"><bdi>₹25.00</bdi></del>
+                                        </div> <!-- /.tt-product-price -->
+
+                                        <div class="tt-product-buttons">
+                                            <a href="#" class="tt-product-btn tt-product-adc-btn"><span>Add to Cart</span></a>
+                                            <!-- <a href="shop-single.html" class="tt-product-btn tt-product-sel-opt-btn"><span>Select Options</span></a> -->
+                                        </div> <!-- /.tt-product-buttons -->
+                                    </div> <!-- /.tt-pi-price-btn-wrap -->
+                                </div> <!-- /.tt-product-info -->
+                            </div>
+                            <!-- End tt-Product -->
+
+                        </div> <!-- /.swiper-slide -->
+
+                    </div>
+                    <!-- End swiper wrapper -->
+
+                </div>
+                <!-- End swiper container -->
+                <!-- Begin tt-Product carousel navigation
+                ========================================== -->
+                <div class="tt-prc-nav-prev">
+                    <div class="tt-prc-arrow tt-prc-arrow-prev magnetic-item"></div>
+                </div>
+                <div class="tt-prc-nav-next">
+                    <div class="tt-prc-arrow tt-prc-arrow-next magnetic-item"></div>
+                </div>
+                <!-- End tt-Product carousel navigation -->
+
+            </div>
+            <!-- End product carousel -->
+
+        </div> <!-- /.tt-section-inner -->
+    </div>
+    <!-- End tt-section -->
+
+
+</div>
+<!-- End page content -->
