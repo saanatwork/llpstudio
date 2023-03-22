@@ -44,7 +44,7 @@
 
                             <div class="d-flex justify-content-end align-items-center mb-2">
                                 <div class="tt-heading tt-heading-xsm anim-fadeinup mb-0 mr-2" style="">
-                                    <h2 class="tt-heading-title">Sub Total: <span>$XYZ</span> </h2>
+                                    <h2 class="tt-heading-title">Sub Total: <span id="TotlPrice">$XYZ</span> </h2>
                                 </div>
 
                                 <div class="tt-btn tt-btn-dark">
@@ -63,20 +63,17 @@
                                                 <th class="swh-product-title" colspan="">
                                                     Location & Photographer
                                                 </th>
-                                                <th class="swh-price">
-                                                    Traditional Photography
-                                                </th>
-                                                <th class="swh-quantity">
-                                                    Traditional Videography
-                                                </th>
+                                                @if (Model.ComponentList != null && Model.ComponentList.Count > 0)
+                                                {
+                                                    foreach (var i in Model.ComponentList)
+                                                    {
+                                                        <th class="swh-price">
+                                                            @i.DisplayText
+                                                        </th>
+                                                    }
+                                                }
                                                 <th class="swh-subtotal">
-                                                    Candid Photography
-                                                </th>
-                                                <th class="swh-subtotal">
-                                                    Cinematography
-                                                </th>
-                                                <th class="swh-subtotal">
-                                                    Drone
+                                                    Day Total
                                                 </th>
                                                 <th class="swh-subtotal">
                                                     Action
@@ -87,7 +84,7 @@
                                         <tbody class="shop-wishlist-table-body">
                                             @if (Model.PackageDtl != null && Model.PackageDtl.Count > 0)
                                             {
-                                                foreach (var item in Model.PackageDtl) 
+                                                foreach (var item in Model.PackageDtl)
                                                 {
                                             <tr class="shop-wishlist-table-item customer_records">
                                                 <td class="swti-product-thumb">
@@ -109,74 +106,47 @@
                                                     <div class="tt-form-group">
                                                         <input class="tt-form-control" id="" type="text" name="name" placeholder="Location"
                                                                required="">
-                                                        <input class="tt-form-control" id="@item.PhotoGrapherTypeID" 
+                                                        <input class="tt-form-control" id="@item.PhotoGrapherTypeID"
                                                                type="text" name="name" value="@item.PhotoGrapherTypeDesc" disabled>
-                                                        @*<select class="tt-form-control" id="12323115" name="option">
-                                                            <option value="" disabled="" selected="">Photographer Type</option>
-                                                            <option value="option-1">Photographer Type</option>
-                                                            <option value="option-2">Photographer Type</option>
-                                                            <option value="option-3">Photographer Type</option>
-                                                        </select>*@
+
                                                     </div>
                                                 </td>
-                                                <td class="swti-price check-t" data-title="Price">
-                                                    <div class="price_t">Price</div>
-                                                    <label class="switch">
-                                                        <input type="checkbox" checked>
-                                                        <span class="slider round"></span>
-                                                        <span class="absolute-no">NO</span>
-                                                    </label>
+                                                @if (item.Components != null && item.Components.Count > 0)
+                                                {
+                                                    foreach (var i in item.Components)
+                                                    {
+                                                        <td class="swti-price check-t" data-title="Price">
+                                                            <div class="price_t">@i.UnitPrice INR</div>
+                                                            <label class="switch">
+                                                                <input data-val="@i.UnitPrice" id="@("SW"+item.EventDay+i.ID)"
+                                                                       onclick="ComponentChanged(@item.EventDay)" class="mPrice @("mPrice"+item.EventDay)"
+                                                                       type="checkbox" @(i.IsInPackage ? "checked" : "")>
+                                                                <span class="slider round"></span>
+                                                                <span id="@("TxtSW"+item.EventDay+i.ID)" class="absolute-no">@(i.IsInPackage?"Yes":"No")</span>
+                                                            </label>
+                                                        </td>
+                                                    }
+                                                }
+                                                    <td class="swti-price" style="text-align:center">
+                                                        <div id="RowPrice_@item.EventDay" class="rowPrice">
 
-
-                                                </td>
-                                                <td class="swti-price check-t" data-title="Price">
-                                                    <div class="price_t">Price</div>
-                                                    <label class="switch">
-                                                        <input type="checkbox" checked>
-                                                        <span class="slider round"></span>
-                                                        <span class="absolute-no">NO</span>
-                                                    </label>
-                                                </td>
-                                                <td class="swti-price check-t" data-title="Price">
-                                                    <div class="price_t">Price</div>
-                                                    <label class="switch">
-                                                        <input type="checkbox" checked>
-                                                        <span class="slider round"></span>
-                                                        <span class="absolute-no">NO</span>
-                                                    </label>
-                                                </td>
-                                                <td class="swti-price check-t" data-title="Price">
-                                                    <div class="price_t">Price</div>
-                                                    <label class="switch">
-                                                        <input type="checkbox">
-                                                        <span class="slider round"></span>
-                                                        <span class="absolute-no">NO</span>
-                                                    </label>
-                                                </td>
-                                                <td class="swti-price check-t" data-title="Price">
-                                                    <div class="price_t">Price</div>
-                                                    <label class="switch">
-                                                        <input type="checkbox">
-                                                        <span class="slider round"></span>
-                                                        <span class="absolute-no">NO</span>
-                                                    </label>
-                                                </td>
-                                                <td class="swti-price" style="text-align:center">
-                                                    <span class="badge bg-secondary">
-                                                        <a href="#" id="#remove-button">Remove</a>
-                                                    </span>
-                                                </td>
-                                            </tr>
+                                                        </div>
+                                                    </td>
+                                                    <td class="swti-price" style="text-align:center">
+                                                        <span class="badge bg-secondary">
+                                                            <button onclick="RemoveBtnClicked()" id="@("RemoveBtn_"+@item.EventDay)">Remove</button>
+                                                        </span>                                                    
+                                                    </td>
+                                                </tr>
                                                 }
                                             }
-                                            
-                                        @*<tr class="shop-wishlist-table-buttons">
-                                            <td colspan="8" class="text-right">
-                                                <div class="tt-btn tt-btn-primary my-0">
-                                                    <a href="#" class="extra-fields-customer" data-hover="Add">Add Day</a>
-                                                </div>
-                                            </td>
-                                        </tr>*@
+                                            <tr class="shop-wishlist-table-buttons">                                                
+                                                    <td colspan="@(Model.ComponentList!=null?Model.ComponentList.Count+3:3)" class="text-right">
+                                                        <div class="tt-btn tt-btn-primary my-0">
+                                                            <div id="TableTotal" href="#" class="extra-fields-customer" data-hover="Add">Total :</div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                         </tbody>
                                     </table>
                                     <!-- End tt-Table -->
@@ -197,37 +167,50 @@
 
                         </div>
                         <div class="row mb-5">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="tt-form-check mt-1">
                                     <input type="checkbox" id="trigger" name="question">
                                     <label for="trigger">Need Album ?</label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <div id="hidden_fields">
                                     <div class="d-flex justify-content-between w-100 need_album">
-                                        <div class="tt-form-group w-50">
+                                        <div class="tt-form-group w-40">
                                             <label>Album Type<span class="required">*</span></label>
-                                            <select class="tt-form-control" id="result" name="result">
-                                                <option value="" selected> Select </option>
-                                                <option value="">Album 1</option>
-                                                <option value="">Album 2</option>
+                                            <select class="tt-form-control" id="AlbumDD"
+                                                    onchange="CalculateAlbumAmount()"
+                                                    name="result">
+                                                <option value="0_0" selected> Select Album Type</option>
+                                                @if (Model.AlbumList != null && Model.AlbumList.Count > 0)
+                                                {
+                                                    foreach (var al in Model.AlbumList)
+                                                    {
+                                                        <option value="@(al.ID+"_"+al.UnitPrice)">@al.DisplayText</option>
+                                                    }
+                                                }
                                             </select>
                                         </div>
-                                        <div class="tt-form-group w-40" id="" style="">
+                                        <div class="tt-form-group w-40" style="padding-left:10px">
                                             <label>How many ? <span class="required">*</span></label>
-                                            <select class="tt-form-control" id="result" name="result">
-                                                <option value="" selected> Select </option>
-                                                <option value=""> 1</option>
-                                                <option value=""> 2</option>
-                                                <option value=""> 3</option>
-                                                <option value=""> 4</option>
-                                                <option value=""> 5</option>
-                                                <option value=""> 6</option>
-                                                <option value=""> 7</option>
-                                                <option value=""> 8</option>
-                                                <option value=""> 9</option>
+                                            <select class="tt-form-control" id="AlbumQtyDD"
+                                                    onchange="CalculateAlbumAmount()">
+                                                <option value="0" selected> Select quantity</option>
+                                                <option value="1"> 1</option>
+                                                <option value="2"> 2</option>
+                                                <option value="3"> 3</option>
+                                                <option value="4"> 4</option>
+                                                <option value="5"> 5</option>
+                                                <option value="6"> 6</option>
+                                                <option value="7"> 7</option>
+                                                <option value="8"> 8</option>
+                                                <option value="9"> 9</option>
                                             </select>
+                                        </div>
+                                        <div class="tt-form-group w-40" style="padding-left:30px">
+                                            <label>Amount</label>
+                                            <div id="AlbumAmount">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -241,6 +224,15 @@
         </div> <!-- /.tt-section-inner -->
     </div>
     <!-- End tt-section -->
-
-
 </div>
+@section styleheader{
+    @*<link href="~/UIContent/CSS/bootstrap.min.css" rel="stylesheet" />*@
+    @*<link href="~/UIContent/CSS/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
+    <link href="~/UIContent/CSS/sweetalert2.min.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/UIContent/JS/jquery-3.6.0.min.js"></script>
+    <script src="~/UIContent/JS/jquery-ui-1.13.2.min.js"></script>
+    <script src="~/UIContent/JS/sweetalert2.all.min.js"></script>
+    <script src="~/UIContent/JS/CustomePage/BookingForm.js"></script>
+}
