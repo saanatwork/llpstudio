@@ -48,7 +48,7 @@
                                 </div>
 
                                 <div class="tt-btn tt-btn-dark">
-                                    <a href="#" data-hover="Expand" data-toggle="modal" data-target="#exampleModal">Expand <i class="fas fa-expand ml-2"></i></a>
+                                    <a href="#" data-hover="Expand" data-toggle="modal" data-target="#CartModal">Expand <i class="fas fa-expand ml-2"></i></a>
                                 </div>
                             </div>
 
@@ -86,67 +86,67 @@
                                             {
                                                 foreach (var item in Model.PackageDtl)
                                                 {
-                                            <tr class="shop-wishlist-table-item customer_records">
-                                                <td class="swti-product-thumb">
-                                                    <div class="tt-form-group">
-                                                        <input class="tt-form-control" id="our_date" name="our_date" type="text" value="">
-                                                        <select class="tt-form-control" id="12323115" name="option">
-                                                            <option value="" disabled="" selected="">Event Type</option>
-                                                            @if (Model.EventList != null && Model.EventList.Count > 0)
-                                                            {
-                                                                foreach (var obj1 in Model.EventList)
-                                                                {
-                                                                    <option value="@obj1.ID">@obj1.DisplayText</option>
-                                                                }
-                                                            }
-                                                        </select>
-                                                    </div>
-                                                </td>
-                                                <td class="swti-product-title">
-                                                    <div class="tt-form-group">
-                                                        <input class="tt-form-control" id="" type="text" name="name" placeholder="Location"
-                                                               required="">
-                                                        <input class="tt-form-control" id="@item.PhotoGrapherTypeID"
-                                                               type="text" name="name" value="@item.PhotoGrapherTypeDesc" disabled>
-
-                                                    </div>
-                                                </td>
-                                                @if (item.Components != null && item.Components.Count > 0)
-                                                {
-                                                    foreach (var i in item.Components)
-                                                    {
-                                                        <td class="swti-price check-t" data-title="Price">
-                                                            <div class="price_t">@i.UnitPrice INR</div>
-                                                            <label class="switch">
-                                                                <input data-val="@i.UnitPrice" id="@("SW"+item.EventDay+i.ID)"
-                                                                       onclick="ComponentChanged(@item.EventDay)" class="mPrice @("mPrice"+item.EventDay)"
-                                                                       type="checkbox" @(i.IsInPackage ? "checked" : "")>
-                                                                <span class="slider round"></span>
-                                                                <span id="@("TxtSW"+item.EventDay+i.ID)" class="absolute-no">@(i.IsInPackage?"Yes":"No")</span>
-                                                            </label>
+                                                    <tr class="shop-wishlist-table-item customer_records">
+                                                        <td class="swti-product-thumb">
+                                                            <div class="tt-form-group">
+                                                                <input class="tt-form-control" id="our_date" name="our_date" type="text" value="">
+                                                                <select class="tt-form-control" id="12323115" name="option">
+                                                                    <option value="" disabled="" selected="">Event Type</option>
+                                                                    @if (Model.EventList != null && Model.EventList.Count > 0)
+                                                                    {
+                                                                        foreach (var obj1 in Model.EventList)
+                                                                        {
+                                                                            <option value="@obj1.ID">@obj1.DisplayText</option>
+                                                                        }
+                                                                    }
+                                                                </select>
+                                                            </div>
                                                         </td>
-                                                    }
-                                                }
-                                                    <td class="swti-price" style="text-align:center">
-                                                        <div id="RowPrice_@item.EventDay" class="rowPrice">
+                                                        <td class="swti-product-title">
+                                                            <div class="tt-form-group">
+                                                                <input class="tt-form-control" id="" type="text" name="name" placeholder="Location"
+                                                                       required="">
+                                                                <input class="tt-form-control" id="@item.PhotoGrapherTypeID"
+                                                                       type="text" name="name" value="@item.PhotoGrapherTypeDesc" disabled>
 
-                                                        </div>
-                                                    </td>
-                                                    <td class="swti-price" style="text-align:center">
-                                                        <span class="badge bg-secondary">
-                                                            <button onclick="RemoveBtnClicked()" id="@("RemoveBtn_"+@item.EventDay)">Remove</button>
-                                                        </span>                                                    
-                                                    </td>
-                                                </tr>
+                                                            </div>
+                                                        </td>
+                                                        @if (item.Components != null && item.Components.Count > 0)
+                                                        {
+                                                            foreach (var i in item.Components)
+                                                            {
+                                                                <td class="swti-price check-t" data-title="Price">
+                                                                    <div class="price_t">₹@i.UnitPrice/-</div>
+                                                                    <label class="switch">
+                                                                        <input data-val="@i.UnitPrice" id="@("SW"+item.EventDay+i.ID)"
+                                                                               onclick="ComponentChanged(@item.EventDay)" class="mPrice @("mPrice"+item.EventDay)"
+                                                                               type="checkbox" @(i.IsInPackage ? "checked" : "")>
+                                                                        <span class="slider round"></span>
+                                                                        <span id="@("TxtSW"+item.EventDay+i.ID)" class="absolute-no">@(i.IsInPackage?"Yes":"No")</span>
+                                                                    </label>
+                                                                </td>
+                                                            }
+                                                        }
+                                                        <td class="swti-price" style="text-align:center">
+                                                            <div id="RowPrice_@item.EventDay" class="rowPrice">
+
+                                                            </div>
+                                                        </td>
+                                                        <td class="swti-price" style="text-align:center">
+                                                            <span class="badge bg-secondary">
+                                                                <button onclick="RemoveBtnClicked()" id="@("RemoveBtn_"+@item.EventDay)">Remove</button>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
                                                 }
                                             }
-                                            <tr class="shop-wishlist-table-buttons">                                                
-                                                    <td colspan="@(Model.ComponentList!=null?Model.ComponentList.Count+3:3)" class="text-right">
-                                                        <div class="tt-btn tt-btn-primary my-0">
-                                                            <div id="TableTotal" href="#" class="extra-fields-customer" data-hover="Add">Total :</div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                            <tr class="shop-wishlist-table-buttons">
+                                                <td colspan="@(Model.ComponentList!=null?Model.ComponentList.Count+3:3)" class="text-right">
+                                                    <div class="tt-btn tt-btn-primary my-0">
+                                                        <div id="TableTotal" href="#" class="extra-fields-customer" data-hover="Add">Total :</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                     <!-- End tt-Table -->
@@ -211,6 +211,8 @@
                                             <label>Amount</label>
                                             <div id="AlbumAmount">
                                             </div>
+                                            <div id="AlbumAmount2" class="inVisible">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -224,11 +226,101 @@
         </div> <!-- /.tt-section-inner -->
     </div>
     <!-- End tt-section -->
+
 </div>
+<!-- Modal -->
+@section myModals{
+    <div class="modal fade" id="CartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content t">
+
+                <div class="modal-body">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="shop-cart-totals shop-cart-box custom-bg p-3">
+                        <h4 class="shop-cart-box-heading">Quote total:</h4>
+
+                        <!-- Begin table -->
+                        <table class="shop-cart-totals-table">
+                            <tbody>
+                                <tr class="sc-totals-subtotal">
+                                    <th>Subtotal:</th>
+                                    <td>
+                                        <div id="myModalSubTotal"></div>
+                                    </td>
+                                </tr>
+                                <tr class="sc-totals-subtotal">
+                                    <th>Album:</th>
+                                    <td>
+                                        <div id="myModalAlbum">₹0</div>
+                                    </td>
+                                </tr>
+                                <tr class="sc-totals-shipping">
+                                    <th>Shipping:</th>
+                                    <td>
+                                        <span>Free shipping</span>
+                                    </td>
+                                </tr>
+                                <tr class="sc-totals-total">
+                                    <th>gst:</th>
+                                    <td>
+                                        <span>₹0</span>
+                                    </td>
+                                </tr>
+                                <tr class="sc-totals-total">
+                                    <th>Total:</th>
+                                    <td>
+                                        <bdi id="myModalGrandTotal">₹0</bdi>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        <!-- End table -->
+
+                        <h4 class="shop-cart-box-heading">Discount Code</h4>
+
+                        <!-- Begin shopping cart discount form (Note: for design purposes only!)
+                                                            =======================================
+                                                            * Use class "tt-form-filled" or "tt-form-minimal" to change form style.
+                                                            * Use class "tt-form-sm" or "tt-form-lg" to change form size (no class = default size).
+                                                            -->
+                        <form class="cart-discount-form tt-form-minimal">
+                            <small class="tt-form-text">Enter your code if you have one.</small>
+                            <input type="text" name="coupon-code" class="tt-form-control margin-bottom-20" id="coupon-code" value=""
+                                   placeholder="Coupon code" required>
+                            <div class="tt-btn tt-btn-light-outline tt-btn-block">
+                                <button type="submit" data-hover="Apply Coupon">Apply Coupon</button>
+                            </div>
+                        </form>
+                        <!-- shopping cart discount form -->
+                        <div class="tt-btn tt-btn-primary tt-btn-block">
+                            <a href="shop-checkout.html" data-hover="Proceed to Checkout">Proceed to Checkout</a>
+                        </div>
+
+                    </div>
+                    <!-- End shopping cart totals -->
+                    <!-- Begin shopping cart discount code -->
+                    <div class="shop-cart-discount shop-cart-box bg-black"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
 @section styleheader{
     @*<link href="~/UIContent/CSS/bootstrap.min.css" rel="stylesheet" />*@
     @*<link href="~/UIContent/CSS/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
     <link href="~/UIContent/CSS/sweetalert2.min.css" rel="stylesheet" />
+    <style>
+        .inVisible {
+            display:none;
+        }
+    </style>
 }
 @section scripts{
     <script src="~/UIContent/JS/jquery-3.6.0.min.js"></script>

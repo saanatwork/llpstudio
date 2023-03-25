@@ -72,7 +72,7 @@
                         <li>
                             <div class="pi-list-heading">@item["PackageName"]</div>
                             <div class="tt-btn tt-btn-light tt-btn-round tt-btn-ton">
-                                <a href="@Url.Action("Index","EventBookingDetails",new { @id=item["PackageId"],@id1=Model.EventId })" data-hover="View">
+                                <a href="@Url.Action("Index","BookEvent",new { @id=item["PackageId"],@id1=Model.EventId })" data-hover="View">
                                 <img src="/assets/img/custom/@item["PackageIcon"]" alt=""></a> <!-- Use short text only! -->
                             </div>
                         </li>
