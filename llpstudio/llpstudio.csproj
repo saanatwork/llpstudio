@@ -164,6 +164,7 @@
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BookingFormVM.cs" />
+    <Compile Include="ViewModel\CheckOutVM.cs" />
     <Compile Include="ViewModel\MyProductsVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -756,6 +757,7 @@
     <Content Include="UIContent\JS\bootstrap-multiselect.js" />
     <Content Include="UIContent\JS\bootstrap.bundle.min.js" />
     <Content Include="UIContent\JS\CustomePage\BookingForm.js" />
+    <Content Include="UIContent\JS\CustomePage\CheckOut.js" />
     <Content Include="UIContent\JS\CustomePage\CommonReusable.js" />
     <Content Include="UIContent\JS\CustomLayout.js" />
     <Content Include="UIContent\JS\DataTablePagingInput.js" />
@@ -836,6 +838,7 @@
     <Content Include="UIContent\CSS\img\beediworkers.webp" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\index.cshtml" />
+    <Content Include="Views\BookEvent\CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

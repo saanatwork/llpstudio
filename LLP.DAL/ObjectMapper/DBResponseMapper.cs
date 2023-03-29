@@ -20,6 +20,20 @@ namespace LLP.DAL.ObjectMapper
                     pMsg = dt.Rows[0]["Msg"].ToString();
             }
         }
+        public int Map_DBResponseCustomerID(DataTable dt, ref string pMsg, ref bool IsSuccess)
+        {
+            int result = 0;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                if (!DBNull.Value.Equals(dt.Rows[0]["IsSuccess"]))
+                    IsSuccess = bool.Parse(dt.Rows[0]["IsSuccess"].ToString());
+                if (!DBNull.Value.Equals(dt.Rows[0]["Msg"]))
+                    pMsg = dt.Rows[0]["Msg"].ToString();
+                if (!DBNull.Value.Equals(dt.Rows[0]["CustomerId"]))
+                    result = int.Parse(dt.Rows[0]["CustomerId"].ToString());
+            }
+            return result;
+        }
         public CustomComboOptions Map_CustomComboOptions(DataRow dr)
         {
             CustomComboOptions result = new CustomComboOptions();

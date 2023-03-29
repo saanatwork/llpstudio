@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!-- page header -->
+@Html.HiddenFor(m => m.MasterEventID)
+@Html.HiddenFor(m => m.MasterPackageID)
 <div id="page-header" class="ph-full ph-cap-xxlg ph-center ph-image-cropped ph-image-cover-2 ph-content-parallax">
     <div class="page-header-inner tt-wrap">
         <div class="ph-caption">
@@ -44,7 +46,7 @@
 
                             <div class="d-flex justify-content-end align-items-center mb-2">
                                 <div class="tt-heading tt-heading-xsm anim-fadeinup mb-0 mr-2" style="">
-                                    <h2 class="tt-heading-title">Sub Total: <span id="TotlPrice">$XYZ</span> </h2>
+                                    <h2 class="tt-heading-title">Sub Total:₹ <span id="TotlPrice"></span>/- </h2>
                                 </div>
 
                                 <div class="tt-btn tt-btn-dark">
@@ -54,7 +56,7 @@
 
                             <div class="table_con box-inner">
                                 <div class="table_con_in ">
-                                    <table class="tt-table shop-wishlist-table">
+                                    <table class="tt-table shop-wishlist-table" id="ComponentTable">
                                         <thead class="shop-wishlist-table-head">
                                             <tr>
                                                 <th class="swh-product-title" colspan="">
@@ -86,11 +88,14 @@
                                             {
                                                 foreach (var item in Model.PackageDtl)
                                                 {
-                                                    <tr class="shop-wishlist-table-item customer_records">
+                                                    <tr id="@("tr_"+item.EventDay)" class="shop-wishlist-table-item customer_records">
                                                         <td class="swti-product-thumb">
                                                             <div class="tt-form-group">
-                                                                <input class="tt-form-control" id="our_date" name="our_date" type="text" value="">
-                                                                <select class="tt-form-control" id="12323115" name="option">
+                                                                <input class="tt-form-control myDatePicker is-invalid" 
+                                                                       id="@("EventDt_"+item.EventDay)" onchange="EventDateChanged()"
+                                                                       name="our_date" type="date" min="@DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")">
+                                                                <select class="tt-form-control is-invalid" id="@("CEvent_"+item.EventDay)" 
+                                                                        name="option" onchange="EventTypeChanged()">
                                                                     <option value="" disabled="" selected="">Event Type</option>
                                                                     @if (Model.EventList != null && Model.EventList.Count > 0)
                                                                     {
@@ -104,8 +109,10 @@
                                                         </td>
                                                         <td class="swti-product-title">
                                                             <div class="tt-form-group">
-                                                                <input class="tt-form-control" id="" type="text" name="name" placeholder="Location"
-                                                                       required="">
+                                                                <input class="tt-form-control is-invalid" id="@("EventLocation_"+item.EventDay)"
+                                                                       type="text" name="name" placeholder="Location"
+                                                                       onchange="PlaceChanged()"
+                                                                       required="" value="">
                                                                 <input class="tt-form-control" id="@item.PhotoGrapherTypeID"
                                                                        type="text" name="name" value="@item.PhotoGrapherTypeDesc" disabled>
 
@@ -118,8 +125,10 @@
                                                                 <td class="swti-price check-t" data-title="Price">
                                                                     <div class="price_t">₹@i.UnitPrice/-</div>
                                                                     <label class="switch">
-                                                                        <input data-val="@i.UnitPrice" id="@("SW"+item.EventDay+i.ID)"
-                                                                               onclick="ComponentChanged(@item.EventDay)" class="mPrice @("mPrice"+item.EventDay)"
+                                                                        <input data-val="@i.UnitPrice" data-id="@i.PhotographerTypeComponentLinkID"
+                                                                               id="@("SW"+item.EventDay+i.ID)"
+                                                                               onclick="ComponentChanged(@item.EventDay)"
+                                                                               class="mPrice @("mPrice"+item.EventDay)"
                                                                                type="checkbox" @(i.IsInPackage ? "checked" : "")>
                                                                         <span class="slider round"></span>
                                                                         <span id="@("TxtSW"+item.EventDay+i.ID)" class="absolute-no">@(i.IsInPackage?"Yes":"No")</span>
@@ -127,11 +136,10 @@
                                                                 </td>
                                                             }
                                                         }
-                                                        <td class="swti-price" style="text-align:center">
-                                                            <div id="RowPrice_@item.EventDay" class="rowPrice">
-
-                                                            </div>
-                                                        </td>
+                                                    <td class="swti-price" style="text-align:center">
+                                                        ₹<span id="RowPrice_@item.EventDay" class="rowPrice">
+                                                        </span>/-
+                                                    </td>
                                                         <td class="swti-price" style="text-align:center">
                                                             <span class="badge bg-secondary">
                                                                 <button onclick="RemoveBtnClicked()" id="@("RemoveBtn_"+@item.EventDay)">Remove</button>
@@ -140,14 +148,17 @@
                                                     </tr>
                                                 }
                                             }
+
+                                        </tbody>
+                                        <tfoot>
                                             <tr class="shop-wishlist-table-buttons">
                                                 <td colspan="@(Model.ComponentList!=null?Model.ComponentList.Count+3:3)" class="text-right">
-                                                    <div class="tt-btn tt-btn-primary my-0">
-                                                        <div id="TableTotal" href="#" class="extra-fields-customer" data-hover="Add">Total :</div>
-                                                    </div>
+                                                    @*<div class="tt-btn tt-btn-primary my-0" style="padding-left:20px">*@
+                                                    ₹<span id="TableTotal" href="#"></span>/-
+                                                    @*</div>*@
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                        </tfoot>
                                     </table>
                                     <!-- End tt-Table -->
                                 </div>
@@ -161,7 +172,7 @@
 
                             <div class="text-right">
                                 <div class="tt-btn tt-btn-link">
-                                    <a href="shop-checkout.html" data-hover="Checkout">Proceed to Checkout</a>
+                                    <a href="#" onclick="CheckOutClicked()" data-hover="Checkout">Proceed to Checkout</a>
                                 </div>
                             </div>
 
@@ -318,7 +329,7 @@
     <link href="~/UIContent/CSS/sweetalert2.min.css" rel="stylesheet" />
     <style>
         .inVisible {
-            display:none;
+            display: none;
         }
     </style>
 }

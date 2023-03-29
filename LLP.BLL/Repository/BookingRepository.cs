@@ -58,5 +58,9 @@ namespace LLP.BLL.Repository
             }
             return result;
         }
+        public bool SetCustomer(Customer customer, ref string pMsg, ref int CostomerID)
+        {
+            return _BookingEntity.SetCustomer(customer,ref pMsg,ref CostomerID);
+        }
     }
 }

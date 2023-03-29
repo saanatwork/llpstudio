@@ -9,6 +9,8 @@ namespace llpstudio.ViewModel
 {
     public class BookingFormVM
     {
+        public int MasterEventID { get; set; }
+        public int MasterPackageID { get; set; }
         public List<Album> AlbumList { get; set; }
         public List<CustomComboOptions> EventList { get; set; }
         public List<BookingDtl> PackageDtl { get; set; }

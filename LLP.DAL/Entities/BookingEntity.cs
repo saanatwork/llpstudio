@@ -111,5 +111,14 @@ namespace LLP.DAL.Entities
             catch (Exception ex) { pMsg = ex.Message; }
             return result;
         }
+        public bool SetCustomer(BOL.BookingForm.Customer customer, ref string pMsg,ref int CostomerID) 
+        {
+            bool result = false;
+            CostomerID=_DBResponseMapper.Map_DBResponseCustomerID(_BookingDatasync.SetCustomer(customer, ref pMsg), ref pMsg, ref result);
+            return result;
+        }
+
+
+
     }
 }

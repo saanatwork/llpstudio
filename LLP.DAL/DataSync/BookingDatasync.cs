@@ -59,6 +59,17 @@ namespace LLP.DAL.DataSync
             }
             catch (Exception ex) { pMsg = ex.Message; return null; }
         }
+        public DataTable SetCustomer(BOL.BookingForm.Customer customer, ref string pMsg)
+        {
+            try
+            {
+                using (SQLHelper sql = new SQLHelper("[BKN].[usp_SetCustomer]", CommandType.StoredProcedure))
+                {
+                    return sql.GetDataTable(_paramMapper.MapParam_usp_SetCustomer(customer, ref pMsg), ref pMsg);
+                }
+            }
+            catch (Exception ex) { pMsg = ex.Message; return null; }
+        }
 
 
 

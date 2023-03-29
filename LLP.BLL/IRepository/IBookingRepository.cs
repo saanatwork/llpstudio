@@ -14,5 +14,8 @@ namespace LLP.BLL.IRepository
         List<Album> GetAlbumType(int AlbumTypeID, bool IsActive, ref string pMsg);
         List<Component> GetComponents(int ComponentID, bool IsActive, ref string pMsg);
         List<BookingDtl> GetPackageDetails(int PackageID, int ParentEventID, ref string pMsg);
+        bool SetCustomer(BOL.BookingForm.Customer customer, ref string pMsg, ref int CostomerID);
+
+
     }
 }

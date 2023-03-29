@@ -1,0 +1,313 @@
+﻿@model llpstudio.ViewModel.CheckOutVM
+@{
+    ViewBag.Title = "CheckOut";
+}
+@using (Html.BeginForm())
+{
+    <div id="page-header" class="ph-cap-sm ph-center ph-image-cropped ph-image-cover-4 ph-content-parallax">
+        <div class="page-header-inner tt-wrap">
+            <div class="ph-caption">
+                <h1 class="ph-caption-title ph-appear">Checkout</h1>
+                <div class="ph-caption-title-ghost ph-appear">Checkout</div>
+                <div class="ph-caption-subtitle ph-appear">Fill in your details</div>
+            </div>
+        </div> <!-- /.page-header-inner -->
+        <a href="#page-content" class="scroll-down-circle" data-offset="30">
+            <div class="sdc-inner ph-appear">
+                <div class="sdc-icon"><i class="fas fa-chevron-down"></i></div>
+                <svg viewBox="0 0 500 500">
+                    <defs>
+                        <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
+                    </defs>
+                    <text dy="30">
+                        <textPath xlink:href="#textcircle">Scroll down - Scroll down -</textPath>
+                    </text>
+                </svg>
+            </div> <!-- /.sdc-inner -->
+        </a>
+        <div class="made-with-love ph-appear">
+            <div class="mwl-inner">
+                <div class="mwl-text">Made with</div>
+                <div class="mwl-icon"><i class="far fa-heart"></i></div>
+            </div>
+        </div>
+    </div>
+    <div id="page-content">
+        <div class="tt-section no-padding-top">
+            <div class="tt-section-inner tt-wrap">
+                @*<form class="shop-checkout-form tt-form-minimal" method="get" action="">*@
+                <div class="tt-row">
+                    <div class="tt-col-xl-7 tt-col-lg-6 padding-right-xlg-20">
+
+                        <!-- Begin shop checkout billing details
+                        ========================================= -->
+                        <div class="shop-billing-details shop-checkout-box">
+
+                            <h4 class="shop-checkout-box-heading">Billing Details</h4>
+                            <small class="tt-form-text">Fields marked with (*) are required!</small>
+
+                            <div class="tt-row margin-top-60">
+                                <div class="tt-col-md-6">
+                                    <div class="tt-form-group">
+                                        <label for="billing-first-name">First Name <span class="required">*</span></label>
+                                        @Html.TextBoxFor(m => m.customer.FirstName,
+                                            htmlAttributes: new
+                                                {
+                                                @class = "tt-form-control"
+                                                })
+                                        @*<input type="text" class="tt-form-control" name="billing-first-name" id="billing-first-name" required>*@
+                                    </div>
+                                </div> <!-- /.tt-col -->
+
+                                <div class="tt-col-md-6">
+                                    <div class="tt-form-group">
+                                        <label for="billing-last-name">Last Name <span class="required">*</span></label>
+                                        @Html.TextBoxFor(m => m.customer.LastName,
+                                            htmlAttributes: new
+                                                {
+                                                @class = "tt-form-control"
+                                                })
+                                    </div>
+                                </div> <!-- /.tt-col -->
+                            </div> <!-- /.tt-row -->
+
+                            <div class="tt-form-group">
+                                <label for="billing-email">Email Address <span class="required">*</span></label>
+                                @Html.TextBoxFor(m => m.customer.Email,
+                                            htmlAttributes: new
+                                                {
+                                                @class = "tt-form-control"
+                                                })
+                            </div>
+
+                            <div class="tt-form-group">
+                                <label for="billing-phone">Phone <span class="required">*</span></label>
+                                @Html.TextBoxFor(m => m.customer.Mobile,
+                                            htmlAttributes: new
+                                                {
+                                                @class = "tt-form-control"
+                                                })
+                            </div>
+
+                            @*<div class="tt-form-group">
+                                    <label for="billing-company-name">Company Name</label>
+                                    <input type="text" class="tt-form-control" name="billing-company-name" id="billing-company-name" placeholder="(optional)">
+                                </div>*@
+
+                            @*<div class="tt-form-group">
+                                    <label>Country / Region <span class="required">*</span></label>
+                                    <select class="tt-form-control">
+                                        <option value="">Select a country</option>
+                                        <option value="EC1">Country 1</option>
+                                        <option value="EC2">Country 2</option>
+                                        <option value="EC3">Country 3</option>
+                                        <option value="EC4">Country 4</option>
+                                        <option value="EC5">Country 5</option>
+                                    </select>
+                                </div>*@
+
+                            <div class="tt-form-group">
+                                <label for="billing-address-1">Address <span class="required">*</span></label>
+                                @Html.TextBoxFor(m => m.customer.Address,
+                                            htmlAttributes: new
+                                                {
+                                                @class = "tt-form-control"
+                                                })
+                            </div>
+
+                            @*<div class="tt-form-group">
+                                    <label for="billing-city">Town / City <span class="required">*</span></label>
+                                    <input type="text" class="tt-form-control" name="billing-city" id="billing-city" required>
+                                </div>*@
+
+                            <!--<div class="tt-row">
+                                <div class="tt-col-md-6">
+                                    <div class="tt-form-group">
+                                        <label for="billing-state">State / County <span class="required">*</span></label>
+                                        <input type="text" class="tt-form-control" name="billing-state" id="billing-state" required>
+                                    </div>
+                                </div>-->
+                            <!-- /.tt-col -->
+                            <!--<div class="tt-col-md-6">
+                                <div class="tt-form-group">
+                                    <label for="billing-postcode">Postcode / ZIP <span class="required">*</span></label>
+                                    <input type="text" class="tt-form-control" name="billing-postcode" id="billing-postcode" required>
+                                </div>
+                            </div>-->
+                            <!-- /.tt-col -->
+                            <!--</div>--> <!-- /.tt-row -->
+                        </div>
+                        <!-- End shop checkout billing details -->
+                        <!-- Begin shop checkout additional info
+                        ========================================= -->
+                        <div class="shop-additional-info shop-checkout-box">
+                            <h4 class="shop-checkout-box-heading">Additional information</h4>
+                            <div class="tt-form-group">
+                                <label for="billing-notes">Order Notes</label>
+                                @Html.TextAreaFor(m => m.UserRemarks,
+                                   htmlAttributes: new
+                                   {
+                                       @class = "tt-form-control",
+                                       onkeyup = "ValidateControl()",
+                                       @rows = "6",
+                                       @cols = "5"
+                                   })
+                                @*<textarea name="billing-notes" class="tt-form-control" id="billing-notes" placeholder="Notes about your order, e.g. special notes for delivery (optional)." rows="6" cols="5"></textarea>*@
+                            </div>
+                        </div>
+                        <!-- End shop checkout additional info -->
+
+                    </div> <!-- /.tt-col -->
+
+                    <div class="tt-col-xl-5 tt-col-lg-6">
+
+                        <!-- Begin shop checkout order review
+                        ====================================== -->
+                        <div class="shop-order-review shop-checkout-box">
+                            <h4 class="shop-checkout-box-heading">Your Order</h4>
+
+                            <!-- Begin table -->
+                            <table class="shop-order-review-table">
+                                <thead>
+                                    <tr>
+                                        <th class="sor-table-head-product">
+                                            Product
+                                        </th>
+                                        <th class="sor-table-head-subtotal">
+                                            Subtotal
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Begin cart item -->
+                                    <tr class="sor-cart-item">
+                                        <td class="sor-product-wrap">
+                                            <div class="sor-product">
+                                                <div class="sor-product-title">Event Booking<span class="sor-product-quantity"></span></div>
+                                                <div class="sor-product-variations">
+                                                    <div class="sorp-variation">Total days : @Model.EventCount</div>
+                                                </div> <!-- /.sor-product-variations -->
+                                            </div> <!-- /.sor-product -->
+                                        </td>
+                                        <td class="sor-product-subtotal">
+                                            <bdi>@Model.EventTotal</bdi>
+                                        </td>
+                                    </tr>
+                                    <!-- End cart item -->
+                                    <!-- Begin cart item -->
+                                    <tr class="sor-cart-item">
+                                        <td class="sor-product-wrap">
+                                            <div class="sor-product">
+                                                <div class="sor-product-title">Album<span class="sor-product-quantity"> x @Model.AlbumCount</span></div>
+                                                @*<div class="sor-product-variations">
+                                                        <div class="sorp-variation">License: <span>Regular</span></div>
+                                                    </div>*@ <!-- /.sor-product-variations -->
+                                            </div> <!-- /.sor-product -->
+                                        </td>
+                                        <td class="sor-product-subtotal">
+                                            <bdi>@Model.AlbumTotal</bdi>
+                                        </td>
+                                    </tr>
+                                    <!-- End cart item -->
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th class="no-padding">&nbsp;</th>
+                                        <td class="no-padding">&nbsp;</td>
+                                    </tr>
+                                    <tr class="sor-table-foot-subtotal">
+                                        <th>
+                                            Subtotal:
+                                        </th>
+                                        <td>
+                                            <bdi>@Model.Subtotal</bdi>
+                                        </td>
+                                    </tr>
+                                    <tr class="sor-table-foot-shipping">
+                                        <th>
+                                            Shipping:
+                                        </th>
+                                        <td>
+                                            Free Shipping
+                                        </td>
+                                    </tr>
+                                    <tr class="sor-table-foot-total">
+                                        <th>Order Total:</th>
+                                        <td>
+                                            <bdi>@Model.OrderTotal</bdi>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <!-- End table -->
+
+                        </div>
+                        <!-- End shop checkout order review -->
+                        <!-- Begin shop checkout payment methods
+                        ========================================= -->
+                        <!--<div class="shop-payment-methods shop-checkout-box">
+                            <h4 class="shop-checkout-box-heading">Payment Methods</h4>
+
+                            <ul class="shop-payment-methods-list">
+                                <li>
+                                    <div class="tt-form-radio">
+                                        <input type="radio" id="28839456" name="payment-method" required>
+                                        <label for="28839456">Direct Bank Transfer</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="tt-form-radio">
+                                        <input type="radio" id="11892298" name="payment-method" required>
+                                        <label for="11892298">Cheque Payment</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="tt-form-radio">
+                                        <input type="radio" id="58733402" name="payment-method" required>
+                                        <label for="58733402">PayPal <img src="assets/img/shop/paypal.png" class="margin-left-5" alt="PayPal Acceptance Mark"> <a href="" class="small text-gray tt-link-2 margin-left-5" target="_blank" title="What is PayPal?">What is PayPal?</a></label>
+                                    </div>
+                                </li>
+                            </ul>-->
+                        <!-- /.shop-payment-methods -->
+                        <!--</div>-->
+                        <!-- End shop checkout payment methods -->
+
+                        <div class="tt-form-check margin-top-30">
+                            <input type="checkbox" id="45883920" name="terms-and-conditions" required>
+                            <label for="45883920" class="font-normal">I have read and agree to the website <a href="dummy-page.html" target="_blank" class="tt-link-2 text-gray">terms and conditions!</a> <span class="required">*</span></label>
+                        </div>
+
+                        <div class="tt-btn tt-btn-primary tt-btn-block no-margin-right margin-top-30">
+                            <button type="submit" data-hover="Place Order">Place Order</button>
+                        </div>
+
+                        <small class="tt-form-text margin-top-20">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="" target="_blank" class="tt-link-2 text-gray">privacy policy</a>.</small>
+
+
+                    </div> <!-- /.tt-col -->
+                </div> <!-- /.tt-row -->
+                @*</form>*@
+                <!-- End shop checkout form -->
+
+            </div> <!-- /.tt-section-inner -->
+        </div>
+        <!-- End tt-section -->
+    </div>
+}
+@section styleheader{
+    @*<link href="~/UIContent/CSS/bootstrap.min.css" rel="stylesheet" />*@
+    @*<link href="~/UIContent/CSS/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
+    <link href="~/UIContent/CSS/sweetalert2.min.css" rel="stylesheet" />
+    <style>
+        .inVisible {
+            display: none;
+        }
+    </style>
+}
+@section scripts{
+    <script src="~/UIContent/JS/jquery-3.6.0.min.js"></script>
+    <script src="~/UIContent/JS/jquery-ui-1.13.2.min.js"></script>
+    <script src="~/UIContent/JS/sweetalert2.all.min.js"></script>
+    <script src="~/assets/js/theme.js"></script>
+    <script src="~/UIContent/JS/CustomePage/CheckOut.js"></script>
+}
