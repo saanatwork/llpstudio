@@ -62,5 +62,9 @@ namespace LLP.BLL.Repository
         {
             return _BookingEntity.SetCustomer(customer,ref pMsg,ref CostomerID);
         }
+        public bool SetBooking(SaveBooking data, ref string pMsg) 
+        {
+            return _BookingEntity.SetBooking(data, ref pMsg);
+        }
     }
 }

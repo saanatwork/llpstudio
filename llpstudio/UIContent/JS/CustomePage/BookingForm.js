@@ -211,8 +211,5 @@ $(document).ready(function () {
     $('#myModalGrandTotal').html('₹' + grandtotal);
 });
 $(document).ready(function () {
-    (".myDatePicker").datepicker({
-        minDate: 'today',
-        maxDate: new Date(2024, 3 - 1, 10)
-    });
+    
 });

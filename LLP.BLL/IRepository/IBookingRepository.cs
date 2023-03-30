@@ -15,7 +15,7 @@ namespace LLP.BLL.IRepository
         List<Component> GetComponents(int ComponentID, bool IsActive, ref string pMsg);
         List<BookingDtl> GetPackageDetails(int PackageID, int ParentEventID, ref string pMsg);
         bool SetCustomer(BOL.BookingForm.Customer customer, ref string pMsg, ref int CostomerID);
-
+        bool SetBooking(SaveBooking data, ref string pMsg);
 
     }
 }

@@ -4,6 +4,13 @@
 }
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(m => m.Subtotal)
+    @Html.HiddenFor(m => m.OrderTotal)
+    @Html.HiddenFor(m => m.EventTotal)
+    @Html.HiddenFor(m => m.AlbumTotal)
+    @Html.HiddenFor(m => m.EventCount)
+    @Html.HiddenFor(m => m.AlbumCount)
+
     <div id="page-header" class="ph-cap-sm ph-center ph-image-cropped ph-image-cover-4 ph-content-parallax">
         <div class="page-header-inner tt-wrap">
             <div class="ph-caption">
@@ -310,4 +317,41 @@
     <script src="~/UIContent/JS/sweetalert2.all.min.js"></script>
     <script src="~/assets/js/theme.js"></script>
     <script src="~/UIContent/JS/CustomePage/CheckOut.js"></script>
+    <script>
+        $(document).ready(function () {
+            if ('@ViewBag.ErrMsg' != '') {
+                Swal.fire({
+                    title: 'Failed To Place Order!',
+                    text: "@ViewBag.ErrMsg",
+                    icon: 'error',
+                    customClass: 'swal-wide',
+                    buttons: {
+                        //cancel: 'Cancel',
+                        confirm: 'Ok'
+                    },
+                    //cancelButtonClass: 'btn-cancel',
+                    confirmButtonColor: '#2527a2',
+                });
+            };
+            if ('@ViewBag.Msg' != '') {
+                Swal.fire({
+                    title: 'Confirmation',
+                    text: "@ViewBag.Msg",
+                    icon: 'success',
+                    customClass: 'swal-wide',
+                    buttons: {
+                        confirm: 'Ok'
+                    },
+                    confirmButtonColor: '#2527a2',
+                }).then(callback);
+                function callback(result) {
+                    if (result.value) {
+                        var url = "/Home/Index";
+                        window.location.href = url;
+                    }
+                }
+            };
+
+        });
+    </script>
 }

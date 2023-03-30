@@ -49,21 +49,37 @@ namespace llpstudio.Controllers
             }
             model.Subtotal = model.EventTotal + model.AlbumTotal;
             model.OrderTotal = model.Subtotal;
+            //TempData["SB"] = model.bookingdtl;
             return View(model);
         }
         [HttpPost]
-        public ActionResult CheckOut(CheckOutVM model) 
+        public ActionResult CheckOut(CheckOutVM model)
         {
             int customerid = 0;
             _SaveBooking = CastBookingTempData();
-            _SaveBooking.UserRemarks = model.UserRemarks;
+            _SaveBooking.UserRemarks = string.IsNullOrEmpty(model.UserRemarks)?".": model.UserRemarks;
             if (model.customer.CustomerID > 0)
                 customerid = model.customer.CustomerID;
-            else
+            else 
+            {
+                model.customer.WhatsApp = model.customer.Mobile;
+                model.customer.Password = "123456";
+            }
                 _ibooking.SetCustomer(model.customer, ref pMsg, ref customerid);
-            _SaveBooking.CustomerID = customerid;
-            //SetBooking Code Here
 
+            //_SaveBooking.CustomerID = customerid;
+            _SaveBooking.CustomerID = 5;
+            //SetBooking Code Here
+            if (_ibooking.SetBooking(_SaveBooking, ref pMsg)) 
+            {
+                ViewBag.Msg = "Order Placed Successfully.";
+                TempData["SB"] = null;
+            } 
+            else
+            {
+                ViewBag.ErrMsg = pMsg;
+                TempData["SB"] = _SaveBooking;
+            }
             return View(model);
         }
 
@@ -93,7 +109,7 @@ namespace llpstudio.Controllers
             {
                 _SaveBooking = new SaveBooking();
             }
-            
+            TempData["SB"] = _SaveBooking;
             return _SaveBooking;
         }
     }

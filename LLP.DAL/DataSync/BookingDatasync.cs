@@ -1,4 +1,5 @@
-﻿using LLP.DAL.ParamMapper;
+﻿using LLP.BOL.BookingForm;
+using LLP.DAL.ParamMapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -66,6 +67,17 @@ namespace LLP.DAL.DataSync
                 using (SQLHelper sql = new SQLHelper("[BKN].[usp_SetCustomer]", CommandType.StoredProcedure))
                 {
                     return sql.GetDataTable(_paramMapper.MapParam_usp_SetCustomer(customer, ref pMsg), ref pMsg);
+                }
+            }
+            catch (Exception ex) { pMsg = ex.Message; return null; }
+        }
+        public DataTable SetBooking(SaveBooking data, ref string pMsg)
+        {
+            try
+            {
+                using (SQLHelper sql = new SQLHelper("[BKN].[usp_SetBooking]", CommandType.StoredProcedure))
+                {
+                    return sql.GetDataTable(_paramMapper.MapParam_usp_SetBooking(data, ref pMsg), ref pMsg);
                 }
             }
             catch (Exception ex) { pMsg = ex.Message; return null; }

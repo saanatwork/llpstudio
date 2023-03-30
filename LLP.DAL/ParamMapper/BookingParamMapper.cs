@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LLP.BOL.BookingForm;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -72,7 +73,30 @@ namespace LLP.DAL.ParamMapper
             catch (Exception ex) { pMsg = ex.Message; return null; }
             return para;
         }
-
+        public SqlParameter[] MapParam_usp_SetBooking(SaveBooking data, ref string pMsg)
+        {
+            int paracount = 0;
+            SqlParameter[] para = new SqlParameter[6];
+            try
+            {
+                CommonTable bd = new CommonTable(data.BookingDtlList);
+                CommonTable ad = new CommonTable(data.AlbumList);
+                para[paracount] = new SqlParameter("@BookingId", SqlDbType.Int);
+                para[paracount++].Value = data.BookingID;
+                para[paracount] = new SqlParameter("@CustomerId", SqlDbType.Int);
+                para[paracount++].Value = data.CustomerID;
+                para[paracount] = new SqlParameter("@EventId", SqlDbType.Int);
+                para[paracount++].Value = data.EventID;
+                para[paracount] = new SqlParameter("@Details", SqlDbType.NVarChar);
+                para[paracount++].Value = data.UserRemarks;
+                para[paracount] = new SqlParameter("@UDTBookingDetails", SqlDbType.Structured);
+                para[paracount++].Value = bd.UDTable;
+                para[paracount] = new SqlParameter("@UDTAlbumType", SqlDbType.Structured);
+                para[paracount++].Value = ad.UDTable;
+            }
+            catch (Exception ex) { pMsg = ex.Message; return null; }
+            return para;
+        }
 
 
     }

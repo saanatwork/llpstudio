@@ -117,7 +117,12 @@ namespace LLP.DAL.Entities
             CostomerID=_DBResponseMapper.Map_DBResponseCustomerID(_BookingDatasync.SetCustomer(customer, ref pMsg), ref pMsg, ref result);
             return result;
         }
-
+        public bool SetBooking(SaveBooking data, ref string pMsg) 
+        {
+            bool result = false;
+            _DBResponseMapper.Map_DBResponse(_BookingDatasync.SetBooking(data, ref pMsg), ref pMsg, ref result);
+            return result;
+        }
 
 
     }
