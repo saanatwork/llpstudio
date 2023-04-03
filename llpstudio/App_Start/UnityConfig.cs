@@ -15,7 +15,7 @@ namespace llpstudio
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 
-            // e.g. container.RegisterType<ITestService, TestService>();
+            container.RegisterType<IMasterRepository, MasterRepository>();
             container.RegisterType<IBookingRepository, BookingRepository>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

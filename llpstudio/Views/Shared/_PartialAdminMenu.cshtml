@@ -19,17 +19,19 @@
                 <li class="@TempData["dashboard"]">
                     <a href="@Url.Action("Index","Admin")"><i class="fas fa-columns"></i> <span>Dashboard</span></a>
                 </li>
-                @*<li class="submenu">
-            <a href="#" class="@TempData["FoodCategory"]">
-                <i class="fas fa-border-all"></i>
-                <span> Food Category</span> <span class="menu-arrow"></span>
-            </a>
-            <ul style="display: none;">
-                <li><a class="@TempData["FoodCategoryAdd"]" href="@Url.Action("FoodCategory","Admin")">Add Food</a></li>
-                <li><a class="@TempData["FoodCategoryList"]" href="@Url.Action("FoodCategoryList","Admin")">List</a></li>
-
-            </ul>
-        </li>*@
+                <li class="submenu">
+                    <a href="#" class="@TempData["FoodCategory"]">
+                        <i class="fas fa-border-all"></i>
+                        <span> Master</span> <span class="menu-arrow"></span>
+                    </a>
+                    <ul style="display: none;">
+                        <li><a class="@TempData["FoodCategoryAdd"]" href="@Url.Action("Events","Admin")">Event Master</a></li>
+                        <li><a class="@TempData["FoodCategoryList"]" href="@Url.Action("FoodCategoryList","Admin")">Package Master</a></li>
+                        <li><a class="@TempData["FoodCategoryAdd"]" href="@Url.Action("FoodCategory","Admin")">Package Event Link</a></li>
+                        <li><a class="@TempData["FoodCategoryList"]" href="@Url.Action("FoodCategoryList","Admin")">Album Type</a></li>
+                        <li><a class="@TempData["FoodCategoryList"]" href="@Url.Action("FoodCategoryList","Admin")">Component</a></li>
+                    </ul>
+                </li>
 
                 @*<li class="submenu">
             <a href="#" class="@TempData["FoodItem"]">
@@ -54,6 +56,7 @@
 
                     </ul>
                 </li>
+
                 @*<li class="submenu">
                     <a href="#" class="@TempData["Product"]">
                         <i class="fas fa-pizza-slice"></i>

@@ -58,10 +58,11 @@
     <Compile Include="CustomModels\CustomAjaxResponse.cs" />
     <Compile Include="CustomModels\CustomCheckBoxOption.cs" />
     <Compile Include="CustomModels\CustomComboOptions.cs" />
+    <Compile Include="CustomModels\FileUploadResponse.cs" />
+    <Compile Include="Master\MyEvent.cs" />
     <Compile Include="MyHelper.cs" />
     <Compile Include="MyMaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Singleton\Master.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

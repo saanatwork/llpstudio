@@ -34,7 +34,7 @@
     @*<link rel="stylesheet" href="@Url.Content("~/adminassets/css/select2.min.css")">*@
     <!-- Main CSS -->
     <link rel="stylesheet" href="@Url.Content("~/adminassets/css/admin.css")">
-
+    @RenderSection("styleheader", false)
 </head>
 
 <body>
@@ -82,7 +82,8 @@
 
         @RenderBody()
     </div>
-
+    <!-- Modal -->
+    @RenderSection("myModals", false)
     <!-- jQuery -->
     <script src="@Url.Content("~/adminassets/js/jquery-3.5.0.min.js")"></script>
 
@@ -103,10 +104,10 @@
     <script src="@Url.Content("~/adminassets/js/admin.js")"></script>
 
     @*<script>
-        function preventBack() { window.history.forward(); }
-        setTimeout("preventBack()", 0);
-        window.onunload = function () { null };
-    </script>*@
+            function preventBack() { window.history.forward(); }
+            setTimeout("preventBack()", 0);
+            window.onunload = function () { null };
+        </script>*@
 
     @RenderSection("scripts", false)
 </body>

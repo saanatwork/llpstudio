@@ -1,5 +1,9 @@
-﻿using llpstudio.Classes;
+﻿using LLP.BLL.IRepository;
+using LLP.BOL.CustomModels;
+using LLP.BOL.Master;
+using llpstudio.Classes;
 using llpstudio.Models;
+using llpstudio.ViewModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +19,61 @@ namespace llpstudio.Controllers
     {
         AccountDataLayer acdl = new AccountDataLayer();
         // GET: Admin
+        #region For Master Menu --  By Santosh 
+        string pMsg = "";
+        IMasterRepository _iMaster;
+        public AdminController(IMasterRepository iMaster)
+        {
+            _iMaster = iMaster;
+        }
+        public ActionResult Events() 
+        {
+            List<MyEvent> model = _iMaster.GetParentEvents(ref pMsg);
+            return View(model);
+        }
+
+
+
+        //Ajax Calling
+        public JsonResult GetEventList(int iDisplayLength, int iDisplayStart, int iSortCol_0,
+            string sSortDir_0, string sSearch)
+        {
+            List<MyEvent4DT> objlist = _iMaster.GetEventsForDataTable(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch, ref pMsg);
+            var result = new
+            {
+                iTotalRecords = objlist.Count == 0 ? 0 : objlist.FirstOrDefault().TotalRecords,
+                iTotalDisplayRecords = objlist.Count == 0 ? 0 : objlist.FirstOrDefault().TotalCount,
+                iDisplayLength = iDisplayLength,
+                iDisplayStart = iDisplayStart,
+                aaData = objlist
+            };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SetEventImage(string ImageFile,int EventID)
+        {
+            var result = _iMaster.SetEventImage(EventID, ImageFile, ref pMsg);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetEventInfo(string EventID)
+        {
+            var result = _iMaster.GetEvent(int.Parse(EventID), ref pMsg);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult SetEvent(EventInfoAjaxRapper modelobj)
+        {
+            CustomAjaxResponse result = new CustomAjaxResponse();
+            if (modelobj != null)
+            {
+                if (_iMaster.SetEvent(modelobj.DataList.FirstOrDefault(), ref pMsg))
+                {
+                    result.bResponseBool = true;
+                }
+                else { result.bResponseBool = false; result.sResponseString = pMsg; }
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
         public ActionResult Index()
         {
 
@@ -512,5 +571,6 @@ namespace llpstudio.Controllers
             }
             return RedirectToAction("DriverList", "Admin");
         }
+        
     }
 }

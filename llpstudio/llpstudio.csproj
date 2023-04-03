@@ -141,6 +141,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BookEventController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\EventBookingController.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BookingFormVM.cs" />
     <Compile Include="ViewModel\CheckOutVM.cs" />
+    <Compile Include="ViewModel\EventInfoAjaxRapper.cs" />
     <Compile Include="ViewModel\MyProductsVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -759,6 +761,8 @@
     <Content Include="UIContent\JS\CustomePage\BookingForm.js" />
     <Content Include="UIContent\JS\CustomePage\CheckOut.js" />
     <Content Include="UIContent\JS\CustomePage\CommonReusable.js" />
+    <Content Include="UIContent\JS\CustomePage\CommonReusableJS.js" />
+    <Content Include="UIContent\JS\CustomePage\Master\EventJS.js" />
     <Content Include="UIContent\JS\CustomLayout.js" />
     <Content Include="UIContent\JS\DataTablePagingInput.js" />
     <Content Include="UIContent\JS\dataTables.bootstrap5.min.js" />
@@ -839,9 +843,11 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\index.cshtml" />
     <Content Include="Views\BookEvent\CheckOut.cshtml" />
+    <Content Include="Views\Admin\Events.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Common\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
