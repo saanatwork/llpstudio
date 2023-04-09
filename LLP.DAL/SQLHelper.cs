@@ -300,7 +300,7 @@ namespace LLP.DAL
                         oCmd.Parameters.Add(vParam);
                     else
                     {
-                        //pMsg = "Parameter list must not contain null.";
+                        pMsg = "Parameter list must not contain null.";
                         return null;
                     }
                 }

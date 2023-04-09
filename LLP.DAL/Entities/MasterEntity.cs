@@ -41,6 +41,42 @@ namespace LLP.DAL.Entities
             catch (Exception ex) { pMsg = ex.Message; }
             return result;
         }
+        public List<MyPackages4DT> GetPackagesForDataTable(int DisplayLength, int DisplayStart, int SortColumn,
+            string SortDirection, string SearchText, ref string pMsg)
+        {
+            List<MyPackages4DT> result = new List<MyPackages4DT>();
+            try
+            {
+                dt = _MasterDatasync.GetPackagesForDataTable(DisplayLength, DisplayStart, SortColumn, SortDirection, SearchText, ref pMsg);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        result.Add(_MasterObjectMapper.Map_MyPackages4DT(dt.Rows[i]));
+                    }
+                }
+            }
+            catch (Exception ex) { pMsg = ex.Message; }
+            return result;
+        }
+        public List<Album4DT> GetAlbumTypeForDataTable(int DisplayLength, int DisplayStart, int SortColumn,
+            string SortDirection, string SearchText, ref string pMsg)
+        {
+            List<Album4DT> result = new List<Album4DT>();
+            try
+            {
+                dt = _MasterDatasync.GetAlbumTypeForDataTable(DisplayLength, DisplayStart, SortColumn, SortDirection, SearchText, ref pMsg);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        result.Add(_MasterObjectMapper.Map_Album4DT(dt.Rows[i]));
+                    }
+                }
+            }
+            catch (Exception ex) { pMsg = ex.Message; }
+            return result;
+        }
         public List<MyEvent> GetEvents(int EventID, int ParrentEventID, int TypeID, ref string pMsg)
         {
             //ParrentEventID=1 for all, TypeID= 2 fo all, 1 for only parents.
@@ -75,6 +111,62 @@ namespace LLP.DAL.Entities
             _DBResponseMapper.Map_DBResponse(_MasterDatasync.SetEventImage(EventID, ImageFile, ref pMsg), ref pMsg, ref result);
             return result;
         }
+        public List<MyPackages> GetPackages(int PackageID, int EventID, ref string pMsg)
+        {
+            List<MyPackages> result = new List<MyPackages>();
+            try
+            {
+                dt = _MasterDatasync.GetPackages(PackageID, EventID, ref pMsg);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        result.Add(_MasterObjectMapper.Map_MyPackages(dt.Rows[i]));
+                    }
+                }
+            }
+            catch (Exception ex) { pMsg = ex.Message; }
+            return result;
+        }
+        public bool SetPackage(MyPackages data, ref string pMsg)
+        {
+            bool result = false;
+            _DBResponseMapper.Map_DBResponse(_MasterDatasync.SetPackage(data, ref pMsg), ref pMsg, ref result);
+            return result;
+        }
+        public bool SetPackageIcon(int PackageID, string ImageFile, ref string pMsg) 
+        {
+            bool result = false;
+            _DBResponseMapper.Map_DBResponse(_MasterDatasync.SetPackageIcon(PackageID, ImageFile, ref pMsg), ref pMsg, ref result);
+            return result;
+        }
+        public List<Album> GetAlbumType(int AlbumTypeID, ref string pMsg)
+        {
+            List<Album> result = new List<Album>();
+            try
+            {
+                dt = _MasterDatasync.GetAlbumType(AlbumTypeID, ref pMsg);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        result.Add(_MasterObjectMapper.Map_Album(dt.Rows[i]));
+                    }
+                }
+            }
+            catch (Exception ex) { pMsg = ex.Message; }
+            return result;
+        }
+        public bool SetAlbumType(Album data, ref string pMsg)
+        {
+            bool result = false;
+            _DBResponseMapper.Map_DBResponse(_MasterDatasync.SetAlbumType(data, ref pMsg), ref pMsg, ref result);
+            return result;
+        }
+
+
+
+
 
 
 

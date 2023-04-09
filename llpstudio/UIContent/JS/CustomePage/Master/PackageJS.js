@@ -7,13 +7,12 @@
 function validatectrl(targetid, value) {
     var isvalid = false;
     switch (targetid) {
-        case "cEventName":
+        case "cPackageName":
             if (value.length < 50) {
                 isvalid = IsAlphaNumericWithSpace(value);
             }
             break;
-        case "cParentEventID":
-        case "cIsActive":
+        case "cEventId":
             if (value != '') { isvalid = true; }
             break;
     }
@@ -27,7 +26,7 @@ function SaveBtnStatus() {
 function UploadImage(ImageforText, existingImageFile, ImageCtrl) {
     var uploadimgfinename = '';
     Swal.fire({
-        title: 'Want To Change The Following Image For : ' + ImageforText+' ?',
+        title: 'Want To Change The Following Image For : ' + ImageforText + ' ?',
         text: '',
         /*icon: 'success',*/
         html: `<div style="text-align:center;">
@@ -59,7 +58,7 @@ function UploadImage(ImageforText, existingImageFile, ImageCtrl) {
                         $(response).each(function (index, item) {
                             if (item.ResponseStat == 1) {
                                 $.ajax({
-                                    url: '/Admin/SetEventImage?ImageFile=' + item.FileName + '&EventID=' + $(ImageCtrl).attr('data-id'),
+                                    url: '/Admin/SetPackageIcon?ImageFile=' + item.FileName + '&PackageID=' + $(ImageCtrl).attr('data-id'),
                                     method: 'GET',
                                     dataType: 'json',
                                     success: function (data) {
@@ -68,7 +67,7 @@ function UploadImage(ImageforText, existingImageFile, ImageCtrl) {
                                     }
                                 });
                                 //uploadimgfinename = item.FileName;
-                                
+
                             }
                             else {
                                 Swal.fire({
@@ -106,30 +105,28 @@ function UploadImage(ImageforText, existingImageFile, ImageCtrl) {
     return uploadimgfinename;
 }
 function FnImageClicked(ctrl) {
-    var myCtrl = $(ctrl);    
+    var myCtrl = $(ctrl);
     var uploadimgfinename = UploadImage(myCtrl.attr('data-name'), myCtrl.attr('data-img'), ctrl);
-    
+
 };
 function FnViewNote(ctrl) {
     var myCtrl = $(ctrl);
     var eventid = myCtrl.attr('id');
     $.ajax({
-        url: '/Admin/GetEventInfo?EventID=' + eventid,
+        url: '/Admin/GetPackageInfo?PackageID=' + eventid,
         method: 'GET',
         dataType: 'json',
         success: function (data) {
             $(data).each(function (index, item) {
-                $('#cEventId').val(item.EventId);
-                $('#cEventName').val(item.EventName).isValid();
-                $('#cIsActive').val(item.IsActive ? 'true' : 'false').isValid();
-                $('#cParentEventID').val(item.ParentEventID).isValid();
-                $('#cImageFile').val(item.ImageFile);
-                $('#modalHdr').html('Update Event');
+                $('#cPackageId').val(item.PackageId);
+                $('#cPackageName').val(item.PackageName).isValid();
+                $('#cEventId').val(item.EventId).isValid();
+                $('#cPackageIcon').val(item.PackageIcon);
+                $('#modalHdr').html('Update Package Information');
                 $('#btnSave').makeEnabled();
             });
         }
     });
-    
 };
 function FnDeleteNote(ctrl) {
     var myCtrl = $(ctrl);
@@ -137,34 +134,30 @@ function FnDeleteNote(ctrl) {
     alert('Delete - ' + eventid);
 };
 function AddEventClicked() {
-    $('#cEventId').val('');
-    $('#cImageFile').val('');
-    $('#cEventName').val('').isInvalid();
-    $('#cIsActive').val('').isInvalid();
-    $('#cParentEventID').val('').isInvalid();
-    $('#modalHdr').html('New Event');
+    $('#cPackageId').val('');
+    $('#cPackageName').val('').isInvalid();
+    $('#cEventId').val('').isInvalid();
+    $('#cPackageIcon').val('');
+    $('#modalHdr').html('Add New Package');
     $('#btnSave').makeDisable();
 };
-
 $(document).ready(function () {
     var dtinstance = $('#tblDataList').DataTable({
         columns: [
-            { 'data': 'EventId' },
-            { 'data': 'EventName' },
-            { 'data': 'EventNameUrl' },
-            { 'data': 'ParrentEventName' },
+            { 'data': 'PackageId' },
+            { 'data': 'PackageName' },
+            { 'data': 'PackageNameUrl' },
             {
-                'data': 'ImageFile', render: function (data, type, row, meta) {
-                    var viewImg = '<img src="/assets/img/custom/' + row.ImageFile + '" onclick="FnImageClicked(this)" data-id="' + row.EventId + '" data-name="' + row.EventName + '" data-img="' + row.ImageFile+'" style="width:80px;height:80px;">';
+                'data': 'PackageIcon', render: function (data, type, row, meta) {
+                    var viewImg = '<img src="/assets/img/custom/' + row.PackageIcon + '" onclick="FnImageClicked(this)" data-id="' + row.PackageId + '" data-name="' + row.PackageName + '" data-img="' + row.PackageIcon + '" style="width:80px;height:80px;">';
                     return type === 'display' ? viewImg : data;
                 }
             },
-            /*{ 'data': 'EventLongText' },*/
-            { 'data': 'IsActiveStr' },
+            { 'data': 'EventName' },
             {
-                'data': 'EventId', render: function (data, type, row, meta) {
-                    var viewBtn = '<button data-toggle="modal" data-target="#EventModal" type="button" id="' + row.EventId + '" onclick="FnViewNote(this)" class="btn btn-sm bg-success-light mr-2"><i class="far fa-edit mr-1"></i> Edit</button>';
-                    var deleteBtn = '<button  type="button" id="D_' + row.EventId + '" onclick="FnDeleteNote(this)" class="btn btn-sm bg-danger-light mr-2"><i class="fas fa-trash-alt mr-1"></i></button>';
+                'data': 'PackageId', render: function (data, type, row, meta) {
+                    var viewBtn = '<button data-toggle="modal" data-target="#EventModal" type="button" id="' + row.PackageId + '" onclick="FnViewNote(this)" class="btn btn-sm bg-success-light mr-2"><i class="far fa-edit mr-1"></i> Edit</button>';
+                    var deleteBtn = '<button  type="button" id="D_' + row.PackageId + '" onclick="FnDeleteNote(this)" class="btn btn-sm bg-danger-light mr-2"><i class="fas fa-trash-alt mr-1"></i></button>';
                     var mbtns = '<span class="actionBtn d-block">';
                     mbtns = mbtns + viewBtn;
                     if (!row.IsApplied) { mbtns = mbtns + deleteBtn; }
@@ -174,30 +167,29 @@ $(document).ready(function () {
             },
         ],
         bServerSide: true,
-        sAjaxSource: '/Admin/GetEventList',
+        sAjaxSource: '/Admin/GetPackageList',
     });
     $('#btnSave').click(function () {
         var schrecords = GetRecordsFromTable('tblDataListModal');
         var x = '{"DataList":' + schrecords + '}';
         $.ajax({
             method: 'POST',
-            url: '/Admin/SetEvent',
+            url: '/Admin/SetPackage',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: x,
             success: function (data) {
                 $(data).each(function (index, item) {
                     if (item.bResponseBool == true) {
-                        $('#cEventId').val('');
-                        $('#cImageFile').val('');
-                        $('#cEventName').val('').isInvalid();
-                        $('#cIsActive').val('').isInvalid();
-                        $('#cParentEventID').val('').isInvalid();
-                        $('#modalHdr').html('New Event');
+                        $('#cPackageId').val('');
+                        $('#cPackageIcon').val('');
+                        $('#cPackageName').val('').isInvalid();
+                        $('#cEventId').val('').isInvalid();
+                        $('#modalHdr').html('Add New Package');
                         $('#btnSave').makeDisable();
                         Swal.fire({
                             title: 'Success',
-                            text: 'Event Information Saved Successfully.',
+                            text: 'Package Information Saved Successfully.',
                             icon: 'success',
                             customClass: 'swal-wide',
                             buttons: {
@@ -211,7 +203,7 @@ $(document).ready(function () {
                     else {
                         Swal.fire({
                             title: 'Error!',
-                            text: 'Failed To Save Event Information.',
+                            text: 'Failed To Save Package Information.',
                             icon: 'error',
                             customClass: 'swal-wide',
                             buttons: {

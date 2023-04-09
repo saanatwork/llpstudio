@@ -31,7 +31,15 @@ namespace llpstudio.Controllers
             List<MyEvent> model = _iMaster.GetParentEvents(ref pMsg);
             return View(model);
         }
-
+        public ActionResult Packages() 
+        {
+            List<MyEvent> model = _iMaster.GetParentEvents(ref pMsg);
+            return View(model);
+        }
+        public ActionResult Albums()
+        {            
+            return View();
+        }
 
 
         //Ajax Calling
@@ -49,14 +57,57 @@ namespace llpstudio.Controllers
             };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult GetPackageList(int iDisplayLength, int iDisplayStart, int iSortCol_0,
+            string sSortDir_0, string sSearch)
+        {
+            List<MyPackages4DT> objlist = _iMaster.GetPackagesForDataTable(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch, ref pMsg);
+            var result = new
+            {
+                iTotalRecords = objlist.Count == 0 ? 0 : objlist.FirstOrDefault().TotalRecords,
+                iTotalDisplayRecords = objlist.Count == 0 ? 0 : objlist.FirstOrDefault().TotalCount,
+                iDisplayLength = iDisplayLength,
+                iDisplayStart = iDisplayStart,
+                aaData = objlist
+            };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetAlbumList(int iDisplayLength, int iDisplayStart, int iSortCol_0,
+            string sSortDir_0, string sSearch)
+        {
+            List<Album4DT> objlist = _iMaster.GetAlbumTypeForDataTable(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch, ref pMsg);
+            var result = new
+            {
+                iTotalRecords = objlist.Count == 0 ? 0 : objlist.FirstOrDefault().TotalRecords,
+                iTotalDisplayRecords = objlist.Count == 0 ? 0 : objlist.FirstOrDefault().TotalCount,
+                iDisplayLength = iDisplayLength,
+                iDisplayStart = iDisplayStart,
+                aaData = objlist
+            };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult SetEventImage(string ImageFile,int EventID)
         {
             var result = _iMaster.SetEventImage(EventID, ImageFile, ref pMsg);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult SetPackageIcon(string ImageFile, int PackageID)
+        {
+            var result = _iMaster.SetPackageIcon(PackageID, ImageFile, ref pMsg);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult GetEventInfo(string EventID)
         {
             var result = _iMaster.GetEvent(int.Parse(EventID), ref pMsg);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetAlbumInfo(string AlbumTypeID)
+        {
+            var result = _iMaster.GetAlbumType(int.Parse(AlbumTypeID), ref pMsg);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetPackageInfo(string PackageID)
+        {
+            var result = _iMaster.GetPackages(int.Parse(PackageID),0, ref pMsg);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -73,6 +124,35 @@ namespace llpstudio.Controllers
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult SetPackage(PackageInfoAjaxRapper modelobj)
+        {
+            CustomAjaxResponse result = new CustomAjaxResponse();
+            if (modelobj != null)
+            {
+                if (_iMaster.SetPackage(modelobj.DataList.FirstOrDefault(), ref pMsg))
+                {
+                    result.bResponseBool = true;
+                }
+                else { result.bResponseBool = false; result.sResponseString = pMsg; }
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult SetAlbumType(AlbumInfoAjaxRapper modelobj)
+        {
+            CustomAjaxResponse result = new CustomAjaxResponse();
+            if (modelobj != null)
+            {
+                if (_iMaster.SetAlbumType(modelobj.DataList.FirstOrDefault(), ref pMsg))
+                {
+                    result.bResponseBool = true;
+                }
+                else { result.bResponseBool = false; result.sResponseString = pMsg; }
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
         public ActionResult Index()
         {

@@ -1,0 +1,139 @@
+﻿@using LLP.BOL.Master;
+@model List<MyEvent>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "List Of Packages";
+}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">@ViewBag.Title</h3>
+                </div>
+                <div class="col-auto text-right">
+                    <a title="Add Event" onclick="AddEventClicked()" href="#" data-toggle="modal" data-target="#EventModal" class="btn btn-primary add-button ml-3">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="tblDataList" class="table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Url</th>
+                                        <th>Icon</th>
+                                        <th>Event</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section myModals{
+    <div class="modal fade" id="EventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content t">
+                <div class="modal-body">
+                    <div class="modal-header">
+                        <div id="modalHdr"></div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <table style="padding:10px" id="tblDataListModal">
+                        <tbody>
+                            <tr>
+                                <td class="mtd ">
+                                    ID :
+                                </td>
+                                <td class="mtd ">
+                                    <input id="cPackageId" type="text"
+                                           class="form-control " disabled data-name="PackageId" />
+                                    <input id="cPackageIcon" type="text"
+                                           class="form-control inVisible" data-name="PackageIcon" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mtd ">
+                                    Name:
+                                </td>
+                                <td class="mtd ">
+                                    <input id="cPackageName" onkeyup="ValidateControl()" type="text"
+                                           class="form-control is-invalid" data-name="PackageName" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mtd ">
+                                    Event :
+                                </td>
+                                <td class="mtd ">
+                                    <select id="cEventId" data-name="EventId"
+                                            onchange="ValidateControl()"
+                                            class="form-control is-invalid">
+                                        <option selected value="">-</option>
+                                        @if (Model != null && Model.Count > 0)
+                                        {
+                                            foreach (var item in Model)
+                                            {
+                                                <option value="@item.EventId">@item.EventName</option>
+                                            }
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <td class="mtd ">
+                            </td>
+                            <td class="mtd ">
+                                <button id="btnSave" type="button" disabled class="btn btn-sm bg-success-light mr-2"><i class="far fa-edit mr-1"></i> Save</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+@section styleheader{
+    <link href="~/UIContent/CSS/sweetalert2.min.css" rel="stylesheet" />
+    <style>
+        .inVisible {
+            display: none;
+        }
+
+        .mtd {
+            padding: 10px;
+        }
+    </style>
+}
+@section scripts{
+    <script src="~/UIContent/JS/jquery-3.6.0.min.js"></script>
+    <script src="~/UIContent/JS/jquery-ui-1.13.2.min.js"></script>
+    <script src="~/UIContent/JS/jquery.dataTables.min.js"></script>
+    @*<script src="~/UIContent/JS/dataTables.bootstrap5.min.js"></script>*@
+    <script src="~/UIContent/JS/dataTables.js"></script>
+
+    <script src="~/UIContent/JS/sweetalert2.all.min.js"></script>
+    <script src="~/UIContent/JS/CustomePage/CommonReusableJS.js"></script>
+    <script src="~/UIContent/JS/CustomePage/Master/PackageJS.js"></script>
+}
+

@@ -42,5 +42,38 @@ namespace LLP.BLL.Repository
         {
             return _MasterEntity.SetEventImage(EventID, ImageFile, ref pMsg);
         }
+        public List<MyPackages4DT> GetPackagesForDataTable(int DisplayLength, int DisplayStart, int SortColumn, string SortDirection, string SearchText, ref string pMsg)
+        {
+            return _MasterEntity.GetPackagesForDataTable(DisplayLength, DisplayStart, SortColumn, SortDirection, SearchText, ref pMsg);
+        }
+        public List<MyPackages> GetPackages(int PackageID, int EventID, ref string pMsg)
+        {
+            return _MasterEntity.GetPackages(PackageID, EventID, ref pMsg);
+        }
+        public bool SetPackage(MyPackages data, ref string pMsg)
+        {
+            data.PackageIcon = string.IsNullOrEmpty(data.PackageIcon) ? " " : data.PackageIcon;
+            return _MasterEntity.SetPackage(data, ref pMsg);
+        }
+        public bool SetPackageIcon(int PackageID, string ImageFile, ref string pMsg) 
+        {
+            return _MasterEntity.SetPackageIcon(PackageID, ImageFile, ref pMsg);
+        }
+        public List<Album4DT> GetAlbumTypeForDataTable(int DisplayLength, int DisplayStart, int SortColumn, string SortDirection, string SearchText, ref string pMsg)
+        {
+            return _MasterEntity.GetAlbumTypeForDataTable(DisplayLength, DisplayStart, SortColumn, SortDirection, SearchText, ref pMsg);
+        }
+        public List<Album> GetAlbumType(int AlbumTypeID, ref string pMsg)
+        {
+            return _MasterEntity.GetAlbumType(AlbumTypeID, ref pMsg);
+        }
+        public bool SetAlbumType(Album data, ref string pMsg)
+        {
+            return _MasterEntity.SetAlbumType(data, ref pMsg);
+        }
+
+
+
+
     }
 }
