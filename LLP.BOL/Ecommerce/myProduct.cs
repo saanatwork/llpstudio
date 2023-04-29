@@ -60,5 +60,7 @@ namespace LLP.BOL.Ecommerce
         public int RowNum { get; set; }
         public int TotalCount { get; set; }
         public int TotalRecords { get; set; }
+        public double Pages { get; set; }
+        public double SelectedPage { get; set; }
     }
 }

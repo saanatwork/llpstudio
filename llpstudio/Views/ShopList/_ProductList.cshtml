@@ -1,0 +1,75 @@
+﻿@using LLP.BOL.Ecommerce;
+@model List<myProduct4DT>
+@{
+    Layout = null;
+}
+<div class="tt-grid-items-wrap">
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="tt-grid-item">
+                <div class="ttgr-item-inner">
+                    <div class="tt-product">
+                        <div class="tt-product-image-holder">
+                            <a href="@Url.Action("ProductDetails","ShopList",new {ProductID=item.ProdictID })" class="tt-product-image-wrap" data-cursor="View<br>Product">
+                                <figure class="tt-product-image">
+                                    <img class="anim-zoomin tt-lazy" src="/assets/img/custom/@item.ProductImage" alt="image" />
+                                </figure>
+                                <figure class="tt-product-hover-image">
+                                    <img class="tt-lazy" src="/assets/img/custom/@item.ProductImage" alt="image" />
+                                </figure>
+                            </a>
+                            @if (item.Discount > 0)
+                            {
+                                <div class="tt-product-padges">
+                                    <div class="pr-padge pr-sale-padge" title="Sale">-@item.Discount%</div>
+                                </div>
+                            }
+                        </div>
+                        <div class="tt-product-info">
+                            <h3 class="tt-product-title"><a href="@Url.Action("ProductDetails","ShopList",new {ProductID=item.ProdictID })" title="@item.ProductCatDesc - @item.ProductName">@item.ProductName</a></h3>
+                            <div class="tt-pi-price-btn-wrap">
+                                <div class="tt-product-price">
+                                    @if (item.Discount > 0)
+                                    {
+                                        <ins class="pp-current-price"><bdi>₹@item.SalesPrice</bdi></ins>
+                                        <del class="pp-old-price"><bdi>₹@item.Price</bdi></del>
+                                    }
+                                    else
+                                    {
+                                        <bdi>₹@item.SalesPrice</bdi>
+                                    }
+                                </div>
+                                <div class="tt-product-buttons">
+                                    <a href="#" class="tt-product-btn tt-product-adc-btn"><span>Add to Cart</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+<!-- Begin tt-pagination-->
+<div class="tt-pagination tt-pagin-center anim-fadeinup">
+    <div class="tt-pagin-prev">
+        <a href="#" class="tt-pagin-item magnetic-item"><i class="fas fa-chevron-left"></i></a>
+    </div>
+    <div class="tt-pagin-numbers">
+        @if(Model!=null && Model.Count > 0)
+        {
+            double pages = Model.FirstOrDefault().Pages;
+            double selectedpage = Model.FirstOrDefault().SelectedPage;
+            for (double i = 1; i <= pages; i++)
+            {
+                <a href="#0" class="tt-pagin-item magnetic-item @(i==selectedpage?"Active":"")">@i</a>
+            }
+        }
+    </div>
+    <div class="tt-pagin-next">
+        <a href="#" class="tt-pagin-item tt-pagin-next magnetic-item"><i class="fas fa-chevron-right"></i></a>
+    </div>
+</div>
+<!-- End tt-pagination -->

@@ -65,7 +65,7 @@ namespace LLP.DAL.Entities
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        result.Add(_EcommerceObjectMapper.Map_myProduct4DT(dt.Rows[i]));
+                        result.Add(_EcommerceObjectMapper.Map_myProduct4DT(dt.Rows[i], PageNumber));
                     }
                 }
             }

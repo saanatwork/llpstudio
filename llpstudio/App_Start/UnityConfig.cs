@@ -17,7 +17,7 @@ namespace llpstudio
 
             container.RegisterType<IMasterRepository, MasterRepository>();
             container.RegisterType<IBookingRepository, BookingRepository>();
-            container.RegisterType<IECommerceRepository, IECommerceRepository>();
+            container.RegisterType<IECommerceRepository, ECommerceRepository>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

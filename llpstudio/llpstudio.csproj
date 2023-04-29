@@ -167,6 +167,7 @@
     <Compile Include="ViewModel\AlbumInfoAjaxRapper.cs" />
     <Compile Include="ViewModel\BookingFormVM.cs" />
     <Compile Include="ViewModel\CheckOutVM.cs" />
+    <Compile Include="ViewModel\ECommerce\ProductListVM.cs" />
     <Compile Include="ViewModel\EventInfoAjaxRapper.cs" />
     <Compile Include="ViewModel\MyProductsVM.cs" />
     <Compile Include="ViewModel\PackageInfoAjaxRapper.cs" />
@@ -850,6 +851,8 @@
     <Content Include="Views\Admin\Events.cshtml" />
     <Content Include="Views\Admin\Packages.cshtml" />
     <Content Include="Views\Admin\Albums.cshtml" />
+    <Content Include="Views\ShopList\_ProductList.cshtml" />
+    <Content Include="Views\ShopList\_PartialPage1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

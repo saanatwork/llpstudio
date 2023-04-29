@@ -44,7 +44,7 @@ namespace LLP.DAL.ObjectMapper
             }
             return result;
         }
-        public myProduct4DT Map_myProduct4DT(DataRow dr)
+        public myProduct4DT Map_myProduct4DT(DataRow dr,int PageNumber)
         {
             myProduct4DT result = new myProduct4DT();
             if (dr != null)
@@ -73,6 +73,9 @@ namespace LLP.DAL.ObjectMapper
                 if (!DBNull.Value.Equals(dr["Discount"]))
                     result.Discount =double.Parse(dr["Discount"].ToString());
                 result.SalesPrice = Math.Round(result.Price * (100 - result.Discount) / 100);
+                double mp = result.TotalRecords>9?(result.TotalRecords / 9)+0.49:1;
+                result.Pages = Math.Round(mp);
+                result.SelectedPage = PageNumber;
             }
             return result;
         }
