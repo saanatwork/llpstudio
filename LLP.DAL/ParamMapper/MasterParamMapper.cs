@@ -37,7 +37,7 @@ namespace LLP.DAL.ParamMapper
         public SqlParameter[] MapParam_SetEvent(MyEvent data, ref string pMsg)
         {
             int paracount = 0;
-            SqlParameter[] para = new SqlParameter[5];
+            SqlParameter[] para = new SqlParameter[6];
             try
             {
                 para[paracount] = new SqlParameter("@EventId", SqlDbType.Int);
@@ -48,6 +48,8 @@ namespace LLP.DAL.ParamMapper
                 para[paracount++].Value = data.ParentEventID;
                 para[paracount] = new SqlParameter("@ImageFile", SqlDbType.NVarChar,50);
                 para[paracount++].Value = data.ImageFile;
+                para[paracount] = new SqlParameter("@Description", SqlDbType.NVarChar);
+                para[paracount++].Value = data.EventLongText;
                 para[paracount] = new SqlParameter("@IsActive", SqlDbType.Bit);
                 para[paracount++].Value = data.IsActive;
             }

@@ -93,7 +93,7 @@ function GetRecordsFromTable(tableName) {
             that = $(this);
             dataname = that.attr('data-name');
             if (that.hasClass('htmlVal')) {
-                datavalue = that.html();
+                datavalue = that.html();                
             }
             else { datavalue = that.val(); }
             mrecord = mrecord + '"' + dataname + '":"' + datavalue + '",';

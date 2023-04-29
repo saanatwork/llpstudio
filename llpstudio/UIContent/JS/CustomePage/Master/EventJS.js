@@ -14,6 +14,7 @@ function validatectrl(targetid, value) {
             break;
         case "cParentEventID":
         case "cIsActive":
+        case "cEventDesc":
             if (value != '') { isvalid = true; }
             break;
     }
@@ -124,6 +125,7 @@ function FnViewNote(ctrl) {
                 $('#cIsActive').val(item.IsActive ? 'true' : 'false').isValid();
                 $('#cParentEventID').val(item.ParentEventID).isValid();
                 $('#cImageFile').val(item.ImageFile);
+                $('#cEventDesc').html(item.EventLongText);
                 $('#modalHdr').html('Update Event');
                 $('#btnSave').makeEnabled();
             });
@@ -193,6 +195,7 @@ $(document).ready(function () {
                         $('#cEventName').val('').isInvalid();
                         $('#cIsActive').val('').isInvalid();
                         $('#cParentEventID').val('').isInvalid();
+                        $('#cEventDesc').val('').isInvalid();
                         $('#modalHdr').html('New Event');
                         $('#btnSave').makeDisable();
                         Swal.fire({
